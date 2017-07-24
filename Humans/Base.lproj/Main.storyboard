@@ -41,7 +41,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INh-P6-6qh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INh-P6-6qh">
                                 <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
                             </scrollView>
                         </subviews>
@@ -996,7 +996,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                     <segue destination="AtL-IL-duj" kind="presentation" animates="NO" id="r6h-vH-wkx"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bkq-dJ-4FS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-07-18 at 5.32.24 PM" translatesAutoresizingMaskIntoConstraints="NO" id="bkq-dJ-4FS">
                                 <rect key="frame" x="113" y="89" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="mMF-2A-EsR"/>
@@ -1143,7 +1143,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                     <action selector="signUpHit:" destination="6Io-zz-Ylw" eventType="touchUpInside" id="s9d-y2-WNR"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="03C-QS-s8M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-07-18 at 5.32.24 PM" translatesAutoresizingMaskIntoConstraints="NO" id="03C-QS-s8M">
                                 <rect key="frame" x="112.5" y="88.5" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="29N-EV-Svr"/>
@@ -1245,7 +1245,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                     <action selector="ressetPasswortdHit:" destination="AtL-IL-duj" eventType="touchUpInside" id="Isr-hD-ivd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79o-Gb-iVo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2017-07-18 at 5.32.24 PM" translatesAutoresizingMaskIntoConstraints="NO" id="79o-Gb-iVo">
                                 <rect key="frame" x="112.5" y="98.5" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="U4T-X1-lqw"/>
@@ -1292,6 +1292,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
     </scenes>
     <resources>
         <image name="36759_138895626123000_401756_n" width="706" height="459"/>
+        <image name="Screen Shot 2017-07-18 at 5.32.24 PM" width="684" height="682"/>
         <image name="icons8-forward_arrow" width="100" height="100"/>
         <image name="icons8-like" width="100" height="100"/>
         <image name="icons8-more" width="100" height="100"/>
@@ -1300,9 +1301,9 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <image name="icons8-topic" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="lQZ-Bk-Zdz"/>
+        <segue reference="fst-oB-X1k"/>
+        <segue reference="zmC-TY-EBI"/>
         <segue reference="a9R-ew-Azt"/>
-        <segue reference="r6h-vH-wkx"/>
-        <segue reference="J13-Jc-i9q"/>
-        <segue reference="RhL-8e-Lea"/>
     </inferredMetricsTieBreakers>
 </document>
