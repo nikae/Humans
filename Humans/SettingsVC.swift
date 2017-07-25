@@ -11,6 +11,7 @@ import Firebase
 import SDWebImage
 
 class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+
     
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -20,8 +21,12 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var editProfileBtn: UIButton!
+    @IBOutlet weak var dateBtn: UIButton!
+    @IBOutlet weak var countryBtn: UIButton!
     
     @IBOutlet weak var stackView: UIStackView!
+    
+   
     
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
@@ -33,13 +38,17 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
    
-        
         roundPhoto(imageView: profileImage)
         viewShape(view: doneBtn)
+        viewShape(view: dateBtn)
+        viewShape(view: countryBtn)
         
 //        self.navigationItem.hidesBackButton = true
 //        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProfileTV.back(sender:)))
 //        self.navigationItem.leftBarButtonItem = newBackButton
+        
+        
+      
         
         nameTF.delegate = self
         lastNameTF.delegate = self
@@ -93,12 +102,14 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     deinit {
         databaseRef.child("Users").removeObserver(withHandle: _refHandle)
     }
-
+    
+  
 //Mark: -> Figour out KeyBoard
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
             self.editProfileBtn.isEnabled = false
+            self.profileImage.alpha = 0.5
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height - 150
             }
@@ -109,7 +120,9 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .white
             self.editProfileBtn.isEnabled = true
-            if self.view.frame.origin.y != 0{
+            
+            self.profileImage.alpha = 1
+            if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height - 150
             }
         }
@@ -117,14 +130,17 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.nameTF {
-            self.lastNameTF.becomeFirstResponder()
-        } else if textField == self.lastNameTF {
-            self.emailTF.becomeFirstResponder()
-        } else {
-            textField.returnKeyType = .done
+        if textField == nameTF {
             textField.resignFirstResponder()
         }
+        if textField == lastNameTF {
+            textField.resignFirstResponder()
+        }
+        if textField == emailTF {
+            textField.resignFirstResponder()
+        }
+
+        
         return true
     }
     
@@ -281,6 +297,20 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 //        // Go back to the previous ViewController
 //        _ = navigationController?.popViewController(animated: true)
 //    }
+    @IBAction func dateHit(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerVC") as! DatePickerVC
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func countyHit(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapVC
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+
+    }
     
     @IBAction func doneHit(_ sender: UIButton) {
         if nameTF.text != "" && lastNameTF.text != "" {
