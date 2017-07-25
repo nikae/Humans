@@ -13,4 +13,6 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Firebase/Messaging’
 
+pod 'SDWebImage', '~>3.8'
+
 end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p1c-ab-4TG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p1c-ab-4TG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -108,7 +108,7 @@
                                                     <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-KQ-EZz">
+                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-KQ-EZz">
                                                     <rect key="frame" x="2" y="3" width="34" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="D3o-tm-D0c"/>
@@ -345,7 +345,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                             <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="e18-tV-QC2">
+                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="e18-tV-QC2">
                                             <rect key="frame" x="2" y="3" width="34" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="9Zi-ed-akd"/>
@@ -521,7 +521,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                                     <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="vXO-i6-p9Q">
+                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="vXO-i6-p9Q">
                                                     <rect key="frame" x="2" y="3" width="34" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="ZMV-gs-xij"/>
@@ -592,6 +592,142 @@ The app seems to recognize two things: A surrounding box and a code in the middl
             </objects>
             <point key="canvasLocation" x="1612" y="1522.488755622189"/>
         </scene>
+        <!--SettingsVC-->
+        <scene sceneID="scm-b5-Zv7">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="62Z-g9-0pu" customClass="SettingsVC" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2G1-LC-lrf"/>
+                        <viewControllerLayoutGuide type="bottom" id="x6H-lh-s0N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FtG-fc-IoS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-hM-3MY">
+                                <rect key="frame" x="112" y="28" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="94e-NE-fVB"/>
+                                    <constraint firstAttribute="height" constant="150" id="qad-QM-Q1q"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogz-R4-IZA">
+                                <rect key="frame" x="24" y="619" width="327" height="40"/>
+                                <color key="backgroundColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0BG-Ns-iGj"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneHit:" destination="62Z-g9-0pu" eventType="touchUpInside" id="5Tj-8K-bRN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvQ-Bo-3qq">
+                                <rect key="frame" x="112" y="28" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="editProfilePictureHit:" destination="62Z-g9-0pu" eventType="touchUpInside" id="Xve-HO-iyt"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-TY-uLQ">
+                                <rect key="frame" x="24" y="194" width="327" height="376"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-z0-Iaj">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="fam-xI-Wq0"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LcW-pN-Lqq">
+                                        <rect key="frame" x="0.0" y="56" width="327" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="id6-cx-j2o">
+                                        <rect key="frame" x="0.0" y="112" width="327" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkl-uT-8Th">
+                                        <rect key="frame" x="0.0" y="168" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.5725490196078431" green="0.59607843137254901" blue="0.6470588235294118" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3y-44-xun">
+                                        <rect key="frame" x="0.0" y="224" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Information and help">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deI-XV-hRh">
+                                        <rect key="frame" x="0.0" y="280" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Disable My Account">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQU-jP-dkq">
+                                        <rect key="frame" x="0.0" y="336" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Log Out">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOutHit:" destination="62Z-g9-0pu" eventType="touchUpInside" id="8KB-S1-GHQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mvQ-TY-uLQ" secondAttribute="trailing" constant="8" id="9xS-9T-qzM"/>
+                            <constraint firstItem="mvQ-TY-uLQ" firstAttribute="leading" secondItem="FtG-fc-IoS" secondAttribute="leadingMargin" constant="8" id="Egw-Yv-QyE"/>
+                            <constraint firstItem="ogz-R4-IZA" firstAttribute="leading" secondItem="FtG-fc-IoS" secondAttribute="leadingMargin" constant="8" id="Qca-Hb-UIk"/>
+                            <constraint firstItem="x6H-lh-s0N" firstAttribute="top" secondItem="ogz-R4-IZA" secondAttribute="bottom" constant="8" id="Yci-gy-a5h"/>
+                            <constraint firstItem="mvQ-TY-uLQ" firstAttribute="top" secondItem="P3Y-hM-3MY" secondAttribute="bottom" constant="16" id="mUf-Np-83p"/>
+                            <constraint firstItem="ogz-R4-IZA" firstAttribute="trailing" secondItem="FtG-fc-IoS" secondAttribute="trailingMargin" constant="-8" id="oA2-AT-ePy"/>
+                            <constraint firstItem="P3Y-hM-3MY" firstAttribute="centerX" secondItem="FtG-fc-IoS" secondAttribute="centerX" id="rId-p6-a0e"/>
+                            <constraint firstItem="P3Y-hM-3MY" firstAttribute="top" secondItem="2G1-LC-lrf" secondAttribute="bottom" constant="8" id="zVE-bl-Cqj"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Pn9-Ko-KYJ" appends="YES" id="ycy-EE-tDo"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="InfoBtn" destination="T3y-44-xun" id="Ogf-yk-fvs"/>
+                        <outlet property="btn" destination="Jkl-uT-8Th" id="5W6-ri-OHw"/>
+                        <outlet property="disableBtn" destination="deI-XV-hRh" id="roh-UH-xAr"/>
+                        <outlet property="doneBtn" destination="ogz-R4-IZA" id="PFE-Ar-VnY"/>
+                        <outlet property="editProfileBtn" destination="rvQ-Bo-3qq" id="dGo-7a-z1p"/>
+                        <outlet property="emailTF" destination="id6-cx-j2o" id="cpV-V1-ruQ"/>
+                        <outlet property="lastNameTF" destination="LcW-pN-Lqq" id="EIq-FG-WuA"/>
+                        <outlet property="logOutBtn" destination="iQU-jP-dkq" id="YXf-8h-18L"/>
+                        <outlet property="nameTF" destination="1mB-z0-Iaj" id="v58-eM-ouI"/>
+                        <outlet property="profileImage" destination="P3Y-hM-3MY" id="2cU-vz-Ny7"/>
+                        <outlet property="stackView" destination="mvQ-TY-uLQ" id="QhC-TK-A79"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQb-VO-6QF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Pn9-Ko-KYJ">
+                    <connections>
+                        <action selector="dismissKeyboardTap:" destination="62Z-g9-0pu" id="4Hw-52-nDp"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3167" y="678"/>
+        </scene>
         <!--NC1-->
         <scene sceneID="dhY-a7-SMf">
             <objects>
@@ -619,31 +755,34 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="x5W-i7-9FB">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-Xa-FMm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-Xa-FMm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="LdV-Nj-A5A">
-                                    <rect key="frame" x="137.5" y="8" width="100" height="100"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LdV-Nj-A5A">
+                                    <rect key="frame" x="127.5" y="20" width="120" height="120"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="Fxp-U4-Fh6"/>
-                                        <constraint firstAttribute="width" constant="100" id="aZz-wJ-Jci"/>
+                                        <constraint firstAttribute="height" constant="120" id="Fxp-U4-Fh6"/>
+                                        <constraint firstAttribute="width" constant="120" id="aZz-wJ-Jci"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name LastName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vl5-9p-XOh">
-                                    <rect key="frame" x="20" y="116" width="335" height="21"/>
+                                    <rect key="frame" x="20" y="155" width="335" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="1Tb-kt-xc4"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tER-2J-S5v">
-                                    <rect key="frame" x="8" y="157" width="359" height="29"/>
+                                    <rect key="frame" x="8" y="193" width="359" height="29"/>
                                     <segments>
-                                        <segment title="≔"/>
-                                        <segment title="♥"/>
-                                        <segment title="★"/>
+                                        <segment title="Videos"/>
+                                        <segment title="Stories"/>
+                                        <segment title="Favorites"/>
                                     </segments>
                                     <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </segmentedControl>
@@ -651,22 +790,22 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="fRk-Xa-FMm" firstAttribute="centerY" secondItem="x5W-i7-9FB" secondAttribute="centerY" id="8Mg-VD-sKd"/>
-                                <constraint firstItem="LdV-Nj-A5A" firstAttribute="top" secondItem="x5W-i7-9FB" secondAttribute="top" constant="8" id="PUk-Dc-Ody"/>
+                                <constraint firstItem="LdV-Nj-A5A" firstAttribute="top" secondItem="x5W-i7-9FB" secondAttribute="top" constant="20" id="PUk-Dc-Ody"/>
                                 <constraint firstItem="LdV-Nj-A5A" firstAttribute="centerX" secondItem="x5W-i7-9FB" secondAttribute="centerX" id="PeC-wN-M6C"/>
                                 <constraint firstItem="fRk-Xa-FMm" firstAttribute="height" secondItem="x5W-i7-9FB" secondAttribute="height" id="Trq-6t-kuB"/>
+                                <constraint firstAttribute="bottom" secondItem="tER-2J-S5v" secondAttribute="bottom" constant="8" id="csF-ZA-s3H"/>
                                 <constraint firstAttribute="trailing" secondItem="tER-2J-S5v" secondAttribute="trailing" constant="8" id="eTw-bM-3XY"/>
-                                <constraint firstItem="vl5-9p-XOh" firstAttribute="top" secondItem="LdV-Nj-A5A" secondAttribute="bottom" constant="8" id="lKW-Jg-bMe"/>
+                                <constraint firstItem="vl5-9p-XOh" firstAttribute="top" secondItem="LdV-Nj-A5A" secondAttribute="bottom" constant="15" id="lKW-Jg-bMe"/>
                                 <constraint firstItem="tER-2J-S5v" firstAttribute="leading" secondItem="x5W-i7-9FB" secondAttribute="leading" constant="8" id="lgd-sU-2gg"/>
                                 <constraint firstItem="vl5-9p-XOh" firstAttribute="leading" secondItem="x5W-i7-9FB" secondAttribute="leading" constant="20" id="qSl-Jz-HDG"/>
                                 <constraint firstAttribute="trailing" secondItem="vl5-9p-XOh" secondAttribute="trailing" constant="20" id="rJu-Tu-uCr"/>
                                 <constraint firstItem="fRk-Xa-FMm" firstAttribute="centerX" secondItem="x5W-i7-9FB" secondAttribute="centerX" id="xNK-qH-0Wz"/>
-                                <constraint firstItem="tER-2J-S5v" firstAttribute="top" secondItem="vl5-9p-XOh" secondAttribute="bottom" constant="20" id="xhq-WN-MWe"/>
                                 <constraint firstItem="fRk-Xa-FMm" firstAttribute="width" secondItem="x5W-i7-9FB" secondAttribute="width" id="y1t-ei-y8O"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="profileCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="423" id="vGW-4w-CJC" customClass="ProfileViewCell" customModule="Humans" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="222" width="375" height="423"/>
+                                <rect key="frame" x="0.0" y="257" width="375" height="423"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vGW-4w-CJC" id="aml-qF-anP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
@@ -701,7 +840,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                                     <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="36759_138895626123000_401756_n" translatesAutoresizingMaskIntoConstraints="NO" id="wIh-pV-Hjx">
+                                                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="wIh-pV-Hjx">
                                                     <rect key="frame" x="2" y="3" width="34" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="EYh-mI-83f"/>
@@ -900,7 +1039,9 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="fRk-Xa-FMm" id="isq-4e-UL9"/>
+                        <outlet property="fullNameLabel" destination="vl5-9p-XOh" id="1jQ-If-3df"/>
                         <outlet property="imageView" destination="LdV-Nj-A5A" id="8dd-IO-fFT"/>
+                        <outlet property="segmentControl" destination="tER-2J-S5v" id="ubZ-2s-jzL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upl-hS-Wyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1291,8 +1432,8 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         </scene>
     </scenes>
     <resources>
-        <image name="36759_138895626123000_401756_n" width="706" height="459"/>
         <image name="Screen Shot 2017-07-18 at 5.32.24 PM" width="684" height="682"/>
+        <image name="default-avatar" width="295" height="295"/>
         <image name="icons8-forward_arrow" width="100" height="100"/>
         <image name="icons8-like" width="100" height="100"/>
         <image name="icons8-more" width="100" height="100"/>
@@ -1301,9 +1442,9 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <image name="icons8-topic" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lQZ-Bk-Zdz"/>
-        <segue reference="fst-oB-X1k"/>
-        <segue reference="zmC-TY-EBI"/>
         <segue reference="a9R-ew-Azt"/>
+        <segue reference="r6h-vH-wkx"/>
+        <segue reference="J13-Jc-i9q"/>
+        <segue reference="RhL-8e-Lea"/>
     </inferredMetricsTieBreakers>
 </document>

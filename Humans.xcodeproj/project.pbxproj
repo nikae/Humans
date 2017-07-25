@@ -18,6 +18,8 @@
 		248662051F1989F5005CD8CD /* ComentsTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248662041F1989F5005CD8CD /* ComentsTV.swift */; };
 		248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248662061F1D4EC4005CD8CD /* ComentsCell.swift */; };
 		248662091F1EAF9D005CD8CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */; };
+		24BF08261F266ABB005A198B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08251F266ABB005A198B /* SettingsVC.swift */; };
+		24BF08281F267542005A198B /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08271F267542005A198B /* Methods.swift */; };
 		24E7EF3D1F17E15400EA0962 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E7EF3C1F17E15400EA0962 /* AppDelegate.swift */; };
 		24E7EF3F1F17E15400EA0962 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E7EF3E1F17E15400EA0962 /* ViewController.swift */; };
 		24E7EF421F17E15400EA0962 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E7EF401F17E15400EA0962 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 		248662041F1989F5005CD8CD /* ComentsTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComentsTV.swift; sourceTree = "<group>"; };
 		248662061F1D4EC4005CD8CD /* ComentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComentsCell.swift; sourceTree = "<group>"; };
 		248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24BF08251F266ABB005A198B /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		24BF08271F267542005A198B /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		24E7EF391F17E15400EA0962 /* Humans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Humans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24E7EF3C1F17E15400EA0962 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24E7EF3E1F17E15400EA0962 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				24E7EF3E1F17E15400EA0962 /* ViewController.swift */,
 				24E7EF511F17E26100EA0962 /* HumansTV.swift */,
 				24E7EF5B1F17F6F800EA0962 /* ProfileTV.swift */,
+				24BF08251F266ABB005A198B /* SettingsVC.swift */,
 				248662041F1989F5005CD8CD /* ComentsTV.swift */,
 				248661FA1F1863EE005CD8CD /* HumansTableViewCell.swift */,
 				248661F41F180B35005CD8CD /* ProfileViewCell.swift */,
@@ -120,6 +125,7 @@
 				24E7EF571F17E6B000EA0962 /* ProfileNC.swift */,
 				24E7EF551F17E64800EA0962 /* NC1.swift */,
 				248662021F197F5D005CD8CD /* Models.swift */,
+				24BF08271F267542005A198B /* Methods.swift */,
 				24F8F83E1F1EB2B900FAFBFF /* LogInVC.swift */,
 				24F8F8401F1EB2C600FAFBFF /* SignUpVC.swift */,
 				24F8F8421F1EB2CF00FAFBFF /* ResetPasswordVC.swift */,
@@ -289,8 +295,10 @@
 				24E7EF451F17E15400EA0962 /* Humans.xcdatamodeld in Sources */,
 				24F8F83F1F1EB2B900FAFBFF /* LogInVC.swift in Sources */,
 				24E7EF581F17E6B000EA0962 /* ProfileNC.swift in Sources */,
+				24BF08261F266ABB005A198B /* SettingsVC.swift in Sources */,
 				24E7EF561F17E64800EA0962 /* NC1.swift in Sources */,
 				24E7EF3F1F17E15400EA0962 /* ViewController.swift in Sources */,
+				24BF08281F267542005A198B /* Methods.swift in Sources */,
 				248661F51F180B35005CD8CD /* ProfileViewCell.swift in Sources */,
 				24E7EF5C1F17F6F800EA0962 /* ProfileTV.swift in Sources */,
 				24E7EF3D1F17E15400EA0962 /* AppDelegate.swift in Sources */,

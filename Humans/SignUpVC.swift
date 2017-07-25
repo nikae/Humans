@@ -43,7 +43,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate{
         }
     }
    //End: -> View Up/Down 
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTF {
             passwordTF.becomeFirstResponder()
@@ -89,15 +88,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate{
                         } else {
                             let alert = UIAlertController(title: "Verification email sent", message: "Please check your email to verify.", preferredStyle: .alert)
                             let oKAction = UIAlertAction(title: "OK", style: .default ) { (action: UIAlertAction) in
-                                
                                 print("You have successfully signed up")
-                                
                                 let userID = FIRAuth.auth()?.currentUser?.uid
                                 if userID != nil {
                                     let databaseRef = FIRDatabase.database().reference()
                                     databaseRef.child("Users/\(userID!)/email").setValue(self.emailTF.text!)
-                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
-                                    self.present(vc!, animated: true, completion: nil)
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+                                    self.present(vc, animated: true, completion: nil)
                                 }
                             }
                             alert.addAction(oKAction)

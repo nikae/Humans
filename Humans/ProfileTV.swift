@@ -11,6 +11,7 @@ import AVKit
 import AVFoundation
 import MediaPlayer
 import Firebase
+import SDWebImage
 
 extension UIImageView {
     func addBlurEffect() {
@@ -36,22 +37,64 @@ var NameToSand = ""
 
 class ProfileTV: UITableViewController {
     
-    
     var moviePlayer: AVPlayer!
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
+    var storageRef: FIRStorageReference!
+    var databaseRef: FIRDatabaseReference!
+    let uId = FIRAuth.auth()?.currentUser?.uid
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         backgroundImageView.addBlurEffect()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.isUserInteractionEnabled = true
-        imageView.layer.cornerRadius = imageView.frame.height/2
+        roundPhoto(imageView: imageView)
+        
+        databaseRef = FIRDatabase.database().reference()
+        databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+            let firstName = value?["firstName"] as? String ?? "First Name"
+            let lastName = value?["lastName"] as? String ?? "Last Name"
+            let pictureURL = value?["profilePictureUrl"] as? String ?? ""
+            
+            self.fullNameLabel.text = "\(firstName) \(lastName)"
+            
+            if pictureURL != "" {
+                let starsRef = FIRStorage.storage().reference(forURL: pictureURL)
+                starsRef.downloadURL { url, error in
+                    if error != nil {
+                        print(error ?? "error")
+                    } else {
+                        
+                        self.imageView.alpha = 0.0
+                        self.backgroundImageView.alpha = 0.0
+                        
+                        UIView.animate(withDuration: 1, animations: {
+                        self.imageView.alpha = 1
+                        self.backgroundImageView.alpha = 1
+                        self.imageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default-avatar"))
+                        self.backgroundImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default-avatar"))
+                        })
+                        self.imageView.setShowActivityIndicator(true)
+                        self.imageView.setIndicatorStyle(.gray)
+                    }
+                }
+                
+            } else {
+                self.imageView.image = UIImage(named: "default-avatar")
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }      
    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -221,18 +264,9 @@ class ProfileTV: UITableViewController {
     }
     */
     @IBAction func logOutHitNeedsToChange(_ sender: UIBarButtonItem) {
-        keepMeLogedInDefoultsDefoults.set(false, forKey: keepMeLogedInDefoults_key)
-        keepMeLogedInDefoultsDefoults.synchronize()
-        
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LogIn")
-                present(vc, animated: true, completion: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
+       
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+        self.present(vc, animated: true, completion: nil)
 
         
     }
