@@ -312,11 +312,11 @@ The app seems to recognize two things: A surrounding box and a code in the middl
             <objects>
                 <tableViewController storyboardIdentifier="ComentsTV" id="0fQ-ey-pYR" customClass="ComentsTV" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" id="0aH-LK-RKh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="aRi-Lf-7iQ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="501"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUA-HN-At5">
@@ -464,7 +464,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                     </constraints>
                                 </view>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQY-SJ-uTy">
-                                    <rect key="frame" x="0.0" y="327" width="375" height="166"/>
+                                    <rect key="frame" x="0.0" y="327" width="375" height="33"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -490,7 +490,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ComentsCell" rowHeight="180" id="FJp-FI-rMg" customClass="ComentsCell" customModule="Humans" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="529" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="396" width="375" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJp-FI-rMg" id="QVk-o5-SXl">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
@@ -605,7 +605,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P3Y-hM-3MY">
-                                <rect key="frame" x="112" y="28" width="150" height="150"/>
+                                <rect key="frame" x="112" y="50" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="94e-NE-fVB"/>
                                     <constraint firstAttribute="height" constant="150" id="qad-QM-Q1q"/>
@@ -632,20 +632,20 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-TY-uLQ">
-                                <rect key="frame" x="24" y="194" width="327" height="376"/>
+                                <rect key="frame" x="24" y="250" width="327" height="152"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-z0-Iaj">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="fam-xI-Wq0"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LcW-pN-Lqq">
                                         <rect key="frame" x="0.0" y="56" width="327" height="40"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
@@ -655,37 +655,6 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jkl-uT-8Th">
-                                        <rect key="frame" x="0.0" y="168" width="327" height="40"/>
-                                        <color key="backgroundColor" red="0.5725490196078431" green="0.59607843137254901" blue="0.6470588235294118" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3y-44-xun">
-                                        <rect key="frame" x="0.0" y="224" width="327" height="40"/>
-                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Information and help">
-                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deI-XV-hRh">
-                                        <rect key="frame" x="0.0" y="280" width="327" height="40"/>
-                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Disable My Account">
-                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQU-jP-dkq">
-                                        <rect key="frame" x="0.0" y="336" width="327" height="40"/>
-                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Log Out">
-                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOutHit:" destination="62Z-g9-0pu" eventType="touchUpInside" id="8KB-S1-GHQ"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -696,24 +665,20 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <constraint firstItem="mvQ-TY-uLQ" firstAttribute="leading" secondItem="FtG-fc-IoS" secondAttribute="leadingMargin" constant="8" id="Egw-Yv-QyE"/>
                             <constraint firstItem="ogz-R4-IZA" firstAttribute="leading" secondItem="FtG-fc-IoS" secondAttribute="leadingMargin" constant="8" id="Qca-Hb-UIk"/>
                             <constraint firstItem="x6H-lh-s0N" firstAttribute="top" secondItem="ogz-R4-IZA" secondAttribute="bottom" constant="8" id="Yci-gy-a5h"/>
-                            <constraint firstItem="mvQ-TY-uLQ" firstAttribute="top" secondItem="P3Y-hM-3MY" secondAttribute="bottom" constant="16" id="mUf-Np-83p"/>
+                            <constraint firstItem="mvQ-TY-uLQ" firstAttribute="top" secondItem="P3Y-hM-3MY" secondAttribute="bottom" constant="50" id="mUf-Np-83p"/>
                             <constraint firstItem="ogz-R4-IZA" firstAttribute="trailing" secondItem="FtG-fc-IoS" secondAttribute="trailingMargin" constant="-8" id="oA2-AT-ePy"/>
                             <constraint firstItem="P3Y-hM-3MY" firstAttribute="centerX" secondItem="FtG-fc-IoS" secondAttribute="centerX" id="rId-p6-a0e"/>
-                            <constraint firstItem="P3Y-hM-3MY" firstAttribute="top" secondItem="2G1-LC-lrf" secondAttribute="bottom" constant="8" id="zVE-bl-Cqj"/>
+                            <constraint firstItem="P3Y-hM-3MY" firstAttribute="top" secondItem="2G1-LC-lrf" secondAttribute="bottom" constant="30" id="zVE-bl-Cqj"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Pn9-Ko-KYJ" appends="YES" id="ycy-EE-tDo"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="InfoBtn" destination="T3y-44-xun" id="Ogf-yk-fvs"/>
-                        <outlet property="btn" destination="Jkl-uT-8Th" id="5W6-ri-OHw"/>
-                        <outlet property="disableBtn" destination="deI-XV-hRh" id="roh-UH-xAr"/>
                         <outlet property="doneBtn" destination="ogz-R4-IZA" id="PFE-Ar-VnY"/>
                         <outlet property="editProfileBtn" destination="rvQ-Bo-3qq" id="dGo-7a-z1p"/>
                         <outlet property="emailTF" destination="id6-cx-j2o" id="cpV-V1-ruQ"/>
                         <outlet property="lastNameTF" destination="LcW-pN-Lqq" id="EIq-FG-WuA"/>
-                        <outlet property="logOutBtn" destination="iQU-jP-dkq" id="YXf-8h-18L"/>
                         <outlet property="nameTF" destination="1mB-z0-Iaj" id="v58-eM-ouI"/>
                         <outlet property="profileImage" destination="P3Y-hM-3MY" id="2cU-vz-Ny7"/>
                         <outlet property="stackView" destination="mvQ-TY-uLQ" id="QhC-TK-A79"/>
@@ -726,7 +691,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3167" y="678"/>
+            <point key="canvasLocation" x="3113" y="1393"/>
         </scene>
         <!--NC1-->
         <scene sceneID="dhY-a7-SMf">
@@ -751,7 +716,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
             <objects>
                 <tableViewController storyboardIdentifier="ProfileTV" id="NX3-MF-yHr" customClass="ProfileTV" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="423" sectionHeaderHeight="28" sectionFooterHeight="28" id="2eU-lu-1uy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="x5W-i7-9FB">
@@ -1032,11 +997,10 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                             <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="logOutHitNeedsToChange:" destination="NX3-MF-yHr" id="y8S-X5-zO4"/>
+                                <segue destination="zG0-rg-xfE" kind="show" id="gu9-2v-xZT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="fRk-Xa-FMm" id="isq-4e-UL9"/>
                         <outlet property="fullNameLabel" destination="vl5-9p-XOh" id="1jQ-If-3df"/>
@@ -1429,6 +1393,135 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-778" y="1119"/>
+        </scene>
+        <!--Profile SettingsVC-->
+        <scene sceneID="9lM-tI-VhK">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSettingsVC" id="zG0-rg-xfE" customClass="ProfileSettingsVC" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yBf-Ag-OKD"/>
+                        <viewControllerLayoutGuide type="bottom" id="vnY-yu-cp4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FdS-XZ-dNn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mch-62-VdU">
+                                <rect key="frame" x="16" y="84" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="NBd-PI-RWs"/>
+                                    <constraint firstAttribute="height" constant="120" id="yiP-HX-TdS"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YUB-hA-gKX">
+                                <rect key="frame" x="144" y="134" width="207" height="69.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-dt-g3r">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bN-MY-0c5">
+                                        <rect key="frame" x="0.0" y="24.5" width="207" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTZ-Dk-y8R">
+                                        <rect key="frame" x="0.0" y="49" width="207" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-ST-jtC">
+                                <rect key="frame" x="24" y="244" width="327" height="264"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-FY-3mK">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="hMM-8x-7Lz"/>
+                                        </constraints>
+                                        <state key="normal" title="Edit Profile">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editProfileHit:" destination="zG0-rg-xfE" eventType="touchUpInside" id="jx3-Rq-ZXI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ME-yL-6s9">
+                                        <rect key="frame" x="0.0" y="56" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnHit:" destination="zG0-rg-xfE" eventType="touchUpInside" id="mtb-Gq-icC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaL-yE-cRR">
+                                        <rect key="frame" x="0.0" y="112" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Information and help">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="infoHit:" destination="zG0-rg-xfE" eventType="touchUpInside" id="EFt-KY-o9D"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSZ-JA-98z">
+                                        <rect key="frame" x="0.0" y="168" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Disable My Account">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="disableHit:" destination="zG0-rg-xfE" eventType="touchUpInside" id="X8Y-eg-oFv"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZc-LS-Ed8">
+                                        <rect key="frame" x="0.0" y="224" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Log Out">
+                                            <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOutHit:" destination="zG0-rg-xfE" eventType="touchUpInside" id="cPs-YQ-7IY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mch-62-VdU" firstAttribute="leading" secondItem="FdS-XZ-dNn" secondAttribute="leadingMargin" id="4Sv-N5-WcC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YUB-hA-gKX" secondAttribute="trailing" constant="8" id="8n1-g8-86T"/>
+                            <constraint firstItem="gLP-ST-jtC" firstAttribute="leading" secondItem="FdS-XZ-dNn" secondAttribute="leadingMargin" constant="8" id="IvD-Dw-M5S"/>
+                            <constraint firstItem="gLP-ST-jtC" firstAttribute="top" secondItem="YUB-hA-gKX" secondAttribute="bottom" constant="40" id="RAM-VG-3Lk"/>
+                            <constraint firstItem="Mch-62-VdU" firstAttribute="top" secondItem="yBf-Ag-OKD" secondAttribute="bottom" constant="20" id="bFl-4C-R7H"/>
+                            <constraint firstItem="gLP-ST-jtC" firstAttribute="top" secondItem="Mch-62-VdU" secondAttribute="bottom" constant="40" id="bvY-Ob-7n3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gLP-ST-jtC" secondAttribute="trailing" constant="8" id="f5L-OS-CPT"/>
+                            <constraint firstItem="YUB-hA-gKX" firstAttribute="leading" secondItem="Mch-62-VdU" secondAttribute="trailing" constant="8" id="no6-u5-L6B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn" destination="7ME-yL-6s9" id="Dkn-rT-uCZ"/>
+                        <outlet property="disablebtn" destination="TSZ-JA-98z" id="frN-Ea-mQE"/>
+                        <outlet property="editProfileBtn" destination="dgc-FY-3mK" id="8R9-sl-7D5"/>
+                        <outlet property="emailLabel" destination="mTZ-Dk-y8R" id="mvc-2a-Mdf"/>
+                        <outlet property="firstNameLabel" destination="o2e-dt-g3r" id="OYW-1e-psZ"/>
+                        <outlet property="informationBtn" destination="FaL-yE-cRR" id="R6b-Up-xXg"/>
+                        <outlet property="lastNameLabel" destination="4bN-MY-0c5" id="6OW-Em-ldo"/>
+                        <outlet property="logOutBtn" destination="QZc-LS-Ed8" id="EVb-x1-xi9"/>
+                        <outlet property="profileImageView" destination="Mch-62-VdU" id="1wP-pM-MIC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vh0-oN-IdA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3112.8000000000002" y="678.71064467766121"/>
         </scene>
     </scenes>
     <resources>

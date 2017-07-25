@@ -72,7 +72,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate{
         if emailTF.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
             alertController.addAction(action)
             present(alertController, animated: true, completion: nil)
         } else {

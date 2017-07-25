@@ -18,10 +18,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     
-    @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var InfoBtn: UIButton!
-    @IBOutlet weak var disableBtn: UIButton!
-    @IBOutlet weak var logOutBtn: UIButton!
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var editProfileBtn: UIButton!
     
@@ -36,14 +32,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewShape(view: btn)
-        viewShape(view: InfoBtn)
-        viewShape(view: disableBtn)
-        viewShape(view: logOutBtn)
-        viewShape(view: doneBtn)
+   
         
         roundPhoto(imageView: profileImage)
+        viewShape(view: doneBtn)
         
 //        self.navigationItem.hidesBackButton = true
 //        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProfileTV.back(sender:)))
@@ -55,7 +47,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
         
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -99,31 +90,30 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
-//    deinit {
-//        databaseRef.child("Users").removeObserver(withHandle: _refHandle)
-//    }
+    deinit {
+        databaseRef.child("Users").removeObserver(withHandle: _refHandle)
+    }
 
 //Mark: -> Figour out KeyBoard
     func keyboardWillShow(notification: NSNotification) {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
-            self.btn.isEnabled = false
             self.editProfileBtn.isEnabled = false
-            self.InfoBtn.isEnabled = false
-            self.disableBtn.isEnabled = false
-            self.logOutBtn.isEnabled = false
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height - 150
+            }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .white
-            self.btn.isEnabled = true
             self.editProfileBtn.isEnabled = true
-            self.InfoBtn.isEnabled = true
-            self.disableBtn.isEnabled = true
-            self.logOutBtn.isEnabled = true
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height - 150
+            }
         }
+        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -253,7 +243,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
             
         } )
-        
     }
     
     func delataImage(url: String) {
@@ -270,24 +259,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
 
-    
     @IBAction func editProfilePictureHit(_ sender: UIButton) {
         addPhoto()
-    }
-    
-    @IBAction func logOutHit(_ sender: UIButton) {
-        keepMeLogedInDefoultsDefoults.set(false, forKey: keepMeLogedInDefoults_key)
-        keepMeLogedInDefoultsDefoults.synchronize()
-        
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LogIn")
-                present(vc, animated: true, completion: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
     }
     
     func presentProfileView(){
@@ -310,7 +283,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 //    }
     
     @IBAction func doneHit(_ sender: UIButton) {
-        
         if nameTF.text != "" && lastNameTF.text != "" {
             let firstName = self.nameTF.text
             let lastName = self.lastNameTF.text
@@ -332,11 +304,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             //MARK -Edit user values at firebase
             self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
             self.databaseRef.child("Users/\(uId!)/lastName").setValue(lastName?.capitalized)
-            
         } else {
             presentAlert(title: "Please provide full name", message: "")
         }
-
-        
     }
 }

@@ -49,7 +49,6 @@ class ProfileTV: UITableViewController {
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,7 +71,6 @@ class ProfileTV: UITableViewController {
                     if error != nil {
                         print(error ?? "error")
                     } else {
-                        
                         self.imageView.alpha = 0.0
                         self.backgroundImageView.alpha = 0.0
                         
@@ -265,8 +263,8 @@ class ProfileTV: UITableViewController {
     */
     @IBAction func logOutHitNeedsToChange(_ sender: UIBarButtonItem) {
        
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
-        self.present(vc, animated: true, completion: nil)
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+//        self.present(vc, animated: true, completion: nil)
 
         
     }
