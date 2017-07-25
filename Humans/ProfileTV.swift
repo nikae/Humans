@@ -43,6 +43,10 @@ class ProfileTV: UITableViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    
+    
+    
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var storageRef: FIRStorageReference!
@@ -62,6 +66,22 @@ class ProfileTV: UITableViewController {
             let firstName = value?["firstName"] as? String ?? "First Name"
             let lastName = value?["lastName"] as? String ?? "Last Name"
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
+            let bday = value?["dateOfBirth"] as? String ?? ""
+            let country = value?["country"] as? String ?? ""
+            
+            if bday != "" {
+                var bDayArr = bday.components(separatedBy: " ")
+                let month = bDayArr[0]
+                let day = bDayArr[1]
+                let year = bDayArr[2]
+                
+                let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+                self.ageLabel.text = "\(userAge) y/o. \(country)"
+                
+            } else {
+                self.ageLabel.text = "\(country)"
+            }
+            
             
             self.fullNameLabel.text = "\(firstName) \(lastName)"
             

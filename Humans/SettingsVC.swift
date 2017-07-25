@@ -65,7 +65,24 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             let lastName = value?["lastName"] as? String ?? ""
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
             let email = value?["email"] as? String ?? "Email"
+            let bday = value?["dateOfBirth"] as? String ?? ""
+            let country = value?["country"] as? String ?? "No country specified"
             
+            if bday != "" {
+            var bDayArr = bday.components(separatedBy: " ")
+                let month = bDayArr[0] 
+                let day = bDayArr[1]
+                let year = bDayArr[2]
+               
+            let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+                
+                self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
+                
+            } else {
+                self.dateBtn.setTitle("Date of birth", for: .normal)
+            }
+            
+            self.countryBtn.setTitle("\(country)", for: .normal)
             self.emailTF.placeholder = email
             self.nameTF.text = firstName.capitalized
             self.lastNameTF.text = lastName.capitalized
@@ -109,6 +126,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
             self.editProfileBtn.isEnabled = false
+            self.dateBtn.isEnabled = false
+            self.countryBtn.isEnabled = false
             self.profileImage.alpha = 0.5
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height - 150
@@ -120,27 +139,17 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .white
             self.editProfileBtn.isEnabled = true
-            
+            self.dateBtn.isEnabled = true
+            self.countryBtn.isEnabled = true
             self.profileImage.alpha = 1
             if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height - 150
             }
         }
-        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == nameTF {
-            textField.resignFirstResponder()
-        }
-        if textField == lastNameTF {
-            textField.resignFirstResponder()
-        }
-        if textField == emailTF {
-            textField.resignFirstResponder()
-        }
-
-        
+       textField.resignFirstResponder()
         return true
     }
     

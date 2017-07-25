@@ -17,6 +17,7 @@ class ProfileSettingsVC: UIViewController {
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     
     @IBOutlet weak var editProfileBtn: UIButton!
     @IBOutlet weak var btn: UIButton!
@@ -30,6 +31,11 @@ class ProfileSettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstNameLabel.adjustsFontSizeToFitWidth = true
+        lastNameLabel.adjustsFontSizeToFitWidth = true
+        emailLabel.adjustsFontSizeToFitWidth = true
+        ageLabel.adjustsFontSizeToFitWidth = true
         
         roundPhoto(imageView: profileImageView)
         
@@ -47,6 +53,21 @@ class ProfileSettingsVC: UIViewController {
             let lastName = value?["lastName"] as? String ?? "Last Name"
             let email = value?["email"] as? String ?? ""
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
+            let bday = value?["dateOfBirth"] as? String ?? ""
+            let country = value?["country"] as? String ?? ""
+            
+            if bday != "" {
+                var bDayArr = bday.components(separatedBy: " ")
+                let month = bDayArr[0]
+                let day = bDayArr[1]
+                let year = bDayArr[2]
+                
+                let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+                self.ageLabel.text = "\(userAge) y/o. \(country)"
+                
+            } else {
+              self.ageLabel.text = "\(country)"
+            }
             
             self.firstNameLabel.text = firstName
             self.lastNameLabel.text = lastName

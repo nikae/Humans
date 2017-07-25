@@ -36,5 +36,7 @@
 	<string>In case you want to add pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>In case you want to add pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To show what country you are from</string>
 </dict>
 </plist>

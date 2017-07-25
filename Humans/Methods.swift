@@ -24,3 +24,11 @@ func roundPhoto(imageView: UIImageView) {
 func keyboardDismiss(tf: UITextField) {
     tf.resignFirstResponder()
 }
+
+
+func age(year: Int, month: Int, day: Int) -> Int {
+    let now = Date()
+    let myDOB = Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
+    let myAge = Calendar.current.dateComponents([.year], from: myDOB, to: now).year
+    return myAge ?? 1
+}
