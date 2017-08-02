@@ -12,7 +12,6 @@ import SDWebImage
 
 class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var nameTF: UITextField!
@@ -25,8 +24,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var countryBtn: UIButton!
     
     @IBOutlet weak var stackView: UIStackView!
-    
-   
     
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
@@ -43,12 +40,9 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         viewShape(view: dateBtn)
         viewShape(view: countryBtn)
         
-//        self.navigationItem.hidesBackButton = true
-//        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ProfileTV.back(sender:)))
-//        self.navigationItem.leftBarButtonItem = newBackButton
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showSpinningWheel(_:)), name: NSNotification.Name(rawValue: "bDayDict"), object: nil)
         
-        
-      
+        NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
         
         nameTF.delegate = self
         lastNameTF.delegate = self
@@ -94,7 +88,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     if error != nil {
                         print(error ?? "error")
                     } else {
-                        
                         self.profileImage.alpha = 0.0
                         
                         UIView.animate(withDuration: 1, animations: {
@@ -120,7 +113,27 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         databaseRef.child("Users").removeObserver(withHandle: _refHandle)
     }
     
-  
+//Mark: -> handle notification
+    func showSpinningWheel(_ notification: NSNotification) {
+        let dateofb = (notification.userInfo?["bDay"] as? String)
+        
+        if dateofb != "" {
+            var bDayArr = dateofb?.components(separatedBy: " ")
+            let month = bDayArr?[0]
+            let day = bDayArr?[1]
+            let year = bDayArr?[2]
+            let userAge = age(year: Int(year!) ?? 0, month: Int(month!) ?? 0 , day: Int(day!) ?? 0)
+            self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
+        } else {
+            self.dateBtn.setTitle("Date of birth", for: .normal)
+        }
+    }
+    
+    func usersCountry(_ notification: NSNotification) {
+        let uCountry = (notification.userInfo?["location"] as? String)
+        self.countryBtn.setTitle(uCountry, for: .normal)
+    }
+    
 //Mark: -> Figour out KeyBoard
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -223,7 +236,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
             profileImage.image = image
             saveImage(image)
-            
+        
         } else {
             print("Somthing went wrong")
         }
@@ -244,10 +257,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     return
                 }
                 
-                
                 self.picURL = self.storageRef.child((metadata?.path)!).description
                 self.databaseRef.child("Users/\(self.uId!)/profilePictureUrl").setValue(self.picURL)
-
                 
                 print("self.picURL: \(self.picURL)")
         }

@@ -18,6 +18,7 @@
 		248662051F1989F5005CD8CD /* ComentsTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248662041F1989F5005CD8CD /* ComentsTV.swift */; };
 		248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248662061F1D4EC4005CD8CD /* ComentsCell.swift */; };
 		248662091F1EAF9D005CD8CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */; };
+		248DC1361F316A6100510E90 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DC1351F316A6100510E90 /* CameraVC.swift */; };
 		24BF08261F266ABB005A198B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08251F266ABB005A198B /* SettingsVC.swift */; };
 		24BF08281F267542005A198B /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08271F267542005A198B /* Methods.swift */; };
 		24BF082A1F270164005A198B /* ProfileSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08291F270164005A198B /* ProfileSettingsVC.swift */; };
@@ -53,6 +54,7 @@
 		248662041F1989F5005CD8CD /* ComentsTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComentsTV.swift; sourceTree = "<group>"; };
 		248662061F1D4EC4005CD8CD /* ComentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComentsCell.swift; sourceTree = "<group>"; };
 		248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		248DC1351F316A6100510E90 /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		24BF08251F266ABB005A198B /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		24BF08271F267542005A198B /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		24BF08291F270164005A198B /* ProfileSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsVC.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				24E7EF3E1F17E15400EA0962 /* ViewController.swift */,
 				24E7EF511F17E26100EA0962 /* HumansTV.swift */,
 				24E7EF5B1F17F6F800EA0962 /* ProfileTV.swift */,
+				248DC1351F316A6100510E90 /* CameraVC.swift */,
 				24BF08291F270164005A198B /* ProfileSettingsVC.swift */,
 				24BF08251F266ABB005A198B /* SettingsVC.swift */,
 				24BF082B1F27CA74005A198B /* DatePickerVC.swift */,
@@ -315,6 +318,7 @@
 				24E7EF5C1F17F6F800EA0962 /* ProfileTV.swift in Sources */,
 				24E7EF3D1F17E15400EA0962 /* AppDelegate.swift in Sources */,
 				248662051F1989F5005CD8CD /* ComentsTV.swift in Sources */,
+				248DC1361F316A6100510E90 /* CameraVC.swift in Sources */,
 				24F8F8431F1EB2CF00FAFBFF /* ResetPasswordVC.swift in Sources */,
 				248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */,
 				24E7EF521F17E26100EA0962 /* HumansTV.swift in Sources */,

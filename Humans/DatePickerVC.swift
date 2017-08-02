@@ -85,5 +85,9 @@ class DatePickerVC: UIViewController {
         self.databaseRef.child("Users/\(self.uId!)/dateOfBirth").setValue(self.dateOfBirth)
         self.dismiss(animated: true, completion: nil)
         
+        let bDayDict:[String: String] = ["bDay": self.dateOfBirth]
+        //MARK: -> post a notification
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bDayDict"), object: nil, userInfo: bDayDict)
+        
     }
 }

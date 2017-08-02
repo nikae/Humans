@@ -138,21 +138,58 @@ class ProfileSettingsVC: UIViewController {
     }
     
     @IBAction func disableHit(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Do you want to disable your account?", message: "Disabled accounts cannot be searched or viewed by other users.", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let continu = UIAlertAction(title: "Continue", style: .default, handler: { (action: UIAlertAction) in
+            let alert = UIAlertController(title: "Disabling your account", message: "Your account will be disabled but can be reactivated by logging in.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let ok = UIAlertAction(title: "Confirm", style: .default, handler: { (action: UIAlertAction) in
+                let databaseRef = FIRDatabase.database().reference()
+                databaseRef.child("Users/\(self.uId!)/isActive").setValue(false)
+                keepMeLogedInDefoultsDefoults.set(false, forKey: keepMeLogedInDefoults_key)
+                keepMeLogedInDefoultsDefoults.synchronize()
+                
+                if FIRAuth.auth()?.currentUser != nil {
+                    do {
+                        try FIRAuth.auth()?.signOut()
+                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LogIn")
+                        self.present(vc, animated: true, completion: nil)
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                }
+            })
+            
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        })
+        
+        alert.addAction(continu)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func logOutHit(_ sender: UIButton) {
-        keepMeLogedInDefoultsDefoults.set(false, forKey: keepMeLogedInDefoults_key)
-        keepMeLogedInDefoultsDefoults.synchronize()
-        
-        if FIRAuth.auth()?.currentUser != nil {
-            do {
-                try FIRAuth.auth()?.signOut()
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LogIn")
-                present(vc, animated: true, completion: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
+        let alert = UIAlertController(title: "Log Out", message: "Do you want to log out?", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: "Confirm", style: .default) { (action: UIAlertAction) in
+            keepMeLogedInDefoultsDefoults.set(false, forKey: keepMeLogedInDefoults_key)
+            keepMeLogedInDefoultsDefoults.synchronize()
+            
+            if FIRAuth.auth()?.currentUser != nil {
+                do {
+                    try FIRAuth.auth()?.signOut()
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LogIn")
+                    self.present(vc, animated: true, completion: nil)
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
             }
         }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
     
 

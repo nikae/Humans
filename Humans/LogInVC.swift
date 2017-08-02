@@ -21,6 +21,8 @@ class LogInVC: UIViewController, UITextFieldDelegate {
     
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
+    
+
     fileprivate var _refHandle: FIRDatabaseHandle!
     var users: [FIRDataSnapshot] = []
     var picURL = ""
@@ -103,8 +105,15 @@ class LogInVC: UIViewController, UITextFieldDelegate {
         } else {
             FIRAuth.auth()?.signIn(withEmail: self.emailTF.text!, password: self.passwordTF.text!) { (user, error) in
                 if error == nil {
+                    let uId = FIRAuth.auth()?.currentUser?.uid
+                    if uId != nil {
+                        self.databaseRef.child("Users/\(uId!)/isActive").setValue(true)
+                    }
+                    
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
                     self.present(vc!, animated: true, completion: nil)
+                    
+                    
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)

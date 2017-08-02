@@ -92,6 +92,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate{
                                 if userID != nil {
                                     let databaseRef = FIRDatabase.database().reference()
                                     databaseRef.child("Users/\(userID!)/email").setValue(self.emailTF.text!)
+                                    databaseRef.child("Users/\(userID!)/isActive").setValue(true)
                                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
                                     self.present(vc, animated: true, completion: nil)
                                 }

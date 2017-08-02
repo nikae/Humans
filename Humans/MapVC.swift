@@ -122,7 +122,10 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         databaseRef = FIRDatabase.database().reference()
         self.databaseRef.child("Users/\(self.uId!)/country").setValue(self.country)
         self.dismiss(animated: true, completion: nil)
-
+        
+        let location:[String: String] = ["location": self.country]
+        //MARK: -> post a notification
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userscountry"), object: nil, userInfo: location)
     }
 
 }
