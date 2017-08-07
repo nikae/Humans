@@ -7,83 +7,114 @@
 //
 
 import UIKit
-import AVFoundation
+import SCRecorder
 
-class CameraVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class CameraVC: UIViewController {
+    
+    let session = SCRecordSession()
+    let recorder = SCRecorder()
+    let player = SCPlayer()
+    
+    @IBOutlet weak var previewView: UIView!
+    
+    @IBOutlet weak var playbackView: UIView!
+    
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
+    @IBAction func recordButtonPress(_ sender: AnyObject) {
+        sender.setTitleColor(.red, for: .normal)
+        recorder.record()
+    }
+    
+    @IBAction func pauseButtonPress(_ sender: AnyObject) {
+        recorder.pause()
+    }
+    
+//    @IBAction func backspaceButtonPress(_ sender: AnyObject) {
+//        if recorder.isRecording {
+//            recorder.pause()
+//            return
+//        }
+//        
+//        session.removeLastSegment()
+//        updateTimeText(session)
+//    }
+    
+    
+    @IBAction func playButtonPress(_ sender: AnyObject) {
+       // player.play()
+        launchFrontBackCamera = !launchFrontBackCamera
+        
+    }
+    
+    var launchFrontBackCamera = false {
+        didSet {
+            if launchFrontBackCamera == false {
+                recorder.device = AVCaptureDevicePosition.back
+            } else {
+                recorder.device = AVCaptureDevicePosition.front
+            }
+        }
+        
+    }
+    
+    @IBAction func saveButtonPress(_ sender: AnyObject) {
+        session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in
+            if (error == nil) {
+                (url as NSURL?)?.saveToCameraRoll(completion: { (path, error) in
+                    debugPrint(path ?? "", error ?? "")
+                })
+            } else {
+                debugPrint(error ?? "")
+            }
+        }
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        recorder.previewView = previewView
+        
+        player.setItemBy(session.assetRepresentingSegments())
+        let playerLayer = AVPlayerLayer(player: player)
+        let bounds = playbackView.bounds
+        playerLayer.frame = bounds
+        playbackView.layer.addSublayer(playerLayer)
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCameraSession()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        view.layer.addSublayer(previewLayer)
-        
-        cameraSession.startRunning()
-    }
-    
-    lazy var cameraSession: AVCaptureSession = {
-        let s = AVCaptureSession()
-        s.sessionPreset = AVCaptureSessionPresetLow
-        return s
-    }()
-    
-    lazy var previewLayer: AVCaptureVideoPreviewLayer = {
-        let preview =  AVCaptureVideoPreviewLayer(session: self.cameraSession)
-        preview?.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        preview?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-        preview?.videoGravity = AVLayerVideoGravityResize
-        return preview!
-    }()
-    
-    func setupCameraSession() {
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) as AVCaptureDevice
-        
-        do {
-            let deviceInput = try AVCaptureDeviceInput(device: captureDevice)
-            
-            cameraSession.beginConfiguration()
-            
-            if (cameraSession.canAddInput(deviceInput) == true) {
-                cameraSession.addInput(deviceInput)
-            }
-            
-            let dataOutput = AVCaptureVideoDataOutput()
-            dataOutput.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as NSString) : NSNumber(value: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange as UInt32)]
-            dataOutput.alwaysDiscardsLateVideoFrames = true
-            
-            if (cameraSession.canAddOutput(dataOutput) == true) {
-                cameraSession.addOutput(dataOutput)
-            }
-            
-            cameraSession.commitConfiguration()
-            
-           // let queue = DispatchQueue(label: "com.invasivecode.videoQueue")
-           // dataOutput.setSampleBufferDelegate(self, queue: queue)
-            
+        if (!recorder.startRunning()) {
+            debugPrint("Recorder error: ", recorder.error ?? "")
         }
-        catch let error as NSError {
-            NSLog("\(error), \(error.localizedDescription)")
-        }
+        
+        recorder.session = session
+        recorder.device = AVCaptureDevicePosition.back
+        recorder.videoConfiguration.size = CGSize(width: 800, height: 800)
+        recorder.delegate = self
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        // Here you collect each frame and process it
-    }
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        // Here you can count how many frames are dopped
-    }
+
     
 }
+
+extension CameraVC: SCRecorderDelegate {
     
+    func recorder(_ recorder: SCRecorder, didAppendVideoSampleBufferIn session: SCRecordSession) {
+        updateTimeText(session)
+    }
     
-    
-    
-    
+    func updateTimeText(_ session: SCRecordSession) {
+        self.timeLabel.text = String(session.duration.seconds)
+    }
+}
+
+
+
     
     
     

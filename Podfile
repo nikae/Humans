@@ -15,4 +15,6 @@ pod 'Firebase/Messaging’
 
 pod 'SDWebImage', '~>3.8'
 
+pod 'SCRecorder'
+
 end

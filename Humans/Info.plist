@@ -38,5 +38,7 @@
 	<string>In case you want to add pictures</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To show what country you are from</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need to record audio</string>
 </dict>
 </plist>
