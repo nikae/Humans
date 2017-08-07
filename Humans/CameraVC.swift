@@ -14,19 +14,28 @@ class CameraVC: UIViewController {
     let session = SCRecordSession()
     let recorder = SCRecorder()
     let player = SCPlayer()
+    var playerLayer = CALayer()
     
     @IBOutlet weak var previewView: UIView!
-    
-    @IBOutlet weak var playbackView: UIView!
-    
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
     
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var playBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        playerLayer = AVPlayerLayer(player: player)
+        
+        saveBtn.isHidden = true
+        saveBtn.layer.zPosition = 1
+        
+        playBtn.isHidden = true
+        playBtn.layer.zPosition = 1
+        
+        //playVIew.isHidden = true
         timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
         if (!recorder.startRunning()) {
@@ -35,10 +44,8 @@ class CameraVC: UIViewController {
         
         recorder.session = session
         recorder.device = AVCaptureDevicePosition.back
-        recorder.videoConfiguration.size = CGSize(width: 800, height: 800)
+        recorder.videoConfiguration.size = CGSize(width: previewView.frame.width , height: previewView.frame.height)
         recorder.delegate = self
-        
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraVC.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
@@ -58,19 +65,13 @@ class CameraVC: UIViewController {
     
     
     func rotated() {
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-        } else {
-            
-            if recorder.isRecording {
-            recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
-            recorder.pause()
-            }
-            
+        if recorder.isRecording != true {
+        if UIDevice.current.orientation.isPortrait {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             self.present(vc, animated: true, completion: nil)
+            }
         }
     }
 
@@ -79,7 +80,10 @@ class CameraVC: UIViewController {
         didSet {
             if launchRecord == false {
                 recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
-                recorder.stopRunning()
+                recorder.pause()
+                saveBtn.isHidden = false
+                playBtn.isHidden = false
+                
             } else {
                 recordBtn.setImage(UIImage(named: "icons8-record_filled"), for: .normal)
                 recorder.record()
@@ -94,6 +98,7 @@ class CameraVC: UIViewController {
     }
     
     @IBAction func pauseButtonPress(_ sender: AnyObject) {
+        player.play()
         
     }
     
@@ -109,7 +114,7 @@ class CameraVC: UIViewController {
     
     
     @IBAction func playButtonPress(_ sender: AnyObject) {
-       // player.play()
+       //
         launchFrontBackCamera = !launchFrontBackCamera
         
     }
@@ -135,23 +140,23 @@ class CameraVC: UIViewController {
                 debugPrint(error ?? "")
             }
         }
+        
+        playerLayer.removeFromSuperlayer()
     }
     
     
     override func viewDidLayoutSubviews() {
         recorder.previewView = previewView
         
+      
         player.setItemBy(session.assetRepresentingSegments())
-        let playerLayer = AVPlayerLayer(player: player)
-        let bounds = playbackView.bounds
+       
+        let bounds = previewView.bounds
         playerLayer.frame = bounds
-        playbackView.layer.addSublayer(playerLayer)
+        previewView.layer.addSublayer(playerLayer)
+        
+       
     }
-    
-    
-    
-
-    
 }
 
 extension CameraVC: SCRecorderDelegate {

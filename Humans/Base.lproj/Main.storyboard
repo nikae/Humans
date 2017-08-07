@@ -23,11 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4W-xO-aPY">
-                                <rect key="frame" x="24" y="489" width="335" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.36862745099999999" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TBc-5A-MRv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -41,22 +36,6 @@
                                         <state key="normal" image="icons8-refresh_filled"/>
                                         <connections>
                                             <action selector="playButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="KSg-Ju-t4R"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAp-RF-IvT">
-                                        <rect key="frame" x="8" y="43" width="43" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Pouse"/>
-                                        <connections>
-                                            <action selector="pauseButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="XeP-fH-h8B"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyK-55-Wly">
-                                        <rect key="frame" x="25" y="357" width="34" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Save"/>
-                                        <connections>
-                                            <action selector="saveButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="muA-VC-BJl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AvO-Di-P2k">
@@ -73,16 +52,37 @@
                                             <action selector="recordButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="JLB-3t-Caq"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oie-FF-TVJ">
-                                        <rect key="frame" x="299" y="323" width="68" height="21"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyK-55-Wly">
+                                        <rect key="frame" x="0.0" y="637" width="34" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="muA-VC-BJl"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oie-FF-TVJ">
+                                        <rect key="frame" x="307" y="323" width="60" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="57R-ll-u9n"/>
+                                            <constraint firstAttribute="width" constant="60" id="ZhF-f5-sAd"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAp-RF-IvT">
+                                        <rect key="frame" x="42" y="637" width="43" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Pouse"/>
+                                        <connections>
+                                            <action selector="pauseButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="XeP-fH-h8B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oie-FF-TVJ" secondAttribute="trailing" constant="8" id="GXn-QN-6Ey"/>
+                                    <constraint firstItem="oie-FF-TVJ" firstAttribute="centerY" secondItem="TBc-5A-MRv" secondAttribute="centerY" id="OkU-eX-Rin"/>
                                     <constraint firstAttribute="trailing" secondItem="Syq-hy-OYf" secondAttribute="trailing" constant="15" id="PxQ-ch-ikT"/>
                                     <constraint firstItem="AvO-Di-P2k" firstAttribute="centerX" secondItem="TBc-5A-MRv" secondAttribute="centerX" id="i2n-SF-TLG"/>
                                     <constraint firstAttribute="bottom" secondItem="Syq-hy-OYf" secondAttribute="bottom" constant="23" id="jUs-KU-tyg"/>
@@ -99,15 +99,52 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playbackView" destination="E4W-xO-aPY" id="1mt-uZ-bg8"/>
+                        <outlet property="playBtn" destination="BAp-RF-IvT" id="DqL-gW-8IH"/>
                         <outlet property="previewView" destination="TBc-5A-MRv" id="2aT-bD-f28"/>
                         <outlet property="recordBtn" destination="AvO-Di-P2k" id="LZq-Py-j7e"/>
+                        <outlet property="saveBtn" destination="yyK-55-Wly" id="O7T-VM-kYX"/>
                         <outlet property="timeLabel" destination="oie-FF-TVJ" id="luI-CY-7Ho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWv-ie-Tou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2165.5999999999999" y="-34.632683658170919"/>
+        </scene>
+        <!--Video PreviewVC-->
+        <scene sceneID="Qm5-Pa-4Bx">
+            <objects>
+                <viewController storyboardIdentifier="VideoPreviewVC" id="W5F-vQ-5Vx" customClass="VideoPreviewVC" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jje-Tr-eUm"/>
+                        <viewControllerLayoutGuide type="bottom" id="30d-Vi-7Ba"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9nj-pB-ZqB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjL-5o-67b">
+                                <rect key="frame" x="16" y="192" width="343" height="283"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.36862745099999999" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-zo-9T9">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="Uqi-Qt-RTj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewView" destination="fjL-5o-67b" id="3Lz-7D-Boa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jj2-z5-LUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3005.5999999999999" y="-29.23538230884558"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
