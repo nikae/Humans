@@ -21,15 +21,80 @@ class CameraVC: UIViewController {
     
     
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var recordBtn: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
+        if (!recorder.startRunning()) {
+            debugPrint("Recorder error: ", recorder.error ?? "")
+        }
+        
+        recorder.session = session
+        recorder.device = AVCaptureDevicePosition.back
+        recorder.videoConfiguration.size = CGSize(width: 800, height: 800)
+        recorder.delegate = self
+        
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CameraVC.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UIDevice.current.orientation.isPortrait {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        } 
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    func rotated() {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            
+            if recorder.isRecording {
+            recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
+            recorder.pause()
+            }
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+
+    
+    var launchRecord = false {
+        didSet {
+            if launchRecord == false {
+                recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
+                recorder.stopRunning()
+            } else {
+                recordBtn.setImage(UIImage(named: "icons8-record_filled"), for: .normal)
+                recorder.record()
+            }
+        }
+        
+    }
     
     
     @IBAction func recordButtonPress(_ sender: AnyObject) {
-        sender.setTitleColor(.red, for: .normal)
-        recorder.record()
+       launchRecord = !launchRecord
     }
     
     @IBAction func pauseButtonPress(_ sender: AnyObject) {
-        recorder.pause()
+        
     }
     
 //    @IBAction func backspaceButtonPress(_ sender: AnyObject) {
@@ -84,19 +149,6 @@ class CameraVC: UIViewController {
     }
     
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if (!recorder.startRunning()) {
-            debugPrint("Recorder error: ", recorder.error ?? "")
-        }
-        
-        recorder.session = session
-        recorder.device = AVCaptureDevicePosition.back
-        recorder.videoConfiguration.size = CGSize(width: 800, height: 800)
-        recorder.delegate = self
-    }
     
 
     

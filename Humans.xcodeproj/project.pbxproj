@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24597CF91F39068C00C75E04 /* RotateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24597CF81F39068C00C75E04 /* RotateVC.swift */; };
 		248661F51F180B35005CD8CD /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248661F41F180B35005CD8CD /* ProfileViewCell.swift */; };
 		248661F71F181B69005CD8CD /* IMG_6930.MOV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 248661F61F181B69005CD8CD /* IMG_6930.MOV.mp4 */; };
 		248661F91F181E39005CD8CD /* IMG_0436.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 248661F81F181E39005CD8CD /* IMG_0436.mp4 */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24597CF81F39068C00C75E04 /* RotateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateVC.swift; sourceTree = "<group>"; };
 		248661F41F180B35005CD8CD /* ProfileViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		248661F61F181B69005CD8CD /* IMG_6930.MOV.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMG_6930.MOV.mp4; sourceTree = "<group>"; };
 		248661F81F181E39005CD8CD /* IMG_0436.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMG_0436.mp4; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				24E7EF511F17E26100EA0962 /* HumansTV.swift */,
 				24E7EF5B1F17F6F800EA0962 /* ProfileTV.swift */,
 				248DC1351F316A6100510E90 /* CameraVC.swift */,
+				24597CF81F39068C00C75E04 /* RotateVC.swift */,
 				24BF08291F270164005A198B /* ProfileSettingsVC.swift */,
 				24BF08251F266ABB005A198B /* SettingsVC.swift */,
 				24BF082B1F27CA74005A198B /* DatePickerVC.swift */,
@@ -315,6 +318,7 @@
 				24BF08281F267542005A198B /* Methods.swift in Sources */,
 				248661F51F180B35005CD8CD /* ProfileViewCell.swift in Sources */,
 				24BF082C1F27CA74005A198B /* DatePickerVC.swift in Sources */,
+				24597CF91F39068C00C75E04 /* RotateVC.swift in Sources */,
 				24E7EF5C1F17F6F800EA0962 /* ProfileTV.swift in Sources */,
 				24E7EF3D1F17E15400EA0962 /* AppDelegate.swift in Sources */,
 				248662051F1989F5005CD8CD /* ComentsTV.swift in Sources */,
