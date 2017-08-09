@@ -21,6 +21,9 @@ class RotateVC: UIViewController {
       NotificationCenter.default.addObserver(self, selector: #selector(RotateVC.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -34,9 +37,6 @@ class RotateVC: UIViewController {
             print("Portrait")
         }
     }
-
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -21,6 +21,8 @@ class CameraVC: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
     
+    @IBOutlet weak var cameraSwitchBtn: UIButton!
+    @IBOutlet weak var retakeBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
     
@@ -30,20 +32,25 @@ class CameraVC: UIViewController {
         playerLayer = AVPlayerLayer(player: player)
         
         saveBtn.isHidden = true
-        saveBtn.layer.zPosition = 1
-        
         playBtn.isHidden = true
+        retakeBtn.isHidden = true
+        
+        saveBtn.layer.zPosition = 1
+        retakeBtn.layer.zPosition = 1
         playBtn.layer.zPosition = 1
         
-        //playVIew.isHidden = true
         timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        playBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        saveBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        retakeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
+    
         if (!recorder.startRunning()) {
             debugPrint("Recorder error: ", recorder.error ?? "")
         }
         
         recorder.session = session
-        recorder.device = AVCaptureDevicePosition.back
+        recorder.device = AVCaptureDevicePosition.front
         recorder.videoConfiguration.size = CGSize(width: previewView.frame.width , height: previewView.frame.height)
         recorder.delegate = self
         
@@ -51,12 +58,18 @@ class CameraVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if UIDevice.current.orientation.isPortrait {
+        if UIDevice.current.orientation != .landscapeLeft {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             self.present(vc, animated: true, completion: nil)
-        } 
+        }
+        
+       
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     deinit {
@@ -66,11 +79,11 @@ class CameraVC: UIViewController {
     
     func rotated() {
         if recorder.isRecording != true {
-        if UIDevice.current.orientation.isPortrait {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
-            vc.modalPresentationStyle = .overCurrentContext
-            vc.modalTransitionStyle = .crossDissolve
-            self.present(vc, animated: true, completion: nil)
+            if UIDevice.current.orientation != .landscapeLeft {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.modalTransitionStyle = .crossDissolve
+                self.present(vc, animated: true, completion: nil)
             }
         }
     }
@@ -81,8 +94,16 @@ class CameraVC: UIViewController {
             if launchRecord == false {
                 recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
                 recorder.pause()
-                saveBtn.isHidden = false
-                playBtn.isHidden = false
+                
+                print("session segments = \(session.segments.count)")
+                
+                if session.segments.count > 0 {
+                    saveBtn.isHidden = false
+                    playBtn.isHidden = false
+                    recordBtn.isHidden = true
+                    retakeBtn.isHidden = false
+                    cameraSwitchBtn.isHidden = true
+                }
                 
             } else {
                 recordBtn.setImage(UIImage(named: "icons8-record_filled"), for: .normal)
@@ -99,7 +120,6 @@ class CameraVC: UIViewController {
     
     @IBAction func pauseButtonPress(_ sender: AnyObject) {
         player.play()
-        
     }
     
 //    @IBAction func backspaceButtonPress(_ sender: AnyObject) {
@@ -114,20 +134,17 @@ class CameraVC: UIViewController {
     
     
     @IBAction func playButtonPress(_ sender: AnyObject) {
-       //
         launchFrontBackCamera = !launchFrontBackCamera
-        
     }
     
     var launchFrontBackCamera = false {
         didSet {
             if launchFrontBackCamera == false {
-                recorder.device = AVCaptureDevicePosition.back
-            } else {
                 recorder.device = AVCaptureDevicePosition.front
+            } else {
+                recorder.device = AVCaptureDevicePosition.back
             }
         }
-        
     }
     
     @IBAction func saveButtonPress(_ sender: AnyObject) {
@@ -135,6 +152,7 @@ class CameraVC: UIViewController {
             if (error == nil) {
                 (url as NSURL?)?.saveToCameraRoll(completion: { (path, error) in
                     debugPrint(path ?? "", error ?? "")
+                    self.session.removeAllSegments()
                 })
             } else {
                 debugPrint(error ?? "")
@@ -142,22 +160,37 @@ class CameraVC: UIViewController {
         }
         
         playerLayer.removeFromSuperlayer()
+        saveBtn.isHidden = true
+        playBtn.isHidden = true
+        retakeBtn.isHidden = true
+        recordBtn.isHidden = false
+        cameraSwitchBtn.isHidden = false
+        
+        timeLabel.text = "00:00:00"
     }
     
+    @IBAction func retakeHit(_ sender: UIButton) {
+        self.session.removeAllSegments()
+        playerLayer.removeFromSuperlayer()
+        saveBtn.isHidden = true
+        playBtn.isHidden = true
+        retakeBtn.isHidden = true
+        recordBtn.isHidden = false
+        cameraSwitchBtn.isHidden = false
+        
+        timeLabel.text = "00:00:00"
+    }
     
     override func viewDidLayoutSubviews() {
         recorder.previewView = previewView
         
-      
         player.setItemBy(session.assetRepresentingSegments())
-       
         let bounds = previewView.bounds
         playerLayer.frame = bounds
         previewView.layer.addSublayer(playerLayer)
-        
-       
     }
 }
+
 
 extension CameraVC: SCRecorderDelegate {
     
@@ -165,8 +198,18 @@ extension CameraVC: SCRecorderDelegate {
         updateTimeText(session)
     }
     
+    func secondsToHoursMinutesSeconds (seconds : Int) -> String {
+        return "\(seconds / 3600):\((seconds % 3600) / 60):\((seconds % 3600) % 60)"
+    }
+    
     func updateTimeText(_ session: SCRecordSession) {
-        self.timeLabel.text = String(session.duration.seconds)
+        
+        let time = secondsToHoursMinutesSeconds(seconds: Int(session.duration.seconds))
+        self.timeLabel.text = time
+        if Int(session.duration.seconds) == 5 {
+            recorder.pause()
+            print("TIme is UP")
+        }
     }
 }
 
