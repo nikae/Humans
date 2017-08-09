@@ -14,15 +14,25 @@ class VideoPreviewVC: UIViewController {
     
     
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var playBtn: UIButton!
+    @IBOutlet weak var retakeBtn: UIButton!
 
-    let session = SCRecordSession()
+    var session = SCRecordSession()
+    let recorder = SCRecorder()
     let player = SCPlayer()
+    var playerLayer = CALayer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showSpinningWheel(_:)), name: NSNotification.Name(rawValue: "vid"), object: nil)
+        saveBtn.layer.zPosition = 1
+        retakeBtn.layer.zPosition = 1
         
+        playBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        saveBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        retakeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
         player.setItemBy(session.assetRepresentingSegments())
         let playerLayer = AVPlayerLayer(player: player)
@@ -35,11 +45,9 @@ class VideoPreviewVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    //Mark: -> handle notification
-    func showSpinningWheel(_ notification: NSNotification) {
-        let dateofb = (notification.userInfo?["vid"] as? NSURL)
-        
-        player.play()
+
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     
@@ -59,6 +67,16 @@ class VideoPreviewVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func playHit(_ sender: UIButton) {
+        player.play()
+    }
+    @IBAction func retakeHit(_ sender: UIButton) {
+        self.session.removeAllSegments()
+       
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func saveHit(_ sender: UIButton) {
         session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in
             if (error == nil) {
