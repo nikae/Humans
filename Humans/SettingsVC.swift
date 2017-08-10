@@ -265,7 +265,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
         uploasTask.observe(.progress, handler: { [weak self] (snapshot) in
             
-            guard let strongSelf = self else {return}
+            guard self != nil else {return}
             guard let progress = snapshot.progress else {return}
             
             print(Float(progress.fractionCompleted))

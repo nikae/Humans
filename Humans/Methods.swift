@@ -67,3 +67,25 @@ func moveViewDownOrUp(view: UIView, moveUp: Bool) {
     }
     
 }
+
+
+
+let videoGuideLinesLibrary = ["Time" : ["title" : "Time",
+                                        "boddy" : "Time Boddy Goews Here"],
+                              "Ideas" : ["title" : "Ideas",
+                                         "boddy" : "Ideas Boddy Goews Here"],
+                              "Coments" : ["title" : "Coments",
+                                         "boddy" : "Coments Boddy Goews Here"],
+                              "Privacy" : ["title" : "Privacy",
+                                           "boddy" : "Privacy Boddy Goews Here"],
+                              "Language" : ["title" : "Language",
+                                           "boddy" : "Language Boddy Goews Here"],
+                              "Info" : ["title" : "Info",
+                                           "boddy" : "Info Boddy Goews Here"]]
+
+
+
+
+
+
+

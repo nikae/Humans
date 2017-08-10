@@ -19,15 +19,21 @@ class PhotoPrepVC: UIViewController {
         viewShape(view: recordBtn)
         viewShape(view: uploadBtn)
         
-        let stopScrollingDict:[String: Bool] = ["stopScrolling": true]
-        
         //MARK: -> post a notification
+        let stopScrollingDict:[String: Bool] = ["stopScrolling": true]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        let stopScrollingDict:[String: Bool] = ["stopScrolling": false]
+    override func viewWillAppear(_ animated: Bool) {
         //MARK: -> post a notification
+        let stopScrollingDict:[String: Bool] = ["stopScrolling": true]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        //MARK: -> post a notification
+        let stopScrollingDict:[String: Bool] = ["stopScrolling": false]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
     }
 
@@ -59,37 +65,39 @@ class PhotoPrepVC: UIViewController {
     
     func popUp(title: String, boddy: String) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "GuidelineVC") as! GuidelineVC
-        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
-        //vc.titlef = title
-        //vc.boddy = boddy
+        vc.titlef = title
+        vc.boddy = boddy
         self.present(vc, animated: true, completion: nil)
     }
     
+    let time = videoGuideLinesLibrary["Time"]!
+    let ideas = videoGuideLinesLibrary["Ideas"]!
+    let coments = videoGuideLinesLibrary["Coments"]!
+    let privacy = videoGuideLinesLibrary["Privacy"]!
+    let language = videoGuideLinesLibrary["Language"]!
+    let info = videoGuideLinesLibrary["Info"]!
+    
     @IBAction func timeHit(_ sender: UIButton) {
-       // popUp(title: "Time", boddy: "Time's Body")
-        print("aaa")
+        popUp(title: time["title"]!, boddy: time["boddy"]!)
     }
     @IBAction func ideaHit(_ sender: UIButton) {
-        //popUp(title: "idea", boddy: "Ideas's Body")
-         print("aaa")
+        popUp(title: ideas["title"]!, boddy: ideas["boddy"]!)
     }
     @IBAction func comentsHit(_ sender: UIButton) {
-       // popUp(title: "Coments", boddy: "Coments's Body")
-         print("aaa")
+        popUp(title: coments["title"]!, boddy: coments["boddy"]!)
     }
     
     @IBAction func privateHit(_ sender: UIButton) {
-      //  popUp(title: "Privacy", boddy: "Privacy's Body")
-         print("aaa")
+       popUp(title: privacy["title"]!, boddy: privacy["boddy"]!)
     }
     @IBAction func languageHit(_ sender: UIButton) {
-       // popUp(title: "Language", boddy: "Language's Body")
-         print("aaa")
+        popUp(title: language["title"]!, boddy: language["boddy"]!)
+     
     }
     @IBAction func infoAndHelpHit(_ sender: UIButton) {
-       // popUp(title: "Info And Help", boddy: "Info And Help's Body")
-         print("aaa")
+       popUp(title: info["title"]!, boddy: info["boddy"]!)
 
     }
 
