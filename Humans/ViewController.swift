@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     // handle notification
     func showSpinningWheel(_ notification: NSNotification) {
         
-        if (notification.userInfo?["image"] as? Bool) == true {
+        if (notification.userInfo?["stopScrolling"] as? Bool) == true {
             self.scrollView.isScrollEnabled = false
         } else {
             self.scrollView.isScrollEnabled = true

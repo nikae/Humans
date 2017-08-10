@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: User
 
@@ -76,3 +77,10 @@ struct BlockedByStruct {
     var blockedUserID: String!
     var blockedAt: String!
 }
+
+
+
+
+    
+   
+

@@ -13,20 +13,24 @@ class VideoPreviewVC: UIViewController {
     
     
     
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var retakeBtn: UIButton!
 
+    @IBOutlet weak var controlView: UIView!
+    
     var session = SCRecordSession()
     let recorder = SCRecorder()
     let player = SCPlayer()
     var playerLayer = CALayer()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        controlView.layer.zPosition = 1
         saveBtn.layer.zPosition = 1
         retakeBtn.layer.zPosition = 1
         
@@ -69,13 +73,44 @@ class VideoPreviewVC: UIViewController {
     */
     
     @IBAction func playHit(_ sender: UIButton) {
-        player.play()
+        launchPlay = !launchPlay
     }
+    
+    var launchPlay = false {
+        didSet {
+            if launchPlay == false {
+                player.play()
+                playBtn.setImage(UIImage(named: "icons8-circled_pause"), for: .normal)
+            } else {
+                player.pause()
+                playBtn.setImage(UIImage(named: "icons8-play_round"), for: .normal)
+                
+            }
+        }
+    }
+    
     @IBAction func retakeHit(_ sender: UIButton) {
         self.session.removeAllSegments()
        
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
+        print("View Tapped")
+        launchTap = !launchTap
+    }
+    
+    var launchTap = false {
+        didSet {
+            if launchTap == false {
+                moveViewDownOrUp(view: controlView, moveUp: true)
+            } else {
+                moveViewDownOrUp(view: controlView, moveUp: false)
+
+            }
+        }
+    }
+
+    
     
     @IBAction func saveHit(_ sender: UIButton) {
         session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in

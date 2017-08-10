@@ -32,3 +32,38 @@ func age(year: Int, month: Int, day: Int) -> Int {
     let myAge = Calendar.current.dateComponents([.year], from: myDOB, to: now).year
     return myAge ?? 1
 }
+
+
+
+func moveViewDownOrUp(view: UIView, moveUp: Bool) {
+    
+    if moveUp == false {
+        
+        let xPositionOfView = view.frame.origin.x - 80
+        //View will slide Npx down
+        let yPositionOfView = view.frame.origin.y
+        
+        let heightOfView = view.frame.size.height
+        let widthOfView = view.frame.size.width
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            view.frame = CGRect(x: xPositionOfView, y: yPositionOfView, width: widthOfView, height: heightOfView)
+        })
+        
+    } else {
+        let xPositionOfView = view.frame.origin.x + 80
+        //View will slide Npx up
+        let yPositionOfView = view.frame.origin.y
+        
+        
+        let heightOfView = view.frame.size.height
+        let widthOfView = view.frame.size.width
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            view.frame = CGRect(x: xPositionOfView, y: yPositionOfView, width: widthOfView, height: heightOfView)
+            
+        })
+    }
+    
+}

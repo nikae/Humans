@@ -97,18 +97,17 @@ class ProfileSettingsVC: UIViewController {
             print(error.localizedDescription)
         }
         
-        let imageDataDict:[String: Bool] = ["image": true]
-        
+        let stopScrollingDict:[String: Bool] = ["stopScrolling": true]
         //MARK: -> post a notification
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: imageDataDict)
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        let imageDataDict:[String: Bool] = ["image": false]
+        let stopScrollingDict:[String: Bool] = ["stopScrolling": false]
         //MARK: -> post a notification
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: imageDataDict)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

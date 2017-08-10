@@ -289,8 +289,7 @@ class ProfileTV: UITableViewController {
         
     }
     @IBAction func openCameraHit(_ sender: UIBarButtonItem) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CameraVC") as! CameraVC
-        self.present(vc, animated: true, completion: nil)
+        
     }
 
 }
