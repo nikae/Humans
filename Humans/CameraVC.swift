@@ -22,6 +22,7 @@ class CameraVC: UIViewController {
     @IBOutlet weak var recordBtn: UIButton!
     @IBOutlet weak var cameraSwitchBtn: UIButton!
     @IBOutlet weak var flashBtn: UIButton!
+    @IBOutlet weak var previewBtn: UIButton!
 
     @IBOutlet weak var doneBtn: UIButton!
     let systemSoundID: SystemSoundID = 1113
@@ -35,6 +36,7 @@ class CameraVC: UIViewController {
         
         flashBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         doneBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        previewBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
         if (!recorder.startRunning()) {
             debugPrint("Recorder error: ", recorder.error ?? "")
@@ -49,6 +51,11 @@ class CameraVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if session.segments.count == 0 {
+            timeLabel.text = ""
+        }
+        
         if UIDevice.current.orientation != .landscapeLeft {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
             vc.modalPresentationStyle = .overCurrentContext
@@ -84,14 +91,6 @@ class CameraVC: UIViewController {
                 recorder.pause()
                
                 print("session segments = \(session.segments.count)")
-                if session.segments.count > 0 {
-                     timeLabel.text = ""
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "VideoPreviewVC") as! VideoPreviewVC
-                    vc.modalPresentationStyle = .overCurrentContext
-                    vc.modalTransitionStyle = .crossDissolve
-                    vc.session = session
-                    self.present(vc, animated: true, completion: nil)
-                }
             } else {
                 AudioServicesPlaySystemSound (systemSoundID)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -111,6 +110,13 @@ class CameraVC: UIViewController {
     @IBAction func playButtonPress(_ sender: AnyObject) {
         launchFrontBackCamera = !launchFrontBackCamera
         
+    }
+    @IBAction func previewHit(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VideoPreviewVC") as! VideoPreviewVC
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.session = session
+        self.present(vc, animated: true, completion: nil)
     }
     
     var launchFrontBackCamera = false {

@@ -13,11 +13,17 @@ class VideoPreviewVC: UIViewController {
     
     
     
+   
+    @IBOutlet weak var noVideoLabel: UILabel!
+
+    @IBOutlet weak var slider: UISlider!
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var retakeBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var delateLastBtn: UIButton!
 
     @IBOutlet weak var controlView: UIView!
     
@@ -34,9 +40,20 @@ class VideoPreviewVC: UIViewController {
         saveBtn.layer.zPosition = 1
         retakeBtn.layer.zPosition = 1
         
+        if session.segments.count > 0 {
+            noVideoLabel.isHidden = true
+        } else {
+            noVideoLabel.isHidden = false
+        }
+        
+        noVideoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         playBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         saveBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         retakeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        backBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        delateLastBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        slider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
         
         player.setItemBy(session.assetRepresentingSegments())
         let playerLayer = AVPlayerLayer(player: player)
@@ -88,6 +105,14 @@ class VideoPreviewVC: UIViewController {
             }
         }
     }
+
+    @IBAction func backHit(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func delateLastHit(_ sender: UIButton) {
+        session.removeLastSegment()
+       // updateTimeText(session)
+    }
     
     @IBAction func retakeHit(_ sender: UIButton) {
         self.session.removeAllSegments()
@@ -110,6 +135,12 @@ class VideoPreviewVC: UIViewController {
         }
     }
 
+    @IBAction func sliderHit(_ sender: UISlider) {
+        player.volume = sender.value
+        print(sender.value)
+        
+       
+    }
     
     
     @IBAction func saveHit(_ sender: UIButton) {

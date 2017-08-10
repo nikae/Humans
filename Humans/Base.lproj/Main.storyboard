@@ -87,6 +87,18 @@
                                                     <action selector="recordButtonPress:" destination="rny-Ap-6es" eventType="touchUpInside" id="JLB-3t-Caq"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ss-iX-Abr">
+                                                <rect key="frame" x="57" y="29" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="0UR-wl-Zoa"/>
+                                                    <constraint firstAttribute="width" constant="30" id="Tjs-Rp-NNX"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="icons8-preview_pane"/>
+                                                <connections>
+                                                    <action selector="previewHit:" destination="rny-Ap-6es" eventType="touchUpInside" id="k31-k0-EVO"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.50762898489932884" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -95,7 +107,9 @@
                                             <constraint firstAttribute="height" constant="88" id="EBr-z6-JL5"/>
                                             <constraint firstItem="Syq-hy-OYf" firstAttribute="leading" secondItem="UNY-S7-9Tp" secondAttribute="trailing" constant="8" id="PSb-p0-u1Y"/>
                                             <constraint firstItem="AvO-Di-P2k" firstAttribute="centerY" secondItem="kc2-ii-VuS" secondAttribute="centerY" id="WAe-1e-xR8"/>
+                                            <constraint firstItem="4Ss-iX-Abr" firstAttribute="centerY" secondItem="kc2-ii-VuS" secondAttribute="centerY" id="ZCr-WB-l8o"/>
                                             <constraint firstItem="Syq-hy-OYf" firstAttribute="centerY" secondItem="kc2-ii-VuS" secondAttribute="centerY" id="b5f-yj-E1T"/>
+                                            <constraint firstItem="4Ss-iX-Abr" firstAttribute="leading" secondItem="3ZQ-Wh-7k0" secondAttribute="trailing" constant="8" id="gX0-Lh-3hK"/>
                                             <constraint firstItem="3ZQ-Wh-7k0" firstAttribute="leading" secondItem="kc2-ii-VuS" secondAttribute="leading" constant="8" id="pqh-eO-tmb"/>
                                             <constraint firstItem="AvO-Di-P2k" firstAttribute="centerX" secondItem="kc2-ii-VuS" secondAttribute="centerX" id="tY0-Qt-3Ei"/>
                                             <constraint firstItem="UNY-S7-9Tp" firstAttribute="centerY" secondItem="kc2-ii-VuS" secondAttribute="centerY" id="xOY-7e-PIh"/>
@@ -124,6 +138,7 @@
                         <outlet property="cameraSwitchBtn" destination="Syq-hy-OYf" id="6Wj-Z2-1x7"/>
                         <outlet property="doneBtn" destination="3ZQ-Wh-7k0" id="hlt-Fx-fxf"/>
                         <outlet property="flashBtn" destination="UNY-S7-9Tp" id="URH-kA-L2Y"/>
+                        <outlet property="previewBtn" destination="4Ss-iX-Abr" id="RvM-aP-rLa"/>
                         <outlet property="previewView" destination="TBc-5A-MRv" id="2aT-bD-f28"/>
                         <outlet property="recordBtn" destination="AvO-Di-P2k" id="LZq-Py-j7e"/>
                         <outlet property="timeLabel" destination="oie-FF-TVJ" id="luI-CY-7Ho"/>
@@ -131,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWv-ie-Tou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="-722"/>
+            <point key="canvasLocation" x="2096.8000000000002" y="-722.78860569715152"/>
         </scene>
         <!--Photo PrepVC-->
         <scene sceneID="uTr-5q-czM">
@@ -333,41 +348,83 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frH-Yx-biM">
-                                                <rect key="frame" x="16.5" y="516" width="47" height="30"/>
+                                                <rect key="frame" x="22.5" y="183" width="35" height="35"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="47" id="GeQ-65-3NU"/>
-                                                    <constraint firstAttribute="height" constant="30" id="Vin-mC-hun"/>
+                                                    <constraint firstAttribute="width" constant="35" id="GeQ-65-3NU"/>
+                                                    <constraint firstAttribute="height" constant="35" id="Vin-mC-hun"/>
                                                 </constraints>
-                                                <state key="normal" title="Retake"/>
+                                                <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="icons8-environment"/>
                                                 <connections>
                                                     <action selector="retakeHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="rIr-jd-i0g"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQp-zo-9T9">
-                                                <rect key="frame" x="20" y="121" width="40" height="30"/>
+                                                <rect key="frame" x="22.5" y="390" width="35" height="35"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="ArF-LN-7DW"/>
-                                                    <constraint firstAttribute="height" constant="30" id="c75-Ne-ZfP"/>
+                                                    <constraint firstAttribute="width" constant="35" id="ArF-LN-7DW"/>
+                                                    <constraint firstAttribute="height" constant="35" id="c75-Ne-ZfP"/>
                                                 </constraints>
-                                                <state key="normal" title="Share"/>
+                                                <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="icons8-forward_arrow"/>
                                                 <connections>
                                                     <action selector="saveHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="Uqi-Qt-RTj"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a62-Tk-l0X">
+                                                <rect key="frame" x="22.5" y="242" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="33U-ei-bd1"/>
+                                                    <constraint firstAttribute="height" constant="35" id="Gl0-9r-5ws"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="icons8-video_trimming"/>
+                                                <connections>
+                                                    <action selector="delateLastHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="sWU-5u-BTD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYM-Rs-oKL">
+                                                <rect key="frame" x="22.5" y="124" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="YDZ-tr-XRp"/>
+                                                    <constraint firstAttribute="width" constant="35" id="dFh-i4-M2O"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="icons8-chevron_left_round"/>
+                                                <connections>
+                                                    <action selector="backHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="0HO-Cq-AlS"/>
+                                                </connections>
+                                            </button>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Hs0-8b-DQg">
+                                                <rect key="frame" x="-27" y="499" width="134" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="m8a-wL-2Xp"/>
+                                                    <constraint firstAttribute="width" constant="130" id="qfp-rj-K0k"/>
+                                                </constraints>
+                                                <color key="minimumTrackTintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="sliderHit:" destination="W5F-vQ-5Vx" eventType="valueChanged" id="JVk-sk-A7M"/>
+                                                </connections>
+                                            </slider>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.50967386744966447" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="frH-Yx-biM" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="1Dd-2X-oKN"/>
-                                            <constraint firstItem="na2-NI-v83" firstAttribute="top" secondItem="JQp-zo-9T9" secondAttribute="bottom" constant="150" id="Img-K2-x5G"/>
+                                            <constraint firstItem="lYM-Rs-oKL" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="1Pa-Ks-ZUF"/>
+                                            <constraint firstItem="a62-Tk-l0X" firstAttribute="top" secondItem="frH-Yx-biM" secondAttribute="bottom" constant="24" id="Jkk-aC-CRA"/>
+                                            <constraint firstItem="a62-Tk-l0X" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="OdS-rg-Gm6"/>
+                                            <constraint firstItem="frH-Yx-biM" firstAttribute="top" secondItem="lYM-Rs-oKL" secondAttribute="bottom" constant="24" id="QDq-x1-HyC"/>
+                                            <constraint firstItem="JQp-zo-9T9" firstAttribute="top" secondItem="na2-NI-v83" secondAttribute="bottom" constant="24" id="UBg-EG-dJj"/>
                                             <constraint firstItem="na2-NI-v83" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="Wxm-Md-gfK"/>
                                             <constraint firstItem="na2-NI-v83" firstAttribute="centerY" secondItem="QyA-zF-kTc" secondAttribute="centerY" id="XmO-hU-NEX"/>
                                             <constraint firstAttribute="width" constant="80" id="YvD-qa-WhV"/>
+                                            <constraint firstItem="Hs0-8b-DQg" firstAttribute="top" secondItem="JQp-zo-9T9" secondAttribute="bottom" constant="74" id="h3j-Bz-US2"/>
+                                            <constraint firstItem="na2-NI-v83" firstAttribute="top" secondItem="a62-Tk-l0X" secondAttribute="bottom" constant="24" id="ln5-cn-OAg"/>
+                                            <constraint firstItem="Hs0-8b-DQg" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="tiq-s3-J0g"/>
                                             <constraint firstItem="JQp-zo-9T9" firstAttribute="centerX" secondItem="QyA-zF-kTc" secondAttribute="centerX" id="uHC-qv-gjk"/>
-                                            <constraint firstItem="frH-Yx-biM" firstAttribute="top" secondItem="na2-NI-v83" secondAttribute="bottom" constant="150" id="x64-R0-Zt3"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.36862745099999999" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="QyA-zF-kTc" firstAttribute="leading" secondItem="fjL-5o-67b" secondAttribute="leading" id="6Ae-00-NXD"/>
@@ -378,9 +435,21 @@
                                     <outletCollection property="gestureRecognizers" destination="2lu-yJ-tcV" appends="YES" id="1Xk-rH-Bne"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO VIDEO YET 🏜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-ED-WpE">
+                                <rect key="frame" x="101.5" y="323" width="172" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="Fxy-yB-YKr"/>
+                                    <constraint firstAttribute="height" constant="21" id="Ypo-NB-geD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Tjb-ED-WpE" firstAttribute="centerY" secondItem="9nj-pB-ZqB" secondAttribute="centerY" id="2eW-us-B8a"/>
+                            <constraint firstItem="Tjb-ED-WpE" firstAttribute="centerX" secondItem="9nj-pB-ZqB" secondAttribute="centerX" id="JfA-bc-yMG"/>
                             <constraint firstItem="fjL-5o-67b" firstAttribute="width" secondItem="9nj-pB-ZqB" secondAttribute="width" id="h6g-e6-Y6K"/>
                             <constraint firstItem="fjL-5o-67b" firstAttribute="centerY" secondItem="9nj-pB-ZqB" secondAttribute="centerY" id="i0j-pe-jBm"/>
                             <constraint firstItem="fjL-5o-67b" firstAttribute="centerX" secondItem="9nj-pB-ZqB" secondAttribute="centerX" id="lxs-eh-Gdy"/>
@@ -388,11 +457,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="lYM-Rs-oKL" id="X1e-g9-IGF"/>
                         <outlet property="controlView" destination="QyA-zF-kTc" id="vbT-40-1Lz"/>
+                        <outlet property="delateLastBtn" destination="a62-Tk-l0X" id="AqI-Sg-wdh"/>
+                        <outlet property="noVideoLabel" destination="Tjb-ED-WpE" id="9Bb-Dy-Sau"/>
                         <outlet property="playBtn" destination="na2-NI-v83" id="u9f-Zt-a2R"/>
                         <outlet property="previewView" destination="fjL-5o-67b" id="3Lz-7D-Boa"/>
                         <outlet property="retakeBtn" destination="frH-Yx-biM" id="MmC-Ex-S8J"/>
                         <outlet property="saveBtn" destination="JQp-zo-9T9" id="CMa-AJ-cAu"/>
+                        <outlet property="slider" destination="Hs0-8b-DQg" id="M8p-I1-Vw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jj2-z5-LUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2293,6 +2366,8 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
     <resources>
         <image name="Screen Shot 2017-07-18 at 5.32.24 PM" width="684" height="682"/>
         <image name="default-avatar" width="295" height="295"/>
+        <image name="icons8-chevron_left_round" width="100" height="100"/>
+        <image name="icons8-environment" width="100" height="100"/>
         <image name="icons8-flash_off" width="100" height="100"/>
         <image name="icons8-forward_arrow" width="100" height="100"/>
         <image name="icons8-hint" width="100" height="100"/>
@@ -2302,6 +2377,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <image name="icons8-like" width="100" height="100"/>
         <image name="icons8-more" width="100" height="100"/>
         <image name="icons8-play_round" width="100" height="100"/>
+        <image name="icons8-preview_pane" width="100" height="100"/>
         <image name="icons8-private" width="100" height="100"/>
         <image name="icons8-record" width="100" height="100"/>
         <image name="icons8-refresh_filled" width="100" height="100"/>
@@ -2309,6 +2385,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <image name="icons8-star" width="100" height="100"/>
         <image name="icons8-time" width="100" height="100"/>
         <image name="icons8-topic" width="100" height="100"/>
+        <image name="icons8-video_trimming" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fst-oB-X1k"/>
