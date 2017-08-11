@@ -17,6 +17,7 @@ class CameraVC: UIViewController {
     var player = SCPlayer()
     var playerLayer = CALayer()
     
+    @IBOutlet weak var progresView: UIProgressView!
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
@@ -90,14 +91,22 @@ class CameraVC: UIViewController {
                 AudioServicesPlaySystemSound (systemSoundID)
                 recorder.pause()
                
+                previewBtn.isEnabled = true
+                cameraSwitchBtn.isEnabled = true
+                doneBtn.isEnabled = true
+                
                 print("session segments = \(session.segments.count)")
             } else {
                 AudioServicesPlaySystemSound (systemSoundID)
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     self.recordBtn.setImage(UIImage(named: "icons8-record_filled"), for: .normal)
                     self.recorder.record()
+                    
                 })
                 
+                previewBtn.isEnabled = false
+                cameraSwitchBtn.isEnabled = false
+                doneBtn.isEnabled = false
             }
         }
     }
@@ -174,7 +183,11 @@ extension CameraVC: SCRecorderDelegate {
         
         let time = secondsToHoursMinutesSeconds(seconds: Int(session.duration.seconds))
         self.timeLabel.text = time
+        
+        progresView.progress = Float(session.duration.seconds / 180)
         if Int(session.duration.seconds) == 180 {
+            recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
+            AudioServicesPlaySystemSound (systemSoundID)
             recorder.pause()
             print("TIme is UP")
         }

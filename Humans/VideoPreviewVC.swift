@@ -8,6 +8,7 @@
 
 import UIKit
 import SCRecorder
+import Firebase
 
 class VideoPreviewVC: UIViewController {
     
@@ -46,20 +47,24 @@ class VideoPreviewVC: UIViewController {
             noVideoLabel.isHidden = false
         }
         
-        noVideoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        playBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        saveBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        retakeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        backBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        delateLastBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        slider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        noVideoLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        playBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        saveBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        retakeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        backBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        delateLastBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        slider.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         
         
         player.setItemBy(session.assetRepresentingSegments())
         let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat((Double.pi * 180) / 360 )))
+        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         let bounds = previewView.bounds
         playerLayer.frame = bounds
+       
         previewView.layer.addSublayer(playerLayer)
+    
         
        
 
@@ -79,16 +84,6 @@ class VideoPreviewVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     @IBAction func playHit(_ sender: UIButton) {
         launchPlay = !launchPlay
     }
@@ -142,13 +137,25 @@ class VideoPreviewVC: UIViewController {
        
     }
     
-    
     @IBAction func saveHit(_ sender: UIButton) {
         session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in
             if (error == nil) {
                 (url as NSURL?)?.saveToCameraRoll(completion: { (path, error) in
                     debugPrint(path ?? "", error ?? "")
                 })
+                
+                let storageReference = FIRStorage.storage().reference().child("video.mov")
+                
+                // Start the video storage process
+                storageReference.putFile(url!, metadata: nil, completion: { (metadata, error) in
+                    if error == nil {
+                        print("Successful video upload")
+                    } else {
+                        print(error?.localizedDescription ?? "Eror ar aploading")
+                    }
+                })
+                
+            
             } else {
                 debugPrint(error ?? "")
             }
