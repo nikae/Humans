@@ -84,6 +84,7 @@ class ProfileTV: UITableViewController {
             
             
             self.fullNameLabel.text = "\(firstName) \(lastName)"
+            self.navigationItem.title = "\(firstName) \(lastName)"
             
             if pictureURL != "" {
                 let starsRef = FIRStorage.storage().reference(forURL: pictureURL)

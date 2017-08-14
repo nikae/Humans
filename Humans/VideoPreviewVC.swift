@@ -33,9 +33,13 @@ class VideoPreviewVC: UIViewController {
     let player = SCPlayer()
     var playerLayer = CALayer()
 
+    var databaseRef: FIRDatabaseReference!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         databaseRef = FIRDatabase.database().reference()
         
         controlView.layer.zPosition = 1
         saveBtn.layer.zPosition = 1
@@ -137,6 +141,21 @@ class VideoPreviewVC: UIViewController {
        
     }
     
+//    struct Post {
+//        var postID: String
+//        var autorId: String
+//        var createdAt: String!
+//        var videoUrl: String!
+//        var imageUrl: String!
+//        var headLine: String!
+//        var text: String!
+//        var description: String!
+//        var likes: [Like]!
+//        var coment: [Coment]!
+//        var Favorites: [Favorite]!
+//        var location: [Double]
+//    }
+
     @IBAction func saveHit(_ sender: UIButton) {
         session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in
             if (error == nil) {
@@ -144,18 +163,16 @@ class VideoPreviewVC: UIViewController {
                     debugPrint(path ?? "", error ?? "")
                 })
                 
-                let storageReference = FIRStorage.storage().reference().child("video.mov")
+                let storageRef = FIRStorage.storage().reference().child("video.mov")
                 
                 // Start the video storage process
-                storageReference.putFile(url!, metadata: nil, completion: { (metadata, error) in
-                    if error == nil {
-                        print("Successful video upload")
-                    } else {
-                        print(error?.localizedDescription ?? "Eror ar aploading")
-                    }
-                })
-                
-            
+                storageRef.putFile(url!).observe(.success) { (snapshot) in
+                    // When the image has successfully uploaded, we get it's download URL
+                    let videoURL = snapshot.metadata?.downloadURL()?.absoluteString
+                    // Write the download URL to the Realtime Database
+                    self.databaseRef.child("Posts").childByAutoId().setValue(videoURL)
+                    print("self.picURL: \(String(describing: videoURL))")
+                }
             } else {
                 debugPrint(error ?? "")
             }

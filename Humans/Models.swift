@@ -19,23 +19,11 @@ struct User {
     var favorites: [MyFavorites]
 }
 
-struct Video {
+struct Post {
     var postID: String
     var autorId: String
     var createdAt: String!
     var videoUrl: String!
-    var description: String!
-    var likes: [Like]!
-    var coment: [Coment]!
-    var Favorites: [Favorite]!
-    var location: [Double]
-    
-}
-
-struct Text {
-    var postID: String
-    var autorId: String
-    var createdAt: String!
     var imageUrl: String!
     var headLine: String!
     var text: String!
@@ -45,6 +33,20 @@ struct Text {
     var Favorites: [Favorite]!
     var location: [Double]
 }
+
+//struct Text {
+//    var postID: String
+//    var autorId: String
+//    var createdAt: String!
+//    var imageUrl: String!
+//    var headLine: String!
+//    var text: String!
+//    var description: String!
+//    var likes: [Like]!
+//    var coment: [Coment]!
+//    var Favorites: [Favorite]!
+//    var location: [Double]
+//}
 
 struct Like {
     var creatorID: String!

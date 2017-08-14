@@ -534,7 +534,7 @@
             </objects>
             <point key="canvasLocation" x="1060" y="-33"/>
         </scene>
-        <!--HumansTV-->
+        <!--Humans-->
         <scene sceneID="dZh-mK-UxT">
             <objects>
                 <tableViewController storyboardIdentifier="HumansTV" id="qIH-XN-YnW" customClass="HumansTV" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
@@ -763,18 +763,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <outlet property="delegate" destination="qIH-XN-YnW" id="g9m-nh-pzu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ffg-qt-Y4P">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="VtR-gX-fBF">
-                            <rect key="frame" x="13.5" y="7" width="348" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Videos"/>
-                                <segment title="Stories"/>
-                            </segments>
-                            <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Humans" id="ffg-qt-Y4P"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcc-BT-NZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2415,6 +2404,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <segue reference="fst-oB-X1k"/>
         <segue reference="zmC-TY-EBI"/>
         <segue reference="lQZ-Bk-Zdz"/>
-        <segue reference="i0J-dL-ga3"/>
+        <segue reference="a9R-ew-Azt"/>
     </inferredMetricsTieBreakers>
 </document>
