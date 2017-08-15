@@ -39,6 +39,23 @@ class VideoPreviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+//        databaseRef = FIRDatabase.database().reference()
+//        databaseRef.child("Posts/-Krb4Kypx5LZoYmjbMGY").observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? String
+//            
+//            let a  = value
+//            let b = URL(string: a!)
+//            self.player.setItemBy(b)
+//            print("AAAAA ----- \(String(describing: a))")
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+
+        
+        
+        
+        
          databaseRef = FIRDatabase.database().reference()
         
         controlView.layer.zPosition = 1
@@ -61,6 +78,9 @@ class VideoPreviewVC: UIViewController {
         
         
         player.setItemBy(session.assetRepresentingSegments())
+//        let u = URL(string: "https:/firebasestorage.googleapis.com/v0/b/humans-16dc5.appspot.com/o/524513321905.27.mov?alt=media&token=4c830cc7-9f83-4245-b018-221a2c3fd25a")
+ //       player.setItemBy(u)
+       
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat((Double.pi * 180) / 360 )))
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -163,16 +183,72 @@ class VideoPreviewVC: UIViewController {
                     debugPrint(path ?? "", error ?? "")
                 })
                 
-                let storageRef = FIRStorage.storage().reference().child("video.mov")
                 
-                // Start the video storage process
-                storageRef.putFile(url!).observe(.success) { (snapshot) in
-                    // When the image has successfully uploaded, we get it's download URL
-                    let videoURL = snapshot.metadata?.downloadURL()?.absoluteString
-                    // Write the download URL to the Realtime Database
-                    self.databaseRef.child("Posts").childByAutoId().setValue(videoURL)
+                let storageRef = FIRStorage.storage().reference()
+                let metadata = FIRStorageMetadata()
+                metadata.contentType = "video.mp4"
+                let videoPath = "\(Date.timeIntervalSinceReferenceDate * 1000).mov"
+                
+                let uploasTask = storageRef.child(videoPath).putFile(url!, metadata: metadata) { (metadata, error) in
+                        if let error = error {
+                            print("Error uploading: \(error)")
+                            return
+                        }
+                    
+                    let videoURL = storageRef.child((metadata?.downloadURL()?.absoluteString)!)
+                    self.databaseRef.child("Posts").childByAutoId().setValue("\(videoURL)")
                     print("self.picURL: \(String(describing: videoURL))")
+                    
+                    
+                    
+                    
+//                    self.picURL = self.storageRef.child((metadata?.path)!).description
+//                        self.databaseRef.child("Users/\(self.uId!)/profilePictureUrl").setValue(self.picURL)
+//                        
+//                        print("self.picURL: \(self.picURL)")
                 }
+                
+                uploasTask.observe(.progress, handler: { [weak self] (snapshot) in
+                    
+                    guard self != nil else {return}
+                    guard let progress = snapshot.progress else {return}
+                    
+                    print(Float(progress.fractionCompleted))
+                    
+                    //            strongSelf.progressView.progress = Float(progress.fractionCompleted)
+                    //            strongSelf.progressView.isHidden = false
+                    //            
+                    //            if strongSelf.progressView.progress == 1.0 {
+                    //                strongSelf.progressView.isHidden = true
+                    //            }
+                    
+                    
+                } )
+  
+                
+                
+                
+//                //https://firebasestorage.googleapis.com/v0/b/humans-16dc5.appspot.com/o/524513124247.009.mov?alt=media&token=5551ea32-cbe1-4513-b341-c16e25509360
+//                
+//                gs://humans-16dc5.appspot.com/https:/firebasestorage.googleapis.com/v0/b/humans-16dc5.appspot.com/o/524513124247.009.mov?alt=media&token=5551ea32-cbe1-4513-b341-c16e25509360
+//                
+//                
+//                gs://humans-16dc5.appspot.com/524513124247.009.mov
+                
+                
+                
+                
+                
+//                let storageRef = FIRStorage.storage().reference().child("video.mov")
+//                
+//                // Start the video storage process
+//                storageRef.putFile(url!).observe(.success) { (snapshot) in
+//                    // When the image has successfully uploaded, we get it's download URL
+//                    let videoURL = snapshot.metadata?.downloadURL()?.absoluteString
+//                    // Write the download URL to the Realtime Database
+//                    self.databaseRef.child("Posts").childByAutoId().setValue(videoURL)
+//                    print("self.picURL: \(String(describing: videoURL))")
+//                }
             } else {
                 debugPrint(error ?? "")
             }
