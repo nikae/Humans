@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 func viewShape(view: UIView) {
     view.clipsToBounds = true
@@ -66,6 +67,37 @@ func moveViewDownOrUp(view: UIView, moveUp: Bool) {
         })
     }
     
+}
+
+
+
+func getDate() -> String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yyyy h:mm a"
+    return formatter.string(from: date)
+}
+
+func postToDatabase(autorId: String, createdAt: String, videoUrl: String, imageUrl: String, headLine: String, description: String, language: String, likes: [Like], coments: [Coment], favorites: [Favorite], location: String) {
+    
+    var databaseRef: FIRDatabaseReference!
+    databaseRef = FIRDatabase.database().reference()
+    let key = databaseRef.child("Posts").childByAutoId().key
+    
+    let post: [String : Any] = ["postID" : key,
+                                "autorId" : autorId,
+                                "createdAt" : createdAt,
+                                "videoUrl" : videoUrl,
+                                "imageUrl" : imageUrl,
+                                "language" : language,
+                                "headLine" : headLine,
+                                "description" : description,
+                                "likes" : likes,
+                                "coments" : coments,
+                                "favorites" : favorites,
+                                "location" : location]
+    
+    databaseRef.child("Posts").child("\(key)").setValue(post)
 }
 
 

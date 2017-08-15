@@ -327,7 +327,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N4h-Wr-ctI">
                                 <rect key="frame" x="8" y="136" width="359" height="415"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -532,7 +532,7 @@
                                 <state key="normal" title="Language"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Desctription" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="feZ-jb-Wo1">
-                                <rect key="frame" x="8" y="376" width="359" height="167"/>
+                                <rect key="frame" x="8" y="414" width="359" height="129"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -549,9 +549,16 @@
                                     <action selector="saveHit:" destination="W5F-vQ-5Vx" eventType="touchUpInside" id="Uqi-Qt-RTj"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="HeadLine" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rVm-fC-Tbp">
+                                <rect key="frame" x="8" y="376" width="359" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rVm-fC-Tbp" firstAttribute="top" secondItem="EmA-r6-bpa" secondAttribute="bottom" constant="8" id="0Ss-qv-1Py"/>
                             <constraint firstAttribute="trailing" secondItem="lYM-Rs-oKL" secondAttribute="trailing" constant="8" id="0i4-KR-Hm8"/>
                             <constraint firstItem="lYM-Rs-oKL" firstAttribute="top" secondItem="JQp-zo-9T9" secondAttribute="bottom" constant="8" id="5K8-4C-8no"/>
                             <constraint firstItem="JQp-zo-9T9" firstAttribute="leading" secondItem="9nj-pB-ZqB" secondAttribute="leading" constant="8" id="6kY-Gj-ECg"/>
@@ -559,11 +566,12 @@
                             <constraint firstItem="EmA-r6-bpa" firstAttribute="leading" secondItem="9nj-pB-ZqB" secondAttribute="leading" constant="8" id="AEO-Ae-skk"/>
                             <constraint firstItem="30d-Vi-7Ba" firstAttribute="top" secondItem="lYM-Rs-oKL" secondAttribute="bottom" constant="20" id="Bi1-mj-Kdj"/>
                             <constraint firstItem="QyA-zF-kTc" firstAttribute="top" secondItem="fjL-5o-67b" secondAttribute="bottom" id="Bum-SO-G7p"/>
-                            <constraint firstItem="feZ-jb-Wo1" firstAttribute="top" secondItem="EmA-r6-bpa" secondAttribute="bottom" constant="8" id="LqM-np-sFZ"/>
+                            <constraint firstItem="rVm-fC-Tbp" firstAttribute="leading" secondItem="9nj-pB-ZqB" secondAttribute="leading" constant="8" id="Mq9-Za-35k"/>
+                            <constraint firstAttribute="trailing" secondItem="rVm-fC-Tbp" secondAttribute="trailing" constant="8" id="Obt-7a-QfI"/>
                             <constraint firstAttribute="trailing" secondItem="feZ-jb-Wo1" secondAttribute="trailing" constant="8" id="Q7K-0E-BMh"/>
                             <constraint firstAttribute="trailing" secondItem="QyA-zF-kTc" secondAttribute="trailing" id="V9r-ib-U0b"/>
                             <constraint firstItem="fjL-5o-67b" firstAttribute="leading" secondItem="9nj-pB-ZqB" secondAttribute="leading" id="Y1z-XZ-iaI"/>
-                            <constraint firstItem="feZ-jb-Wo1" firstAttribute="top" secondItem="EmA-r6-bpa" secondAttribute="bottom" constant="8" id="dCI-MX-e0F"/>
+                            <constraint firstItem="feZ-jb-Wo1" firstAttribute="top" secondItem="rVm-fC-Tbp" secondAttribute="bottom" constant="8" id="bwr-BQ-fEa"/>
                             <constraint firstItem="EmA-r6-bpa" firstAttribute="top" secondItem="QyA-zF-kTc" secondAttribute="bottom" constant="8" id="hqG-MC-I1B"/>
                             <constraint firstAttribute="trailing" secondItem="JQp-zo-9T9" secondAttribute="trailing" constant="8" id="mw8-RR-hXZ"/>
                             <constraint firstAttribute="trailing" secondItem="EmA-r6-bpa" secondAttribute="trailing" constant="8" id="o41-zX-Ekl"/>
@@ -578,6 +586,9 @@
                         <outlet property="backBtn" destination="lYM-Rs-oKL" id="X1e-g9-IGF"/>
                         <outlet property="controlView" destination="QyA-zF-kTc" id="vbT-40-1Lz"/>
                         <outlet property="delateLastBtn" destination="a62-Tk-l0X" id="AqI-Sg-wdh"/>
+                        <outlet property="descriptionTv" destination="feZ-jb-Wo1" id="182-BR-GOX"/>
+                        <outlet property="headlineTF" destination="rVm-fC-Tbp" id="fw5-sU-Cad"/>
+                        <outlet property="languagebtn" destination="EmA-r6-bpa" id="TnA-Ck-Ef5"/>
                         <outlet property="noVideoLabel" destination="Tjb-ED-WpE" id="9Bb-Dy-Sau"/>
                         <outlet property="playBtn" destination="na2-NI-v83" id="u9f-Zt-a2R"/>
                         <outlet property="previewView" destination="fjL-5o-67b" id="3Lz-7D-Boa"/>
