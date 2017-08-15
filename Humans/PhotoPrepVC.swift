@@ -48,9 +48,12 @@ class PhotoPrepVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func uploadHit(_ sender: UIButton) {
-        print("upload function goes here")
+
+    @IBAction func writeHit(_ sender: UIButton) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WriteStorieVC") as! WriteStorieVC
+        self.present(vc, animated: true, completion: nil)
     }
+   
     
 
     /*
