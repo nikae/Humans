@@ -30,14 +30,16 @@ class CameraVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         playerLayer = AVPlayerLayer(player: player)
-        timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        //timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         timeLabel.text = ""
         
-        flashBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        doneBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        previewBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        flashBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        doneBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        previewBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
+        progresView.transform = progresView.transform.scaledBy(x: 1, y: 20)
         
         if (!recorder.startRunning()) {
             debugPrint("Recorder error: ", recorder.error ?? "")
@@ -45,7 +47,7 @@ class CameraVC: UIViewController {
         
         recorder.session = session
         recorder.device = AVCaptureDevicePosition.front
-        recorder.videoConfiguration.size = CGSize(width: previewView.frame.width , height: previewView.frame.height)
+        recorder.videoConfiguration.size = CGSize(width: 600 , height: 400)
         recorder.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraVC.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -57,7 +59,7 @@ class CameraVC: UIViewController {
             timeLabel.text = ""
         }
         
-        if UIDevice.current.orientation != .landscapeLeft {
+        if UIDevice.current.orientation != .portrait {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
@@ -75,7 +77,7 @@ class CameraVC: UIViewController {
     
     func rotated() {
         if recorder.isRecording != true {
-            if UIDevice.current.orientation != .landscapeLeft {
+            if UIDevice.current.orientation != .portrait {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
                 vc.modalPresentationStyle = .overCurrentContext
                 vc.modalTransitionStyle = .crossDissolve
@@ -90,7 +92,7 @@ class CameraVC: UIViewController {
                 recordBtn.setImage(UIImage(named: "icons8-record"), for: .normal)
                 AudioServicesPlaySystemSound (systemSoundID)
                 recorder.pause()
-               
+                
                 previewBtn.isEnabled = true
                 cameraSwitchBtn.isEnabled = true
                 doneBtn.isEnabled = true
@@ -153,7 +155,16 @@ class CameraVC: UIViewController {
             }
         }
     }
+    @IBAction func removeLastHit(_ sender: UIButton) {
+        session.removeLastSegment()
+        updateTimeText(session)
+    }
     
+    @IBAction func retakeHit(_ sender: UIButton) {
+        self.session.removeAllSegments()
+        updateTimeText(session)
+    }
+
     @IBAction func flashHit(_ sender: UIButton) {
         launchFlash = !launchFlash
     }

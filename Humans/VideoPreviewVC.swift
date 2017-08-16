@@ -69,7 +69,7 @@ class VideoPreviewVC: UIViewController {
         player.setItemBy(session.assetRepresentingSegments())
        
         let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat((Double.pi * 180) / 360 )))
+        //playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat((Double.pi * 180) / 360 )))
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         let bounds = previewView.bounds
         playerLayer.frame = bounds
