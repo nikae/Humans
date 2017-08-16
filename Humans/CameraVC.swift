@@ -24,6 +24,7 @@ class CameraVC: UIViewController {
     @IBOutlet weak var cameraSwitchBtn: UIButton!
     @IBOutlet weak var flashBtn: UIButton!
     @IBOutlet weak var previewBtn: UIButton!
+    @IBOutlet weak var controlView: UIView!
 
     @IBOutlet weak var doneBtn: UIButton!
     let systemSoundID: SystemSoundID = 1113
@@ -32,13 +33,11 @@ class CameraVC: UIViewController {
         super.viewDidLoad()
 
         playerLayer = AVPlayerLayer(player: player)
-        //timeLabel.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         timeLabel.text = ""
         
-//        flashBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-//        doneBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-//        previewBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        
+        viewShape(view: doneBtn)
+        viewShape(view: previewBtn)
+        viewShape(view: controlView)
         progresView.transform = progresView.transform.scaledBy(x: 1, y: 20)
         
         if (!recorder.startRunning()) {
@@ -103,7 +102,6 @@ class CameraVC: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     self.recordBtn.setImage(UIImage(named: "icons8-record_filled"), for: .normal)
                     self.recorder.record()
-                    
                 })
                 
                 previewBtn.isEnabled = false
@@ -120,8 +118,8 @@ class CameraVC: UIViewController {
     
     @IBAction func playButtonPress(_ sender: AnyObject) {
         launchFrontBackCamera = !launchFrontBackCamera
-        
     }
+    
     @IBAction func previewHit(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "VideoPreviewVC") as! VideoPreviewVC
         vc.modalPresentationStyle = .overCurrentContext
@@ -155,6 +153,7 @@ class CameraVC: UIViewController {
             }
         }
     }
+    
     @IBAction func removeLastHit(_ sender: UIButton) {
         session.removeLastSegment()
         updateTimeText(session)
@@ -181,17 +180,16 @@ class CameraVC: UIViewController {
 
 
 extension CameraVC: SCRecorderDelegate {
-    
     func recorder(_ recorder: SCRecorder, didAppendVideoSampleBufferIn session: SCRecordSession) {
         updateTimeText(session)
     }
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> String {
-        return "● \(seconds / 3600):\((seconds % 3600) / 60):\((seconds % 3600) % 60)"
+        //0\(seconds / 3600):0
+        return "● \(3 - (seconds % 3600) / 60)m \((seconds % 3600) % 60)s"
     }
     
     func updateTimeText(_ session: SCRecordSession) {
-        
         let time = secondsToHoursMinutesSeconds(seconds: Int(session.duration.seconds))
         self.timeLabel.text = time
         
