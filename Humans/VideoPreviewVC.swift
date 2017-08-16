@@ -10,7 +10,7 @@ import UIKit
 import SCRecorder
 import Firebase
 
-class VideoPreviewVC: UIViewController {
+class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var noVideoLabel: UILabel!
 
@@ -19,11 +19,8 @@ class VideoPreviewVC: UIViewController {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
-    @IBOutlet weak var retakeBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
-    @IBOutlet weak var delateLastBtn: UIButton!
 
-    @IBOutlet weak var controlView: UIView!
     
     @IBOutlet weak var languagebtn: UIButton!
     @IBOutlet weak var headlineTF: UITextField!
@@ -43,6 +40,18 @@ class VideoPreviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewShape(view: saveBtn)
+        viewShape(view: backBtn)
+        
+        descriptionTv.delegate = self
+        headlineTF.delegate = self
+        
+        descriptionTv.layer.borderColor = UIColor.lightGray.cgColor
+        descriptionTv.layer.borderWidth = 0.6
+        descriptionTv.layer.cornerRadius = 6.0
+        descriptionTv.clipsToBounds = true
+        descriptionTv.layer.masksToBounds = true
+        
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -56,9 +65,9 @@ class VideoPreviewVC: UIViewController {
         
         
         
-        controlView.layer.zPosition = 1
-        saveBtn.layer.zPosition = 1
-        retakeBtn.layer.zPosition = 1
+       // controlView.layer.zPosition = 1
+        playBtn.layer.zPosition = 1
+       // retakeBtn.layer.zPosition = 1
         
         if session.segments.count > 0 {
             noVideoLabel.isHidden = true
@@ -75,6 +84,10 @@ class VideoPreviewVC: UIViewController {
         playerLayer.frame = bounds
        
         previewView.layer.addSublayer(playerLayer)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoPreviewVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoPreviewVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
 
@@ -87,6 +100,12 @@ class VideoPreviewVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func langiageHit(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LanguagePickerVC") as! LanguagePickerVC
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
 
     @IBAction func playHit(_ sender: UIButton) {
         launchPlay = !launchPlay
@@ -97,9 +116,12 @@ class VideoPreviewVC: UIViewController {
             if launchPlay == false {
                 player.play()
                 playBtn.setImage(UIImage(named: "icons8-circled_pause"), for: .normal)
+                playBtn.isHidden = true
             } else {
                 player.pause()
                 playBtn.setImage(UIImage(named: "icons8-play_round"), for: .normal)
+                playBtn.isHidden = false
+                
             }
         }
     }
@@ -108,32 +130,13 @@ class VideoPreviewVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func delateLastHit(_ sender: UIButton) {
-        session.removeLastSegment()
-    }
-    
-    @IBAction func retakeHit(_ sender: UIButton) {
-        self.session.removeAllSegments()
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
-       // launchTap = !launchTap
-        keyboardDismiss(tf: headlineTF)
-        descriptionTv.resignFirstResponder()
+         launchPlay = !launchPlay
+       
     }
     
-//    var launchTap = false {
-//        didSet {
-//            if launchTap == false {
-//                //moveViewDownOrUp(view: controlView, moveUp: true)
-//            } else {
-//               // moveViewDownOrUp(view: controlView, moveUp: false)
-//
-//            }
-//        }
-//    }
-
+    
     @IBAction func sliderHit(_ sender: UISlider) {
         player.volume = sender.value
         print(sender.value)
@@ -193,5 +196,50 @@ class VideoPreviewVC: UIViewController {
 
     }
     
-   
+    //Mark: -> Figour out KeyBoard
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.backgroundColor = .lightGray
+           self.slider.isEnabled = false
+           self.saveBtn.isEnabled = false
+            self.backBtn.isEnabled = false
+            self.languagebtn.isEnabled = false
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.backgroundColor = .white
+            self.slider.isEnabled = true
+            self.saveBtn.isEnabled = true
+            self.backBtn.isEnabled = true
+            self.languagebtn.isEnabled = true
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        keyboardDismiss(tf: headlineTF)
+        descriptionTv.resignFirstResponder()
+    }
+    
+    func textViewSize(textView: UITextView) {
+        var aspectRatioTextViewConstraint: NSLayoutConstraint!
+        let contentSize = textView.sizeThatFits(textView.bounds.size)
+        var frame = textView.frame
+        frame.size.height = contentSize.height
+        textView.frame = frame
+        aspectRatioTextViewConstraint = NSLayoutConstraint(item: textView, attribute: .height, relatedBy: .equal, toItem: textView, attribute: .width, multiplier: textView.bounds.height/textView.bounds.width, constant: 1)
+        textView.addConstraint(aspectRatioTextViewConstraint!)
+    }
 }

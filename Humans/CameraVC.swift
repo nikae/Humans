@@ -186,7 +186,7 @@ extension CameraVC: SCRecorderDelegate {
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> String {
         //0\(seconds / 3600):0
-        return "● \(3 - (seconds % 3600) / 60)m \((seconds % 3600) % 60)s"
+        return "● \((seconds % 3600) / 60)m \((seconds % 3600) % 60)s"
     }
     
     func updateTimeText(_ session: SCRecordSession) {

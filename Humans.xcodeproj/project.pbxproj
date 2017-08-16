@@ -24,6 +24,8 @@
 		248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248662061F1D4EC4005CD8CD /* ComentsCell.swift */; };
 		248662091F1EAF9D005CD8CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */; };
 		248DC1361F316A6100510E90 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248DC1351F316A6100510E90 /* CameraVC.swift */; };
+		2497A59B1F44EDD500491FC5 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 2497A59A1F44EDD500491FC5 /* Languages.json */; };
+		2497A59D1F44F02700491FC5 /* LanguagePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497A59C1F44F02700491FC5 /* LanguagePickerVC.swift */; };
 		24BF08261F266ABB005A198B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08251F266ABB005A198B /* SettingsVC.swift */; };
 		24BF08281F267542005A198B /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08271F267542005A198B /* Methods.swift */; };
 		24BF082A1F270164005A198B /* ProfileSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF08291F270164005A198B /* ProfileSettingsVC.swift */; };
@@ -65,6 +67,8 @@
 		248662061F1D4EC4005CD8CD /* ComentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComentsCell.swift; sourceTree = "<group>"; };
 		248662081F1EAF9D005CD8CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		248DC1351F316A6100510E90 /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		2497A59A1F44EDD500491FC5 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
+		2497A59C1F44F02700491FC5 /* LanguagePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagePickerVC.swift; sourceTree = "<group>"; };
 		24BF08251F266ABB005A198B /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		24BF08271F267542005A198B /* Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		24BF08291F270164005A198B /* ProfileSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingsVC.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				24597D021F3BE73300C75E04 /* GuidelineVC.swift */,
 				248DC1351F316A6100510E90 /* CameraVC.swift */,
 				24597CFC1F39163C00C75E04 /* VideoPreviewVC.swift */,
+				2497A59C1F44F02700491FC5 /* LanguagePickerVC.swift */,
 				24597D001F3BD24100C75E04 /* WriteStorieVC.swift */,
 				24597CF81F39068C00C75E04 /* RotateVC.swift */,
 				24BF08291F270164005A198B /* ProfileSettingsVC.swift */,
@@ -156,6 +161,7 @@
 				24F8F83E1F1EB2B900FAFBFF /* LogInVC.swift */,
 				24F8F8401F1EB2C600FAFBFF /* SignUpVC.swift */,
 				24F8F8421F1EB2CF00FAFBFF /* ResetPasswordVC.swift */,
+				2497A59A1F44EDD500491FC5 /* Languages.json */,
 				24E7EF401F17E15400EA0962 /* Main.storyboard */,
 				24E7EF461F17E15400EA0962 /* Assets.xcassets */,
 				24E7EF591F17F25F00EA0962 /* Media.xcassets */,
@@ -249,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				248661FF1F192EA9005CD8CD /* 331E3199-BF0F-4937-8168-3195190B2E7C.mp4 in Resources */,
+				2497A59B1F44EDD500491FC5 /* Languages.json in Resources */,
 				248662001F192EA9005CD8CD /* 810D61B5-84A8-4598-8352-0512A69BB869.mp4 in Resources */,
 				248662011F192EA9005CD8CD /* IMG_0708.mov.mp4 in Resources */,
 				248661F91F181E39005CD8CD /* IMG_0436.mp4 in Resources */,
@@ -341,6 +348,7 @@
 				248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */,
 				24E7EF521F17E26100EA0962 /* HumansTV.swift in Sources */,
 				24597CFD1F39163C00C75E04 /* VideoPreviewVC.swift in Sources */,
+				2497A59D1F44F02700491FC5 /* LanguagePickerVC.swift in Sources */,
 				248662031F197F5D005CD8CD /* Models.swift in Sources */,
 				24597D031F3BE73300C75E04 /* GuidelineVC.swift in Sources */,
 			);
