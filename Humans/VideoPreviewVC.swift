@@ -45,12 +45,13 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         
         descriptionTv.delegate = self
         headlineTF.delegate = self
+        textViewShape(TV: descriptionTv)
         
-        descriptionTv.layer.borderColor = UIColor.lightGray.cgColor
-        descriptionTv.layer.borderWidth = 0.6
-        descriptionTv.layer.cornerRadius = 6.0
-        descriptionTv.clipsToBounds = true
-        descriptionTv.layer.masksToBounds = true
+//        descriptionTv.layer.borderColor = UIColor.lightGray.cgColor
+//        descriptionTv.layer.borderWidth = 0.6
+//        descriptionTv.layer.cornerRadius = 6.0
+//        descriptionTv.clipsToBounds = true
+//        descriptionTv.layer.masksToBounds = true
         
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -144,20 +145,6 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
        
     }
     
-//    struct Post {
-//        var postID: String
-//        var autorId: String
-//        var createdAt: String!
-//        var videoUrl: String!
-//        var imageUrl: String!
-//        var headLine: String!
-//        var description: String!
-//        var likes: [Like]!
-//        var coment: [Coment]!
-//        var Favorites: [Favorite]!
-//        var location: [Double]
-//    }
-
     @IBAction func saveHit(_ sender: UIButton) {
         session.mergeSegments(usingPreset: AVAssetExportPresetHighestQuality) { (url, error) in
             if (error == nil) {

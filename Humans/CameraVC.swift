@@ -204,13 +204,3 @@ extension CameraVC: SCRecorderDelegate {
 }
 
 
-
-    
-    
-    
-    
-    
-    
-
-
-

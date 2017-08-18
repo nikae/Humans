@@ -78,6 +78,14 @@ func getDate() -> String {
     return formatter.string(from: date)
 }
 
+func textViewShape(TV: UITextView) {
+    TV.layer.borderColor = UIColor.lightGray.cgColor
+    TV.layer.borderWidth = 0.6
+    TV.layer.cornerRadius = 6.0
+    TV.clipsToBounds = true
+    TV.layer.masksToBounds = true
+}
+
 func postToDatabase(autorId: String, createdAt: String, videoUrl: String, imageUrl: String, headLine: String, description: String, language: String, likes: [Like], coments: [Coment], favorites: [Favorite], location: String) {
     
     var databaseRef: FIRDatabaseReference!
