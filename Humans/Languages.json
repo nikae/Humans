@@ -1,8 +1,4 @@
-/**
- * @author Phil Teare
- * using wikipedia data
- */
-isoLangs = {
+{
     "ab":{
         "name":"Abkhaz",
         "nativeName":"аҧсуа"
@@ -679,55 +675,55 @@ isoLangs = {
         "name":"Ukrainian",
         "nativeName":"українська"
     },
-    "ur":{
+    "ur":{  
         "name":"Urdu",
         "nativeName":"اردو"
     },
-    "uz":{
+    "uz":{  
         "name":"Uzbek",
         "nativeName":"zbek, Ўзбек, أۇزبېك‎"
     },
-    "ve":{
+    "ve":{  
         "name":"Venda",
         "nativeName":"Tshivenḓa"
     },
-    "vi":{
+    "vi":{  
         "name":"Vietnamese",
         "nativeName":"Tiếng Việt"
     },
-    "vo":{
+    "vo":{  
         "name":"Volapük",
         "nativeName":"Volapük"
     },
-    "wa":{
+    "wa":{  
         "name":"Walloon",
         "nativeName":"Walon"
     },
-    "cy":{
+    "cy":{  
         "name":"Welsh",
         "nativeName":"Cymraeg"
     },
-    "wo":{
+    "wo":{  
         "name":"Wolof",
         "nativeName":"Wollof"
     },
-    "fy":{
+    "fy":{  
         "name":"Western Frisian",
         "nativeName":"Frysk"
     },
-    "xh":{
+    "xh":{  
         "name":"Xhosa",
         "nativeName":"isiXhosa"
     },
-    "yi":{
+    "yi":{  
         "name":"Yiddish",
         "nativeName":"ייִדיש"
     },
-    "yo":{
+    "yo":{  
         "name":"Yoruba",
         "nativeName":"Yorùbá"
     },
-    "za":{
+    "za":{  
         "name":"Zhuang, Chuang",
         "nativeName":"Saɯ cueŋƅ, Saw cuengh"
     }

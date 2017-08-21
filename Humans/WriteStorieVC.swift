@@ -98,6 +98,11 @@ class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     
     @IBAction func languageHit(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LanguagePickerVC") as! LanguagePickerVC
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+
     }
     
     @IBAction func postHit(_ sender: UIButton) {

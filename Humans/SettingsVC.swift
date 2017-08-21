@@ -15,7 +15,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var nameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     
     @IBOutlet weak var doneBtn: UIButton!
@@ -45,7 +44,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
         
         nameTF.delegate = self
-        lastNameTF.delegate = self
         emailTF.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -79,7 +77,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             self.countryBtn.setTitle("\(country)", for: .normal)
             self.emailTF.placeholder = email
             self.nameTF.text = firstName.capitalized
-            self.lastNameTF.text = lastName.capitalized
             
             if pictureURL != "" {
                 
@@ -168,7 +165,6 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     @IBAction func dismissKeyboardTap(_ sender: UITapGestureRecognizer) {
         keyboardDismiss(tf: nameTF)
-        keyboardDismiss(tf: lastNameTF)
         keyboardDismiss(tf: emailTF)
     }
     
@@ -333,9 +329,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     @IBAction func doneHit(_ sender: UIButton) {
-        if nameTF.text != "" && lastNameTF.text != "" {
+        if nameTF.text != "" {
             let firstName = self.nameTF.text
-            let lastName = self.lastNameTF.text
             let email = self.emailTF.text
             
             if email != "" {
@@ -353,9 +348,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
             //MARK -Edit user values at firebase
             self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
-            self.databaseRef.child("Users/\(uId!)/lastName").setValue(lastName?.capitalized)
         } else {
-            presentAlert(title: "Please provide full name", message: "")
+            presentAlert(title: "Please provide nikname", message: "")
         }
     }
 }

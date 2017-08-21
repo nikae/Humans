@@ -15,7 +15,6 @@ class ProfileSettingsVC: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     
@@ -33,7 +32,6 @@ class ProfileSettingsVC: UIViewController {
         super.viewDidLoad()
         
         firstNameLabel.adjustsFontSizeToFitWidth = true
-        lastNameLabel.adjustsFontSizeToFitWidth = true
         emailLabel.adjustsFontSizeToFitWidth = true
         ageLabel.adjustsFontSizeToFitWidth = true
         
@@ -50,7 +48,6 @@ class ProfileSettingsVC: UIViewController {
             let value = snapshot.value as? NSDictionary
             
             let firstName = value?["firstName"] as? String ?? "First Name"
-            let lastName = value?["lastName"] as? String ?? "Last Name"
             let email = value?["email"] as? String ?? ""
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
             let bday = value?["dateOfBirth"] as? String ?? ""
@@ -70,7 +67,6 @@ class ProfileSettingsVC: UIViewController {
             }
             
             self.firstNameLabel.text = firstName
-            self.lastNameLabel.text = lastName
             self.emailLabel.text = email
             
             if pictureURL != "" {

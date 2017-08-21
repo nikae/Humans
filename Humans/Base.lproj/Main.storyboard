@@ -1206,26 +1206,20 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-TY-uLQ">
                                 <rect key="frame" x="24" y="220" width="327" height="359"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-z0-Iaj">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="59"/>
-                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LcW-pN-Lqq">
-                                        <rect key="frame" x="0.0" y="75" width="327" height="59"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nikname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-z0-Iaj">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="78"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="id6-cx-j2o">
-                                        <rect key="frame" x="0.0" y="150" width="327" height="59"/>
+                                        <rect key="frame" x="0.0" y="94" width="327" height="77.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYX-T5-0lB">
-                                        <rect key="frame" x="0.0" y="225" width="327" height="59"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="327" height="78"/>
                                         <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Date of birth">
                                             <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1235,7 +1229,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MO4-A2-cFd">
-                                        <rect key="frame" x="0.0" y="300" width="327" height="59"/>
+                                        <rect key="frame" x="0.0" y="281.5" width="327" height="77.5"/>
                                         <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Country">
                                             <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1270,7 +1264,6 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <outlet property="doneBtn" destination="ogz-R4-IZA" id="PFE-Ar-VnY"/>
                         <outlet property="editProfileBtn" destination="rvQ-Bo-3qq" id="dGo-7a-z1p"/>
                         <outlet property="emailTF" destination="id6-cx-j2o" id="cpV-V1-ruQ"/>
-                        <outlet property="lastNameTF" destination="LcW-pN-Lqq" id="EIq-FG-WuA"/>
                         <outlet property="nameTF" destination="1mB-z0-Iaj" id="v58-eM-ouI"/>
                         <outlet property="profileImage" destination="P3Y-hM-3MY" id="2cU-vz-Ny7"/>
                         <outlet property="stackView" destination="mvQ-TY-uLQ" id="QhC-TK-A79"/>
@@ -2252,28 +2245,22 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YUB-hA-gKX">
-                                <rect key="frame" x="144" y="100" width="207" height="89"/>
+                                <rect key="frame" x="144" y="100" width="207" height="64.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-dt-g3r">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nikname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-dt-g3r">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bN-MY-0c5">
-                                        <rect key="frame" x="0.0" y="24.5" width="207" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTZ-Dk-y8R">
-                                        <rect key="frame" x="0.0" y="49" width="207" height="18"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="207" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCO-BV-9SN">
-                                        <rect key="frame" x="0.0" y="71" width="207" height="18"/>
+                                        <rect key="frame" x="0.0" y="46.5" width="207" height="18"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2301,7 +2288,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                         <outlet property="emailLabel" destination="mTZ-Dk-y8R" id="mvc-2a-Mdf"/>
                         <outlet property="firstNameLabel" destination="o2e-dt-g3r" id="OYW-1e-psZ"/>
                         <outlet property="informationBtn" destination="FaL-yE-cRR" id="R6b-Up-xXg"/>
-                        <outlet property="lastNameLabel" destination="4bN-MY-0c5" id="6OW-Em-ldo"/>
                         <outlet property="logOutBtn" destination="QZc-LS-Ed8" id="EVb-x1-xi9"/>
                         <outlet property="profileImageView" destination="Mch-62-VdU" id="1wP-pM-MIC"/>
                     </connections>

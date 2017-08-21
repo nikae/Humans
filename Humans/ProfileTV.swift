@@ -63,8 +63,7 @@ class ProfileTV: UITableViewController {
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
-            let firstName = value?["firstName"] as? String ?? "First Name"
-            let lastName = value?["lastName"] as? String ?? "Last Name"
+            let firstName = value?["firstName"] as? String ?? "Nikname"
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
             let bday = value?["dateOfBirth"] as? String ?? ""
             let country = value?["country"] as? String ?? ""
@@ -83,8 +82,8 @@ class ProfileTV: UITableViewController {
             }
             
             
-            self.fullNameLabel.text = "\(firstName) \(lastName)"
-            self.navigationItem.title = "\(firstName) \(lastName)"
+            self.fullNameLabel.text = "\(firstName)"
+            self.navigationItem.title = "\(firstName)"
             
             if pictureURL != "" {
                 let starsRef = FIRStorage.storage().reference(forURL: pictureURL)
