@@ -54,7 +54,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             let value = snapshot.value as? NSDictionary
             
             let firstName = value?["firstName"] as? String ?? ""
-            let lastName = value?["lastName"] as? String ?? ""
+      //      let lastName = value?["lastName"] as? String ?? ""
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
             let email = value?["email"] as? String ?? "Email"
             let bday = value?["dateOfBirth"] as? String ?? ""
@@ -218,7 +218,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.present(alertController, animated: true, completion: nil)
         
     }
-    
+  //MARK: -> Image Picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }

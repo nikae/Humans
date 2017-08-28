@@ -357,7 +357,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N4h-Wr-ctI">
                                 <rect key="frame" x="8" y="144" width="359" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -386,7 +385,7 @@
                                     <action selector="languageHit:" destination="BDG-Tc-G54" eventType="touchUpInside" id="nKA-QO-sTO"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gcN-iK-xWP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="gcN-iK-xWP">
                                 <rect key="frame" x="8" y="36" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2Ww-Os-VBA"/>
@@ -406,14 +405,23 @@
                                     <action selector="postHit:" destination="BDG-Tc-G54" eventType="touchUpInside" id="bCy-TW-eG7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWG-Xg-UnT">
+                                <rect key="frame" x="8" y="36" width="100" height="100"/>
+                                <connections>
+                                    <action selector="imagePickerHit:" destination="BDG-Tc-G54" eventType="touchUpInside" id="mAU-1n-dJh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="gWG-Xg-UnT" firstAttribute="centerY" secondItem="gcN-iK-xWP" secondAttribute="centerY" id="1Zu-u4-c8r"/>
                             <constraint firstItem="gcN-iK-xWP" firstAttribute="leading" secondItem="jmv-9e-aox" secondAttribute="leading" constant="8" id="3XZ-fX-2hq"/>
+                            <constraint firstItem="gWG-Xg-UnT" firstAttribute="centerX" secondItem="gcN-iK-xWP" secondAttribute="centerX" id="82C-00-45r"/>
                             <constraint firstItem="N4h-Wr-ctI" firstAttribute="trailing" secondItem="jmv-9e-aox" secondAttribute="trailingMargin" constant="8" id="Bnw-wT-02T"/>
                             <constraint firstItem="569-8s-PUA" firstAttribute="top" secondItem="D8d-0E-SO7" secondAttribute="bottom" constant="8" id="GhW-1r-7Eh"/>
                             <constraint firstItem="569-8s-PUA" firstAttribute="leading" secondItem="jmv-9e-aox" secondAttribute="leading" constant="8" id="Gyo-Gb-ZjM"/>
+                            <constraint firstItem="gWG-Xg-UnT" firstAttribute="height" secondItem="gcN-iK-xWP" secondAttribute="height" id="KXe-7Y-yQJ"/>
                             <constraint firstItem="D8d-0E-SO7" firstAttribute="leading" secondItem="jmv-9e-aox" secondAttribute="leading" constant="8" id="Mxn-4s-l76"/>
                             <constraint firstItem="bge-Wt-wrv" firstAttribute="top" secondItem="74v-ja-TdZ" secondAttribute="bottom" constant="8" id="O4b-2i-WLR"/>
                             <constraint firstItem="74v-ja-TdZ" firstAttribute="leading" secondItem="gcN-iK-xWP" secondAttribute="trailing" constant="8" id="V12-EC-KnB"/>
@@ -421,6 +429,7 @@
                             <constraint firstAttribute="trailing" secondItem="569-8s-PUA" secondAttribute="trailing" constant="8" id="ZuG-SM-kpG"/>
                             <constraint firstItem="gcN-iK-xWP" firstAttribute="top" secondItem="1Ka-Rb-U8e" secondAttribute="bottom" constant="16" id="adJ-eS-JzP"/>
                             <constraint firstItem="pc5-6z-SVK" firstAttribute="top" secondItem="569-8s-PUA" secondAttribute="bottom" constant="20" id="beq-Nk-nJW"/>
+                            <constraint firstItem="gWG-Xg-UnT" firstAttribute="width" secondItem="gcN-iK-xWP" secondAttribute="width" id="boS-d9-3ek"/>
                             <constraint firstAttribute="trailing" secondItem="D8d-0E-SO7" secondAttribute="trailing" constant="8" id="eIA-SU-AoY"/>
                             <constraint firstItem="N4h-Wr-ctI" firstAttribute="leading" secondItem="jmv-9e-aox" secondAttribute="leading" constant="8" id="epd-Im-Yto"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bge-Wt-wrv" secondAttribute="trailing" constant="8" id="lZB-Js-cn2"/>
@@ -2551,6 +2560,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="640" height="480"/>
         <image name="Screen Shot 2017-07-18 at 5.32.24 PM" width="684" height="682"/>
         <image name="default-avatar" width="295" height="295"/>
         <image name="icons8-flash_off" width="100" height="100"/>

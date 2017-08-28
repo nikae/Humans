@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var headlineTF: UITextField!
@@ -17,11 +18,15 @@ class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var postBtn: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    var storageRef: FIRStorageReference!
+    var databaseRef: FIRDatabaseReference!
+    fileprivate var _refHandle: FIRDatabaseHandle!
+    var users: [FIRDataSnapshot] = []
+    var picURL = ""
+    let uId = FIRAuth.auth()?.currentUser?.uid
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         headlineTF.delegate = self
         textView.delegate = self
@@ -85,6 +90,134 @@ class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    //MARK: -Camera / Add Picture
+    func addPhoto() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        let alertController = UIAlertController(title: "Edit Photo", message: "", preferredStyle: .actionSheet)
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) {
+            (action: UIAlertAction) in
+            picker.sourceType = .photoLibrary
+            self.present(picker, animated: true, completion: nil)
+        }
+        let camera = UIAlertAction(title: "Camera", style: .default)
+        {
+            (action: UIAlertAction) in
+            picker.sourceType = .camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .default) {
+            (action: UIAlertAction) in
+            print("User Action Has Canceld")
+        }
+        
+        let delete = UIAlertAction(title: "Delete Image", style: .default) {
+            (action: UIAlertAction) in
+            let alertController = UIAlertController(title: "Delete?", message: "Do you want to delete profile picture?", preferredStyle: .alert)
+            
+            let delete = UIAlertAction(title: "Delete", style: .default) {
+                (action: UIAlertAction) in
+                print(self.picURL)
+                self.delataImage(url: self.picURL)
+                self.imageView.image = UIImage(named:"1")
+            }
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .default) {
+                (action: UIAlertAction) in
+                print("User Action Has Canceld")
+            }
+            
+            alertController.addAction(cancel)
+            alertController.addAction(delete)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: -> Image Picker
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            if picURL != "" {
+                delataImage(url: picURL)
+            }
+            
+            imageView.image = image
+            saveImage(image)
+            
+        } else {
+            print("Somthing went wrong")
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func saveImage(_ image:UIImage) {
+        storageRef = FIRStorage.storage().reference(forURL: "gs://humans-16dc5.appspot.com/")
+        let imageData = UIImageJPEGRepresentation(image, 0.8)
+        let imagePath = "\(Date.timeIntervalSinceReferenceDate * 1000).jpg"
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpeg"
+        
+        let uploasTask = self.storageRef.child(imagePath)
+            .put(imageData!, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading: \(error)")
+                    return
+                }
+                
+                self.picURL = self.storageRef.child((metadata?.path)!).description
+               // self.databaseRef.child("Users/\(self.uId!)/profilePictureUrl").setValue(self.picURL)
+                
+                print("self.picURL: \(self.picURL)")
+        }
+        
+        uploasTask.observe(.progress, handler: { [weak self] (snapshot) in
+            
+            guard self != nil else {return}
+            guard let progress = snapshot.progress else {return}
+            
+            print(Float(progress.fractionCompleted))
+            print(progress)
+            //            strongSelf.progressView.progress = Float(progress.fractionCompleted)
+            //            strongSelf.progressView.isHidden = false
+            //
+            //            if strongSelf.progressView.progress == 1.0 {
+            //                strongSelf.progressView.isHidden = true
+            //            }
+            
+            
+        } )
+    }
+    
+    func delataImage(url: String) {
+        let storageRef = FIRStorage.storage().reference()
+        let desertRef = storageRef.storage.reference(forURL: url)
+        
+        // Delete the file
+        desertRef.delete { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Image Is delated")
+            }
+        }
+    }
+    
+    @IBAction func imagePickerHit(_ sender: UIButton) {
+        addPhoto()
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

@@ -31,8 +31,6 @@ class LanguagePickerVC: UIViewController, UIPickerViewDelegate, UIPickerViewData
         picker.dataSource = self
         
         readJson()
-        
-        
     }
     
     private func readJson() {
@@ -78,7 +76,7 @@ class LanguagePickerVC: UIViewController, UIPickerViewDelegate, UIPickerViewData
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return languageData.count
     }
-        
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
     }
