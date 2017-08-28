@@ -47,28 +47,15 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         headlineTF.delegate = self
         textViewShape(TV: descriptionTv)
         
-//        descriptionTv.layer.borderColor = UIColor.lightGray.cgColor
-//        descriptionTv.layer.borderWidth = 0.6
-//        descriptionTv.layer.cornerRadius = 6.0
-//        descriptionTv.clipsToBounds = true
-//        descriptionTv.layer.masksToBounds = true
-        
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            
             self.country = value?["country"] as? String ?? ""
-            
         }) { (error) in
             print(error.localizedDescription)
         }
-
         
-        
-        
-       // controlView.layer.zPosition = 1
         playBtn.layer.zPosition = 1
-       // retakeBtn.layer.zPosition = 1
         
         if session.segments.count > 0 {
             noVideoLabel.isHidden = true
@@ -77,21 +64,16 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         }
         
         player.setItemBy(session.assetRepresentingSegments())
-       
         let playerLayer = AVPlayerLayer(player: player)
-        //playerLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat((Double.pi * 180) / 360 )))
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         let bounds = previewView.bounds
         playerLayer.frame = bounds
-       
         previewView.layer.addSublayer(playerLayer)
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(VideoPreviewVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(VideoPreviewVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -122,7 +104,6 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
                 player.pause()
                 playBtn.setImage(UIImage(named: "icons8-play_round"), for: .normal)
                 playBtn.isHidden = false
-                
             }
         }
     }
@@ -134,15 +115,11 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     
     @IBAction func ViewTapped(_ sender: UITapGestureRecognizer) {
          launchPlay = !launchPlay
-       
     }
-    
     
     @IBAction func sliderHit(_ sender: UISlider) {
         player.volume = sender.value
         print(sender.value)
-        
-       
     }
     
     @IBAction func saveHit(_ sender: UIButton) {
@@ -166,31 +143,29 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
                     let videoURL = metadata!.downloadURL()!.absoluteString
                     let postDate = getDate()
                     
-                    
-                    postToDatabase(autorId: self.uId!, createdAt: postDate, videoUrl: videoURL, imageUrl: "", headLine: self.headlineTF.text ?? "", description: self.descriptionTv.text ?? "", language: "English", likes: [], coments: [], favorites: [], location: self.country)
+                    postToDatabase(autorId: self.uId ?? "", createdAt: postDate, videoUrl: videoURL, imageUrl: "", headLine: self.headlineTF.text ?? "", description: self.descriptionTv.text ?? "", language: "English", likes: [], coments: [], favorites: [], location: self.country)
                 }
                 
                 uploasTask.observe(.progress, handler: { [weak self] (snapshot) in
                     guard self != nil else {return}
                     guard let progress = snapshot.progress else {return}
-                    
                     print(Float(progress.fractionCompleted))
-                } )
+                })
             } else {
                 debugPrint(error ?? "")
             }
         }
-
     }
     
     //Mark: -> Figour out KeyBoard
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
-           self.slider.isEnabled = false
-           self.saveBtn.isEnabled = false
+            self.slider.isEnabled = false
+            self.saveBtn.isEnabled = false
             self.backBtn.isEnabled = false
             self.languagebtn.isEnabled = false
+            
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height
             }
@@ -204,6 +179,7 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
             self.saveBtn.isEnabled = true
             self.backBtn.isEnabled = true
             self.languagebtn.isEnabled = true
+            
             if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height
             }
