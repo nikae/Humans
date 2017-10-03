@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if FIRAuth.auth()?.currentUser != nil {
             if keepMeLogedInDefoultsDefoults.bool(forKey: keepMeLogedInDefoults_key) != false {
-                self.window?.rootViewController = self.storyboard.instantiateViewController(withIdentifier: "ViewController")
+                self.window?.rootViewController = self.storyboard.instantiateViewController(withIdentifier: "NC1")
             }
         }
         

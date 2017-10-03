@@ -14,7 +14,8 @@ let testArr = ["IMG_0436", "IMG_6930.MOV", "1A054DB4-586B-44B6-B756-D1F7FBB88C52
 var receivedURL: URL!
 
 class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
-
+    @IBOutlet weak var profileBtn: UIBarButtonItem!
+    
     var searchController: UISearchController!
     var player = AVPlayer()
     
@@ -143,7 +144,14 @@ class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControll
         print(cell ?? "NO CELL")
     }
     
-   
+    @IBAction func profileHit(_ sender: UIBarButtonItem) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+        
+}
+    
    
     /*
     // Override to support conditional editing of the table view.

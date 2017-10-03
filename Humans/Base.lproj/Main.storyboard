@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p1c-ab-4TG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p1c-ab-4TG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -488,7 +488,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO VIDEO YET 🏜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-ED-WpE">
-                                        <rect key="frame" x="105" y="170" width="165" height="24"/>
+                                        <rect key="frame" x="106.5" y="170" width="162" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -758,9 +758,8 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="132" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nt-Ja-1gM">
-                                                    <rect key="frame" x="16" y="42" width="30" height="12"/>
+                                                    <rect key="frame" x="16" y="42" width="17.5" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="5Wg-Kd-yhs"/>
                                                         <constraint firstAttribute="height" constant="12" id="XtX-X8-RVU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -819,6 +818,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                                 <constraint firstItem="1v4-on-M2f" firstAttribute="top" secondItem="ssB-gm-EaL" secondAttribute="top" constant="8" id="I6r-S0-J5v"/>
                                                 <constraint firstAttribute="trailing" secondItem="d4X-V1-MwL" secondAttribute="trailing" constant="16" id="MBu-Mg-dje"/>
                                                 <constraint firstAttribute="trailing" secondItem="1v4-on-M2f" secondAttribute="trailing" constant="16" id="TfZ-9r-3Mg"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Nt-Ja-1gM" secondAttribute="trailing" constant="20" symbolic="YES" id="crp-ZP-Wt1"/>
                                                 <constraint firstAttribute="height" constant="55" id="l8f-Tt-J1H"/>
                                                 <constraint firstItem="2Nt-Ja-1gM" firstAttribute="leading" secondItem="ssB-gm-EaL" secondAttribute="leading" constant="16" id="m62-x7-Abj"/>
                                                 <constraint firstItem="2Nt-Ja-1gM" firstAttribute="top" secondItem="1v4-on-M2f" secondAttribute="bottom" constant="4" id="nKm-nz-wTJ"/>
@@ -882,11 +882,164 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <outlet property="delegate" destination="qIH-XN-YnW" id="g9m-nh-pzu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Humans" id="ffg-qt-Y4P"/>
+                    <navigationItem key="navigationItem" title="Humans" id="ffg-qt-Y4P">
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="PKn-r5-Oqd">
+                            <connections>
+                                <segue destination="NCF-9I-Jwb" kind="show" id="dhC-G6-ZuD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Pqo-6t-ekM">
+                            <connections>
+                                <action selector="profileHit:" destination="qIH-XN-YnW" id="Xg0-PY-npN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="profileBtn" destination="Pqo-6t-ekM" id="olM-pa-Pul"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcc-BT-NZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944.79999999999995" y="678.71064467766121"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="L1l-tv-BGF">
+            <objects>
+                <viewController storyboardIdentifier="ProfileVC" id="TKe-b2-GIX" customClass="ProfileVC" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xyi-g2-UW6"/>
+                        <viewControllerLayoutGuide type="bottom" id="PId-IF-PhE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jsl-td-hsX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYT-ys-BQ1">
+                                <rect key="frame" x="28" y="120" width="319" height="447"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-Js-9xb">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="188"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="efn-58-lNP">
+                                        <rect key="frame" x="99" y="34" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="71y-yv-x1g"/>
+                                            <constraint firstAttribute="height" constant="120" id="rZo-wT-UAE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDi-Ao-Gob">
+                                        <rect key="frame" x="0.0" y="179" width="319" height="268"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-Ep-fm7">
+                                                <rect key="frame" x="16" y="16" width="295" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="t67-T2-TLg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBv-qv-2qf">
+                                                <rect key="frame" x="16" y="45" width="295" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="RYq-J5-CVB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9r-vd-lRu">
+                                                <rect key="frame" x="8" y="212" width="303" height="40"/>
+                                                <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="dbB-lp-pqJ"/>
+                                                </constraints>
+                                                <state key="normal" title="Log Out">
+                                                    <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9No-Mt-rv8">
+                                                <rect key="frame" x="8" y="164" width="303" height="40"/>
+                                                <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="5mS-9y-TLF"/>
+                                                </constraints>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jb-0N-p2J">
+                                                <rect key="frame" x="8" y="116" width="303" height="40"/>
+                                                <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="XMF-07-e7i"/>
+                                                </constraints>
+                                                <state key="normal" title="Edit Profile">
+                                                    <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="8jb-0N-p2J" secondAttribute="trailing" constant="8" id="2L4-AO-tzp"/>
+                                            <constraint firstItem="Ph6-Ep-fm7" firstAttribute="leading" secondItem="EDi-Ao-Gob" secondAttribute="leading" constant="16" id="9Yb-4t-bcc"/>
+                                            <constraint firstItem="9No-Mt-rv8" firstAttribute="leading" secondItem="EDi-Ao-Gob" secondAttribute="leading" constant="8" id="CuK-p3-8dz"/>
+                                            <constraint firstItem="OBv-qv-2qf" firstAttribute="top" secondItem="Ph6-Ep-fm7" secondAttribute="bottom" constant="8" id="Cw3-zm-0OH"/>
+                                            <constraint firstAttribute="bottom" secondItem="x9r-vd-lRu" secondAttribute="bottom" constant="16" id="DDv-1F-sH7"/>
+                                            <constraint firstItem="OBv-qv-2qf" firstAttribute="top" secondItem="Ph6-Ep-fm7" secondAttribute="bottom" constant="8" id="KpM-Yc-PIf"/>
+                                            <constraint firstAttribute="trailing" secondItem="9No-Mt-rv8" secondAttribute="trailing" constant="8" id="PIy-Ae-3tP"/>
+                                            <constraint firstAttribute="trailing" secondItem="x9r-vd-lRu" secondAttribute="trailing" constant="8" id="XB9-MM-y8e"/>
+                                            <constraint firstItem="OBv-qv-2qf" firstAttribute="leading" secondItem="EDi-Ao-Gob" secondAttribute="leading" constant="16" id="dHJ-86-LdU"/>
+                                            <constraint firstItem="8jb-0N-p2J" firstAttribute="leading" secondItem="EDi-Ao-Gob" secondAttribute="leading" constant="8" id="dYW-NL-mfP"/>
+                                            <constraint firstItem="Ph6-Ep-fm7" firstAttribute="top" secondItem="EDi-Ao-Gob" secondAttribute="top" constant="16" id="hi6-5s-Hfl"/>
+                                            <constraint firstItem="x9r-vd-lRu" firstAttribute="top" secondItem="9No-Mt-rv8" secondAttribute="bottom" constant="8" id="loz-ad-ndU"/>
+                                            <constraint firstItem="x9r-vd-lRu" firstAttribute="leading" secondItem="EDi-Ao-Gob" secondAttribute="leading" constant="8" id="mFz-Fx-1b9"/>
+                                            <constraint firstAttribute="trailing" secondItem="OBv-qv-2qf" secondAttribute="trailing" constant="8" id="n4Y-R7-n4G"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ph6-Ep-fm7" secondAttribute="trailing" constant="8" id="nEl-9h-DrX"/>
+                                            <constraint firstItem="9No-Mt-rv8" firstAttribute="top" secondItem="8jb-0N-p2J" secondAttribute="bottom" constant="8" id="nsa-Qp-D9v"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EDi-Ao-Gob" secondAttribute="bottom" id="9T7-hw-KzA"/>
+                                    <constraint firstAttribute="trailing" secondItem="EDi-Ao-Gob" secondAttribute="trailing" id="LqC-Ke-knE"/>
+                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="leading" secondItem="fYT-ys-BQ1" secondAttribute="leading" id="WSA-SK-4pk"/>
+                                    <constraint firstItem="efn-58-lNP" firstAttribute="centerX" secondItem="fYT-ys-BQ1" secondAttribute="centerX" id="kWI-tc-nOJ"/>
+                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="top" secondItem="efn-58-lNP" secondAttribute="bottom" constant="25" id="nti-7P-dF6"/>
+                                    <constraint firstItem="efn-58-lNP" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="top" constant="34" id="zHT-l6-OHh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="0.7975304111" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="fYT-ys-BQ1" secondAttribute="trailing" constant="12" id="2qX-Uh-JM2"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="leading" secondItem="jsl-td-hsX" secondAttribute="leadingMargin" constant="12" id="6H7-Db-6T9"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="top" secondItem="Xyi-g2-UW6" secondAttribute="bottom" constant="100" id="D3t-Ve-WXf"/>
+                            <constraint firstItem="PId-IF-PhE" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="bottom" constant="100" id="fXZ-VF-l2g"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Cu2-FG-hss" appends="YES" id="GMy-JS-ezt"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="ageCountrieLabel" destination="OBv-qv-2qf" id="MDJ-eo-FqH"/>
+                        <outlet property="backgroundImage" destination="PEA-Js-9xb" id="9qf-fY-8c3"/>
+                        <outlet property="backgroundView" destination="fYT-ys-BQ1" id="nq1-KM-Hhg"/>
+                        <outlet property="btn" destination="9No-Mt-rv8" id="si4-C8-YMO"/>
+                        <outlet property="editProfilebtn" destination="8jb-0N-p2J" id="HKx-9X-ti4"/>
+                        <outlet property="logOutBtn" destination="x9r-vd-lRu" id="G3h-Nk-ZXm"/>
+                        <outlet property="nameLabel" destination="Ph6-Ep-fm7" id="eYb-Fd-5mj"/>
+                        <outlet property="profileImageView" destination="efn-58-lNP" id="bKJ-57-Wp1"/>
+                        <outlet property="tapGesture" destination="Cu2-FG-hss" id="8ei-wk-nag"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MKk-KC-KpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Cu2-FG-hss"/>
+            </objects>
+            <point key="canvasLocation" x="2048.8000000000002" y="873.91304347826099"/>
         </scene>
         <!--ComentsTV-->
         <scene sceneID="w85-lG-Hy8">
@@ -1171,7 +1324,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTl-Bf-AeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Xv4-Lc-ogg"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="1522.488755622189"/>
+            <point key="canvasLocation" x="945" y="1442"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="scm-b5-Zv7">
@@ -1285,7 +1438,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3112.8000000000002" y="1392.953523238381"/>
+            <point key="canvasLocation" x="1786" y="2076"/>
         </scene>
         <!--Language PickerVC-->
         <scene sceneID="rpC-Lc-jiH">
@@ -1472,7 +1625,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                 <navigationController storyboardIdentifier="NC1" automaticallyAdjustsScrollViewInsets="NO" id="COx-fy-1nS" customClass="NC1" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bzH-Iw-I7T">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1633,9 +1786,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <state key="normal" image="icons8-topic"/>
-                                                            <connections>
-                                                                <segue destination="0fQ-ey-pYR" kind="show" id="a9R-ew-Azt"/>
-                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ny7-qp-DFl">
                                                             <rect key="frame" x="104.5" y="0.0" width="30" height="30"/>
@@ -1717,9 +1867,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="More"/>
-                                            <connections>
-                                                <segue destination="0fQ-ey-pYR" kind="show" id="CzR-rB-gC3"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -1771,7 +1918,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                             <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="openCameraHit:" destination="NX3-MF-yHr" id="mig-d5-6pa"/>
-                                <segue destination="NCF-9I-Jwb" kind="show" id="qCg-38-mxM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="＝" id="Jep-T7-e3g">
@@ -1792,25 +1938,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Upl-hS-Wyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2336.8000000000002" y="677.81109445277366"/>
-        </scene>
-        <!--ProfileNC-->
-        <scene sceneID="jQF-GO-SIY">
-            <objects>
-                <navigationController storyboardIdentifier="ProfileNC" automaticallyAdjustsScrollViewInsets="NO" id="wg7-xR-5QE" customClass="ProfileNC" customModule="Humans" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Rh-fI-ymr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="NX3-MF-yHr" kind="relationship" relationship="rootViewController" id="L7t-Rw-O2s"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UiA-4s-BXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1612" y="679"/>
+            <point key="canvasLocation" x="4500" y="-66"/>
         </scene>
         <!--Log InVC-->
         <scene sceneID="gZo-EH-onT">
@@ -2189,14 +2317,14 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mch-62-VdU">
-                                <rect key="frame" x="16" y="84" width="120" height="120"/>
+                                <rect key="frame" x="16" y="40" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="NBd-PI-RWs"/>
                                     <constraint firstAttribute="height" constant="120" id="yiP-HX-TdS"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-ST-jtC">
-                                <rect key="frame" x="24" y="244" width="327" height="264"/>
+                                <rect key="frame" x="24" y="200" width="327" height="264"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-FY-3mK">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="40"/>
@@ -2254,7 +2382,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YUB-hA-gKX">
-                                <rect key="frame" x="144" y="100" width="207" height="64.5"/>
+                                <rect key="frame" x="144" y="56" width="207" height="64.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nikname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-dt-g3r">
                                         <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
@@ -2303,7 +2431,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vh0-oN-IdA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3113" y="678"/>
+            <point key="canvasLocation" x="4500" y="819"/>
         </scene>
         <!--MapVC-->
         <scene sceneID="wIq-i9-b0U">
@@ -2586,6 +2714,6 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
         <segue reference="fst-oB-X1k"/>
         <segue reference="zmC-TY-EBI"/>
         <segue reference="lQZ-Bk-Zdz"/>
-        <segue reference="a9R-ew-Azt"/>
+        <segue reference="i0J-dL-ga3"/>
     </inferredMetricsTieBreakers>
 </document>
