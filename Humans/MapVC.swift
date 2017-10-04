@@ -16,7 +16,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var backgroundView: UIView!
+ //   @IBOutlet weak var //backgroundView: UIView!
     
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
@@ -27,8 +27,8 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         super.viewDidLoad()
         
         viewShape(view: doneBtn)
-        backgroundView.clipsToBounds = true
-        backgroundView.layer.cornerRadius = 15
+//        backgroundView.clipsToBounds = true
+//        backgroundView.layer.cornerRadius = 15
 
         mapView.delegate = self
         mapView.mapType = MKMapType.standard

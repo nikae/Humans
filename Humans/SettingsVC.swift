@@ -12,14 +12,14 @@ import SDWebImage
 
 class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var profileImage: UIImageView!
+   // @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
-    @IBOutlet weak var doneBtn: UIButton!
-    @IBOutlet weak var editProfileBtn: UIButton!
-    @IBOutlet weak var dateBtn: UIButton!
-    @IBOutlet weak var countryBtn: UIButton!
-    @IBOutlet weak var stackView: UIStackView!
+   // @IBOutlet weak var doneBtn: UIButton!
+   // @IBOutlet weak var editProfileBtn: UIButton!
+   // @IBOutlet weak var dateBtn: UIButton!
+   // @IBOutlet weak var countryBtn: UIButton!
+   // @IBOutlet weak var stackView: UIStackView!
     
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
@@ -31,16 +31,16 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        roundPhoto(imageView: profileImage)
-        viewShape(view: doneBtn)
-        viewShape(view: dateBtn)
-        viewShape(view: countryBtn)
+//        roundPhoto(imageView: profileImage)
+//        viewShape(view: doneBtn)
+//        viewShape(view: dateBtn)
+//        viewShape(view: countryBtn)
         
         nameTF.delegate = self
         emailTF.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showSpinningWheel(_:)), name: NSNotification.Name(rawValue: "bDayDict"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.showSpinningWheel(_:)), name: NSNotification.Name(rawValue: "bDayDict"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -49,10 +49,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let firstName = value?["firstName"] as? String ?? ""
-            let pictureURL = value?["profilePictureUrl"] as? String ?? ""
+          //  let pictureURL = value?["profilePictureUrl"] as? String ?? ""
             let email = value?["email"] as? String ?? "Email"
             let bday = value?["dateOfBirth"] as? String ?? ""
-            let country = value?["country"] as? String ?? "No country specified"
+          //  let country = value?["country"] as? String ?? "No country specified"
             
             if bday != "" {
                 var bDayArr = bday.components(separatedBy: " ")
@@ -60,74 +60,74 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 let day = bDayArr[1]
                 let year = bDayArr[2]
                 
-                let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
-                self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
+          //      let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+               // self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
             } else {
-                self.dateBtn.setTitle("Date of birth", for: .normal)
+           //     self.dateBtn.setTitle("Date of birth", for: .normal)
             }
             
-            self.countryBtn.setTitle("\(country)", for: .normal)
+           // self.countryBtn.setTitle("\(country)", for: .normal)
             self.emailTF.placeholder = email
             self.nameTF.text = firstName.capitalized
             
-            if pictureURL != "" {
-                let starsRef = FIRStorage.storage().reference(forURL: pictureURL)
-                starsRef.downloadURL { url, error in
-                    if error != nil {
-                        print(error ?? "error")
-                    } else {
-                        self.profileImage.alpha = 0.0
-                        UIView.animate(withDuration: 1, animations: {
-                        self.profileImage.alpha = 1
-                        self.profileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "default-avatar"))
-                        })
-                        
-                        self.profileImage.setShowActivityIndicator(true)
-                        self.profileImage.setIndicatorStyle(.gray)
-                    }
-                }
-                self.picURL = pictureURL
-            } else {
-                self.profileImage.image = UIImage(named: "default-avatar")
-            }
+//            if pictureURL != "" {
+//                let starsRef = FIRStorage.storage().reference(forURL: pictureURL)
+//                starsRef.downloadURL { url, error in
+//                    if error != nil {
+//                        print(error ?? "error")
+//                    } else {
+//                     //   self.profileImage.alpha = 0.0
+//                        UIView.animate(withDuration: 1, animations: {
+//                        self.profileImage.alpha = 1
+//                        self.profileImage.sd_setImage(with: url, placeholderImage: UIImage(named: "default-avatar"))
+//                        })
+//
+//                        self.profileImage.setShowActivityIndicator(true)
+//                        self.profileImage.setIndicatorStyle(.gray)
+//                    }
+//                }
+//                self.picURL = pictureURL
+//            } else {
+//                self.profileImage.image = UIImage(named: "default-avatar")
+//            }
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    deinit {
-        databaseRef.child("Users").removeObserver(withHandle: _refHandle)
-    }
+//    deinit {
+//        databaseRef.child("Users").removeObserver(withHandle: _refHandle)
+//    }
     
     //Mark: -> handle notification
-    func showSpinningWheel(_ notification: NSNotification) {
-        let dateofb = (notification.userInfo?["bDay"] as? String)
-        
-        if dateofb != "" {
-            var bDayArr = dateofb?.components(separatedBy: " ")
-            let month = bDayArr?[0]
-            let day = bDayArr?[1]
-            let year = bDayArr?[2]
-            let userAge = age(year: Int(year!) ?? 0, month: Int(month!) ?? 0 , day: Int(day!) ?? 0)
-            self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
-        } else {
-            self.dateBtn.setTitle("Date of birth", for: .normal)
-        }
-    }
+//    func showSpinningWheel(_ notification: NSNotification) {
+//        let dateofb = (notification.userInfo?["bDay"] as? String)
+//
+//        if dateofb != "" {
+//            var bDayArr = dateofb?.components(separatedBy: " ")
+//            let month = bDayArr?[0]
+//            let day = bDayArr?[1]
+//            let year = bDayArr?[2]
+//            let userAge = age(year: Int(year!) ?? 0, month: Int(month!) ?? 0 , day: Int(day!) ?? 0)
+//            self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
+//        } else {
+//            self.dateBtn.setTitle("Date of birth", for: .normal)
+//        }
+//    }
     
-    func usersCountry(_ notification: NSNotification) {
-        let uCountry = (notification.userInfo?["location"] as? String)
-        self.countryBtn.setTitle(uCountry, for: .normal)
-    }
+//    func usersCountry(_ notification: NSNotification) {
+//        let uCountry = (notification.userInfo?["location"] as? String)
+//        self.countryBtn.setTitle(uCountry, for: .normal)
+//    }
     
     //Mark: -> Figour out KeyBoard
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
-            self.editProfileBtn.isEnabled = false
-            self.dateBtn.isEnabled = false
-            self.countryBtn.isEnabled = false
-            self.profileImage.alpha = 0.5
+//            self.editProfileBtn.isEnabled = false
+//            self.dateBtn.isEnabled = false
+//            self.countryBtn.isEnabled = false
+//            self.profileImage.alpha = 0.5
             
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= keyboardSize.height - 150
@@ -138,11 +138,11 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .white
-            self.editProfileBtn.isEnabled = true
-            self.dateBtn.isEnabled = true
-            self.countryBtn.isEnabled = true
-            self.profileImage.alpha = 1
-            
+//            self.editProfileBtn.isEnabled = true
+//            self.dateBtn.isEnabled = true
+//            self.countryBtn.isEnabled = true
+//            self.profileImage.alpha = 1
+//            
             if self.view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height - 150
             }
@@ -184,7 +184,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             let delete = UIAlertAction(title: "Delete", style: .default) {(action: UIAlertAction) in
                 print(self.picURL)
                 self.delataImage(url: self.picURL)
-                self.profileImage.image = UIImage(named:"default-avatar")
+               // self.profileImage.image = UIImage(named:"default-avatar")
             }
             
             let cancel = UIAlertAction(title: "Cancel", style: .default) {
@@ -216,7 +216,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             delataImage(url: picURL)
             }
             
-            profileImage.image = image
+           // profileImage.image = image
             saveImage(image)
         } else {
             print("Somthing went wrong")
@@ -263,58 +263,59 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         }
     }
 
-    @IBAction func editProfilePictureHit(_ sender: UIButton) {
-        addPhoto()
-    }
+   // @IBAction func editProfilePictureHit(_ sender: UIButton) {
+  //      addPhoto()
+  //  }
     
-    func presentProfileView(){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        self.present(vc, animated: true, completion: nil)
-    }
+//    func presentProfileView(){
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+//        self.present(vc, animated: true, completion: nil)
+//    }
+//
+//    func presentAlert(title: String, message: String ) {
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//        alertController.addAction(action)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+//
+//    @IBAction func dateHit(_ sender: UIButton) {
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerVC") as! DatePickerVC
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.modalTransitionStyle = .crossDissolve
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
-    func presentAlert(title: String, message: String ) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
-    }
+//    @IBAction func countyHit(_ sender: UIButton) {
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapVC
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.modalTransitionStyle = .crossDissolve
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
-    @IBAction func dateHit(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerVC") as! DatePickerVC
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func countyHit(_ sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapVC
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func doneHit(_ sender: UIButton) {
-        if nameTF.text != "" {
-            let firstName = self.nameTF.text
-            let email = self.emailTF.text
-            
-            if email != "" {
-                FIRAuth.auth()?.currentUser?.updateEmail(email!) { (error) in
-                    if error == nil {
-                        self.databaseRef.child("Users/\(self.uId!)/email").setValue(email)
-                        self.presentProfileView()
-                    } else {
-                        self.presentAlert(title: "Error", message: (error?.localizedDescription)!)
-                    }
-                }
-            } else {
-                presentProfileView()
-            }
-            
-            //MARK -Edit user values at firebase
-            self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
-        } else {
-            presentAlert(title: "Please provide nikname", message: "")
-        }
-    }
+//    @IBAction func doneHit(_ sender: UIButton) {
+//        if nameTF.text != "" {
+//            let firstName = self.nameTF.text
+//            let email = self.emailTF.text
+//
+//            if email != "" {
+//                FIRAuth.auth()?.currentUser?.updateEmail(email!) { (error) in
+//                    if error == nil {
+//                        self.databaseRef.child("Users/\(self.uId!)/email").setValue(email)
+//                        self.presentProfileView()
+//                    } else {
+//                        self.presentAlert(title: "Error", message: (error?.localizedDescription)!)
+//                    }
+//                }
+//            } else {
+//                presentProfileView()
+//            }
+//
+//            //MARK -Edit user values at firebase
+//            self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
+//        } else {
+//            presentAlert(title: "Please provide nikname", message: "")
+//        }
+//    }
 }
+

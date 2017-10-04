@@ -9,7 +9,21 @@
 import UIKit
 import Firebase
 
+extension UIPageViewController {
+    func goToNextPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
+        if let currentViewController = viewControllers?[0] {
+            if let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentViewController) {
+                setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
+            }
+        }
+    }
+}
+
+
 class ProfileVC: UIViewController {
+    
+    
+    
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -18,24 +32,26 @@ class ProfileVC: UIViewController {
     
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageCountrieLabel: UILabel!
+   // @IBOutlet weak var nameLabel: UILabel!
+  //  @IBOutlet weak var ageCountrieLabel: UILabel!
     
-    @IBOutlet weak var editProfilebtn: UIButton!
-    @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var logOutBtn: UIButton!
+  //  @IBOutlet weak var editProfilebtn: UIButton!
+  //  @IBOutlet weak var btn: UIButton!
+ //   @IBOutlet weak var logOutBtn: UIButton!
     
     
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewShape(view: editProfilebtn)
-        viewShape(view: btn)
-        viewShape(view: logOutBtn)
+        //viewShape(view: editProfilebtn)
+       // viewShape(view: btn)
+       // viewShape(view: logOutBtn)
         
         backgroundView.clipsToBounds = true
         backgroundView.layer.cornerRadius = 15
@@ -48,26 +64,26 @@ class ProfileVC: UIViewController {
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
-            let firstName = value?["firstName"] as? String ?? "Nikname"
+       //     let firstName = value?["firstName"] as? String ?? "Nikname"
             let pictureURL = value?["profilePictureUrl"] as? String ?? ""
-            let bday = value?["dateOfBirth"] as? String ?? ""
-            let country = value?["country"] as? String ?? ""
+         //   let bday = value?["dateOfBirth"] as? String ?? ""
+        //    let country = value?["country"] as? String ?? ""
             
-            if bday != "" {
-                var bDayArr = bday.components(separatedBy: " ")
-                let month = bDayArr[0]
-                let day = bDayArr[1]
-                let year = bDayArr[2]
-                
-                let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
-                self.ageCountrieLabel.text = "\(userAge) y/o. \(country)"
-                
-            } else {
-                self.ageCountrieLabel.text = "\(country)"
-            }
+//            if bday != "" {
+//                var bDayArr = bday.components(separatedBy: " ")
+//                let month = bDayArr[0]
+//                let day = bDayArr[1]
+//                let year = bDayArr[2]
+//                
+//         //       let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+//             //   self.ageCountrieLabel.text = "\(userAge) y/o. \(country)"
+//                
+//            } else {
+//             //   self.ageCountrieLabel.text = "\(country)"
+//            }
             
             
-            self.nameLabel.text = "\(firstName)"
+           // self.nameLabel.text = "\(firstName)"
            // self.navigationItem.title = "\(firstName)"
             
             if pictureURL != "" {
@@ -96,22 +112,18 @@ class ProfileVC: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func viewTaped(_ sender: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
+
+    
+
+   
 
 }

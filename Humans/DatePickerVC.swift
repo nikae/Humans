@@ -13,7 +13,7 @@ import Firebase
 
 class DatePickerVC: UIViewController {
 
-    @IBOutlet weak var backgroundView: UIView!
+  //  @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var doneBtn: UIButton!
     
@@ -27,8 +27,8 @@ class DatePickerVC: UIViewController {
         super.viewDidLoad()
         
         viewShape(view: doneBtn)
-        backgroundView.clipsToBounds = true
-        backgroundView.layer.cornerRadius = 15
+//        backgroundView.clipsToBounds = true
+//        backgroundView.layer.cornerRadius = 15
         
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         
@@ -73,11 +73,11 @@ class DatePickerVC: UIViewController {
     }
     */
     @IBAction func viewTaped(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
+      //  self.dismiss(animated: true, completion: nil)
     }
-    @IBAction func xHit(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func xHit(_ sender: UIButton) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
 
     @IBAction func doneHit(_ sender: UIButton) {
         
