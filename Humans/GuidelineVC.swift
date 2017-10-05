@@ -26,6 +26,8 @@ class GuidelineVC: UIViewController {
         label.text = titlef
         textFiled.text = boddy
         
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

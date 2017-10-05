@@ -42,6 +42,9 @@ class ComentsTV: UITableViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem?.tintColor = .red
+        navigationItem.title = "Coments"
+        
         descriptionTextView.text = textHolder[0]
         let fixedWidth = descriptionTextView.frame.size.width
         descriptionTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))

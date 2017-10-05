@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import Firebase
 
 let testArr = ["IMG_0436", "IMG_6930.MOV", "1A054DB4-586B-44B6-B756-D1F7FBB88C52", "IMG_0708.mov", "810D61B5-84A8-4598-8352-0512A69BB869", "331E3199-BF0F-4937-8168-3195190B2E7C"]
 var receivedURL: URL!
@@ -19,21 +20,51 @@ class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControll
     var searchController: UISearchController!
     var player = AVPlayer()
     
+    var storageRef: FIRStorageReference!
+    var databaseRef: FIRDatabaseReference!
+    let uId = FIRAuth.auth()?.currentUser?.uid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.definesPresentationContext = true
-        self.searchController = UISearchController(searchResultsController: nil)
-        self.searchController.dimsBackgroundDuringPresentation = false
-        self.searchController.searchBar.delegate = self
-        self.searchController!.searchResultsUpdater = self
-        self.searchController.searchBar.sizeToFit()
-        self.searchController.searchBar.searchBarStyle = .minimal
-        self.tableView.tableHeaderView = self.searchController.searchBar
+        
+  
+        
+        setUpNavigationBar()
+        
+        databaseRef = FIRDatabase.database().reference()
+        databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+             let firstName = value?["firstName"] as? String ?? "me"
+            self.profileBtn.title = "@\(firstName)"
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         
     }
+    
+    
 
+    func setUpNavigationBar(){
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            let searchController = UISearchController(searchResultsController: nil)
+            navigationItem.searchController = searchController
+        } else {
+            self.searchController = UISearchController(searchResultsController: nil)
+            self.searchController.dimsBackgroundDuringPresentation = false
+            self.searchController.searchBar.delegate = self
+            self.searchController!.searchResultsUpdater = self
+            self.searchController.searchBar.sizeToFit()
+            self.searchController.searchBar.searchBarStyle = .minimal
+            self.tableView.tableHeaderView = self.searchController.searchBar
+        }
+        
+       
+    }
     
 
     override func viewWillAppear(_ animated: Bool) {
