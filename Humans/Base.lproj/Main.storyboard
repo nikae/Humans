@@ -854,7 +854,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <barButtonItem key="leftBarButtonItem" title="@me" id="Pqo-6t-ekM">
                             <color key="tintColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="profileHit:" destination="qIH-XN-YnW" id="Xg0-PY-npN"/>
+                                <segue destination="TKe-b2-GIX" kind="presentation" id="Kvs-p7-TpM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="PKn-r5-Oqd">
@@ -885,24 +885,24 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYT-ys-BQ1">
-                                <rect key="frame" x="28" y="100" width="319" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-Js-9xb">
-                                        <rect key="frame" x="0.0" y="0.0" width="319" height="205"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="294"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="efn-58-lNP">
-                                        <rect key="frame" x="99" y="34" width="120" height="120"/>
+                                        <rect key="frame" x="127" y="40" width="120" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="71y-yv-x1g"/>
                                             <constraint firstAttribute="height" constant="120" id="rZo-wT-UAE"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDi-Ao-Gob">
-                                        <rect key="frame" x="0.0" y="174" width="319" height="313"/>
+                                        <rect key="frame" x="0.0" y="200" width="375" height="467"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GY0-7X-wKl">
-                                                <rect key="frame" x="-0.5" y="-0.5" width="319" height="313"/>
+                                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="467"/>
                                                 <connections>
                                                     <segue destination="LO6-df-Q6a" kind="embed" id="6Hc-NA-8Hm"/>
                                                 </connections>
@@ -917,7 +917,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Az-jn-sLE">
-                                        <rect key="frame" x="99" y="34" width="120" height="120"/>
+                                        <rect key="frame" x="127" y="40" width="120" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="Pmp-fB-fah"/>
                                             <constraint firstAttribute="height" constant="120" id="aKr-F7-1JV"/>
@@ -931,44 +931,32 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                 <constraints>
                                     <constraint firstItem="4Az-jn-sLE" firstAttribute="centerX" secondItem="fYT-ys-BQ1" secondAttribute="centerX" id="0dN-QO-H7u"/>
                                     <constraint firstAttribute="bottom" secondItem="EDi-Ao-Gob" secondAttribute="bottom" id="9T7-hw-KzA"/>
-                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="centerX" secondItem="fYT-ys-BQ1" secondAttribute="centerX" id="G15-c3-12a"/>
                                     <constraint firstAttribute="trailing" secondItem="EDi-Ao-Gob" secondAttribute="trailing" id="LqC-Ke-knE"/>
                                     <constraint firstItem="EDi-Ao-Gob" firstAttribute="leading" secondItem="fYT-ys-BQ1" secondAttribute="leading" id="WSA-SK-4pk"/>
-                                    <constraint firstItem="4Az-jn-sLE" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="top" constant="34" id="eQQ-Rm-UqM"/>
+                                    <constraint firstItem="4Az-jn-sLE" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="top" constant="40" id="eQQ-Rm-UqM"/>
+                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="top" secondItem="efn-58-lNP" secondAttribute="bottom" constant="40" id="heo-oX-710"/>
                                     <constraint firstItem="efn-58-lNP" firstAttribute="centerX" secondItem="fYT-ys-BQ1" secondAttribute="centerX" id="kWI-tc-nOJ"/>
-                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="top" secondItem="4Az-jn-sLE" secondAttribute="bottom" constant="20" id="keA-sa-Hwy"/>
-                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="top" secondItem="efn-58-lNP" secondAttribute="bottom" constant="20" id="nti-7P-dF6"/>
-                                    <constraint firstItem="efn-58-lNP" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="top" constant="34" id="zHT-l6-OHh"/>
+                                    <constraint firstItem="EDi-Ao-Gob" firstAttribute="top" secondItem="4Az-jn-sLE" secondAttribute="bottom" constant="40" id="keA-sa-Hwy"/>
+                                    <constraint firstItem="efn-58-lNP" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="top" constant="40" id="zHT-l6-OHh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="0.5" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="centerY" secondItem="jsl-td-hsX" secondAttribute="centerY" constant="10" id="1gb-8J-J4l"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fYT-ys-BQ1" secondAttribute="trailing" constant="12" id="2qX-Uh-JM2"/>
-                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="leading" secondItem="jsl-td-hsX" secondAttribute="leadingMargin" constant="12" id="6H7-Db-6T9"/>
-                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="top" secondItem="Xyi-g2-UW6" secondAttribute="bottom" constant="80" id="D3t-Ve-WXf"/>
-                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="centerX" secondItem="jsl-td-hsX" secondAttribute="centerX" id="YgL-3m-vek"/>
-                            <constraint firstItem="PId-IF-PhE" firstAttribute="top" secondItem="fYT-ys-BQ1" secondAttribute="bottom" constant="80" id="bcr-dS-ZrM"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="height" secondItem="jsl-td-hsX" secondAttribute="height" id="2TJ-FK-zIz"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="width" secondItem="jsl-td-hsX" secondAttribute="width" id="JRs-mm-e3D"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="centerY" secondItem="jsl-td-hsX" secondAttribute="centerY" id="YTJ-Iv-bGM"/>
+                            <constraint firstItem="fYT-ys-BQ1" firstAttribute="centerX" secondItem="jsl-td-hsX" secondAttribute="centerX" id="kkg-Yl-bUp"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Cu2-FG-hss" appends="YES" id="GMy-JS-ezt"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="PEA-Js-9xb" id="9qf-fY-8c3"/>
                         <outlet property="backgroundView" destination="fYT-ys-BQ1" id="nq1-KM-Hhg"/>
                         <outlet property="profileImageView" destination="efn-58-lNP" id="bKJ-57-Wp1"/>
-                        <outlet property="tapGesture" destination="Cu2-FG-hss" id="8ei-wk-nag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKk-KC-KpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Cu2-FG-hss">
-                    <connections>
-                        <action selector="viewTaped:" destination="TKe-b2-GIX" id="rqi-qg-MHn"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2048.8000000000002" y="873.91304347826099"/>
         </scene>
@@ -1056,7 +1044,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="132" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WO-LB-PkW">
                                             <rect key="frame" x="16" y="42" width="30" height="12"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="4oF-w1-cut"/>
+                                                <constraint firstAttribute="width" priority="750" constant="30" id="4oF-w1-cut"/>
                                                 <constraint firstAttribute="height" constant="12" id="VwJ-bu-Fl2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -1265,11 +1253,11 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                         <viewControllerLayoutGuide type="bottom" id="x6H-lh-s0N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FtG-fc-IoS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9N-Bu-2YG">
-                                <rect key="frame" x="8" y="169" width="359" height="40"/>
+                                <rect key="frame" x="8" y="262" width="359" height="40"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.59607843140000005" blue="0.64705882349999999" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1gH-sj-iaA"/>
@@ -1282,7 +1270,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-MW-ut1">
-                                <rect key="frame" x="24" y="48.5" width="327" height="120"/>
+                                <rect key="frame" x="24" y="95" width="327" height="120"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nikname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1mB-z0-Iaj">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="52"/>
@@ -1301,6 +1289,13 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="sN0-Cq-Hcy"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Nikname And Email." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2RX-ww-ZIc">
+                                <rect key="frame" x="16" y="20" width="335" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -1316,7 +1311,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                             <outletCollection property="gestureRecognizers" destination="Pn9-Ko-KYJ" appends="YES" id="ycy-EE-tDo"/>
                         </connections>
                     </view>
-                    <size key="freeformSize" width="375" height="217"/>
+                    <size key="freeformSize" width="375" height="310"/>
                     <connections>
                         <outlet property="doneBtn" destination="K9N-Bu-2YG" id="7oa-h4-AOW"/>
                         <outlet property="emailTF" destination="id6-cx-j2o" id="cpV-V1-ruQ"/>
@@ -1330,7 +1325,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3831" y="958"/>
+            <point key="canvasLocation" x="3829.5999999999999" y="957.12143928035994"/>
         </scene>
         <!--Language PickerVC-->
         <scene sceneID="rpC-Lc-jiH">
@@ -1681,7 +1676,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUS-sS-TzO">
                                                     <rect key="frame" x="329" y="42" width="30" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="4q3-1b-I8u"/>
+                                                        <constraint firstAttribute="width" priority="750" constant="30" id="4q3-1b-I8u"/>
                                                         <constraint firstAttribute="height" constant="12" id="f1F-c3-5Pe"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -2507,11 +2502,11 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                         <viewControllerLayoutGuide type="bottom" id="quJ-0A-ogv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ULF-3v-Xqy">
-                        <rect key="frame" x="0.0" y="0.0" width="319" height="313"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="2OD-Ki-eke">
-                                <rect key="frame" x="140" y="-5" width="39" height="37"/>
+                                <rect key="frame" x="140" y="-5" width="95" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="wXo-YM-Cfc"/>
                                 </constraints>
@@ -2532,7 +2527,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fny-bf-BLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="1397"/>
+            <point key="canvasLocation" x="2049" y="1520"/>
         </scene>
     </scenes>
     <resources>

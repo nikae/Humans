@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241BD7DB1F8C08E1000355AB /* CardAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BD7DA1F8C08E1000355AB /* CardAnimationController.swift */; };
+		241BD7DD1F8C0933000355AB /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BD7DC1F8C0933000355AB /* CardPresentationController.swift */; };
 		24597CF91F39068C00C75E04 /* RotateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24597CF81F39068C00C75E04 /* RotateVC.swift */; };
 		24597CFD1F39163C00C75E04 /* VideoPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24597CFC1F39163C00C75E04 /* VideoPreviewVC.swift */; };
 		24597CFF1F3BCF5200C75E04 /* PhotoPrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24597CFE1F3BCF5200C75E04 /* PhotoPrepVC.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		241BD7DA1F8C08E1000355AB /* CardAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimationController.swift; sourceTree = "<group>"; };
+		241BD7DC1F8C0933000355AB /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
 		24597CF81F39068C00C75E04 /* RotateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateVC.swift; sourceTree = "<group>"; };
 		24597CFC1F39163C00C75E04 /* VideoPreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPreviewVC.swift; sourceTree = "<group>"; };
 		24597CFE1F3BCF5200C75E04 /* PhotoPrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPrepVC.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				24E7EF3E1F17E15400EA0962 /* ViewController.swift */,
 				24E7EF511F17E26100EA0962 /* HumansTV.swift */,
 				24F1BB3D1F834ABF0074E6FF /* ProfileVC.swift */,
+				241BD7DA1F8C08E1000355AB /* CardAnimationController.swift */,
+				241BD7DC1F8C0933000355AB /* CardPresentationController.swift */,
 				24F1BB411F8485340074E6FF /* ProfileViewContainerVC.swift */,
 				24E7EF5B1F17F6F800EA0962 /* ProfileTV.swift */,
 				24597CFE1F3BCF5200C75E04 /* PhotoPrepVC.swift */,
@@ -349,6 +355,7 @@
 				24F1BB3E1F834ABF0074E6FF /* ProfileVC.swift in Sources */,
 				24E7EF5C1F17F6F800EA0962 /* ProfileTV.swift in Sources */,
 				24E7EF3D1F17E15400EA0962 /* AppDelegate.swift in Sources */,
+				241BD7DD1F8C0933000355AB /* CardPresentationController.swift in Sources */,
 				248662051F1989F5005CD8CD /* ComentsTV.swift in Sources */,
 				248DC1361F316A6100510E90 /* CameraVC.swift in Sources */,
 				24F1BB421F8485340074E6FF /* ProfileViewContainerVC.swift in Sources */,
@@ -356,6 +363,7 @@
 				248662071F1D4EC5005CD8CD /* ComentsCell.swift in Sources */,
 				24E7EF521F17E26100EA0962 /* HumansTV.swift in Sources */,
 				24597CFD1F39163C00C75E04 /* VideoPreviewVC.swift in Sources */,
+				241BD7DB1F8C08E1000355AB /* CardAnimationController.swift in Sources */,
 				2497A59D1F44F02700491FC5 /* LanguagePickerVC.swift in Sources */,
 				248662031F197F5D005CD8CD /* Models.swift in Sources */,
 				24597D031F3BE73300C75E04 /* GuidelineVC.swift in Sources */,

@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 import Firebase
+import AVFoundation
 
+
+func playSystemSound(id: SystemSoundID){
+AudioServicesPlaySystemSound(id)
+}
 func viewShape(view: UIView) {
     view.clipsToBounds = true
     view.layer.cornerRadius = view.frame.height/2
@@ -124,7 +129,8 @@ let videoGuideLinesLibrary = ["Time" : ["title" : "Time",
                                            "boddy" : "Info Boddy Goews Here"]]
 
 
-
+let pinkColor = UIColor(displayP3Red: 240/255, green: 98/255, blue: 146/255, alpha: 1)
+let grayColor = UIColor(displayP3Red: 72/255, green: 68/255, blue: 75/255, alpha: 1)
 
 
 

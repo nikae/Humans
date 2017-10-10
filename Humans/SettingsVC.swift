@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import AVFoundation
 import Firebase
 import SDWebImage
+
 
 class SettingsVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var doneBtn: UIButton!
-
+  
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
     fileprivate var _refHandle: FIRDatabaseHandle!
@@ -113,10 +115,27 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
         keyboardDismiss(tf: emailTF)
     }
     
-    func presentAlert() {
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    func doneBtnVisualEfectDataEded() {
+        self.doneBtn.setTitleColor(pinkColor, for: .normal)
+        self.doneBtn.setTitle("...", for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
+           // self.doneBtn.titleLabel?.textColor = pinkColor
+            self.doneBtn.setTitle("...Done", for: .normal)
+             playSystemSound(id: 1055)
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000), execute: {
+            self.doneBtn.setTitleColor(grayColor, for: .normal)
+            self.doneBtn.setTitle("Submit", for: .normal)
+        })
     }
     
-    @IBAction func doneHit(_ sender: UIButton) {
+    func editDataInBackend() {
         if nameTF.text != "" {
             let firstName = self.nameTF.text
             let email = self.emailTF.text
@@ -125,20 +144,26 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
                 FIRAuth.auth()?.currentUser?.updateEmail(email!) { (error) in
                     if error == nil {
                         self.databaseRef.child("Users/\(self.uId!)/email").setValue(email)
-                        //self.presentProfileView()
+                        self.doneBtnVisualEfectDataEded()
                     } else {
-                       // self.presentAlert(title: "Error", message: (error?.localizedDescription)!)
+                        self.presentAlert(title: "Error", message: (error?.localizedDescription)!)
                     }
                 }
             } else {
-              //  presentProfileView()
+                //  presentProfileView()
             }
-
+            
             //MARK -Edit user values at firebase
             self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
+            doneBtnVisualEfectDataEded()
+            
         } else {
-           // presentAlert(title: "Please provide nikname", message: "")
+            presentAlert(title: "Please provide nikname", message: "")
         }
+    }
+    
+    @IBAction func doneHit(_ sender: UIButton) {
+       editDataInBackend()
     }
 }
 

@@ -26,7 +26,12 @@ class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //MARK: CardView
+        func dismiss(_ segue: UIStoryboardSegue) {
+            self.dismiss(animated: true, completion: nil)
+        }
+        //END: CardView
         self.definesPresentationContext = true
         
   

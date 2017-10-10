@@ -24,26 +24,52 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
 
     @IBOutlet weak var backgroundView: UIView!
-    
     @IBOutlet weak var backgroundImage: UIImageView!
-    
     @IBOutlet weak var profileImageView: UIImageView!
-    
-    @IBOutlet var tapGesture: UITapGestureRecognizer!
-    
+   
     var storageRef: FIRStorageReference!
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
     var picURL = ""
+    //Mark: Card View
+    var darkStatusBar = true
+    let fullView: CGFloat = 40
+    var partialView: CGFloat {
+        return UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height)
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!)  {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.commonInit()
+    }
+    
+    func commonInit() {
+        self.modalPresentationStyle = .custom
+        self.transitioningDelegate = self
+    }
+     //End: Card View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundView.clipsToBounds = true
-        backgroundView.layer.cornerRadius = 15
-        backgroundImage.clipsToBounds = true
-        backgroundImage.layer.cornerRadius = 15
+        //Mark: Card View
+        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture(_:)))
+        view.addGestureRecognizer(panGesture)
+        
+        roundViews()
+        //End: Card View
+        
+        
+//        backgroundView.clipsToBounds = true
+//        backgroundView.layer.cornerRadius = 15
+//        backgroundImage.clipsToBounds = true
+//        backgroundImage.layer.cornerRadius = 15
         backgroundImage.addBlurEffect()
         roundPhoto(imageView: profileImageView)
         
@@ -89,13 +115,15 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         if dateofb == true {
             print(true)
           //  if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+          //  tapGesture.isEnabled = false
                 if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -=  150
+                    self.view.frame.origin.y -=  180
                 }
           //  }
         } else {
             print(false)
           //  if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+           //  tapGesture.isEnabled = true
                 if self.view.frame.origin.y != 0 {
                     self.view.frame.origin.y =  0
                 }
@@ -213,12 +241,78 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     
-    @IBAction func viewTaped(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
+ //Mark: Card View
+    func panGesture(_ recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        let velocity = recognizer.velocity(in: self.view)
+        let y = self.view.frame.minY
+        if ( y + translation.y >= fullView) && (y + translation.y <= partialView ) {
+            self.view.frame = CGRect(x: 0, y: y + translation.y, width: view.frame.width, height: view.frame.height)
+            recognizer.setTranslation(CGPoint.zero, in: self.view)
+        }
+        
+        if recognizer.state == .ended {
+            var duration =  velocity.y < 0 ? Double((y - fullView) / -velocity.y) : Double((partialView - y) / velocity.y )
+            duration = duration > 1.3 ? 1 : duration
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.allowUserInteraction], animations: {
+                if  velocity.y >= 0 {
+                    print(self.view.frame.origin.y)
+                    self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
+                    if self.view.frame.origin.y == self.partialView  {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
+                }
+            }, completion: nil)
+        }
     }
-
+    
+    func roundViews() {
+        view.layer.cornerRadius = 15
+        view.clipsToBounds = true
+        toggleStatusBar()
+    }
+     //End: Card View
     
 
-   
-
 }
+
+ //MARK: Card View
+// MARK: - UIViewControllerTransitioningDelegate methods
+
+extension ProfileVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?,source: UIViewController) -> UIPresentationController? {
+        
+        if presented == self {
+            return CardPresentationController(presentedViewController: presented, presenting: presenting)
+        }
+        return nil
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+         if presented == self {
+            return CardAnimationController(isPresenting: true)
+        } else {
+            return nil
+        }
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        if dismissed == self {
+            return CardAnimationController(isPresenting: false)
+        } else {
+            return nil
+        }
+    }
+    
+    func toggleStatusBar() {
+        if darkStatusBar {
+            UIApplication.shared.statusBarStyle = .lightContent
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+        }
+    }
+}
+ //End: Card View
