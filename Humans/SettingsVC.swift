@@ -81,7 +81,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
 //    }
     
     //Mark: -> Figour out KeyBoard
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         //MARK: -> post a notification
         let bDayDict:[String: Bool] = ["keyboardIsUp": true]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil, userInfo: bDayDict)
@@ -94,7 +94,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
 //        }
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         let bDayDict:[String: Bool] = ["keyboardIsUp": false]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil, userInfo: bDayDict)
 //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {

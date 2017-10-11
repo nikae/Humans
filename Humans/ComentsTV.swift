@@ -119,7 +119,7 @@ class ComentsTV: UITableViewController, UITextViewDelegate {
     }
     
   //MARK: -> keyboard
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height
@@ -127,7 +127,7 @@ class ComentsTV: UITableViewController, UITextViewDelegate {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += keyboardSize.height
@@ -204,7 +204,7 @@ class ComentsTV: UITableViewController, UITextViewDelegate {
         print(textView.text) //the textView parameter is the textView where text was changed
     }
     
-    func buttonAction(_ sender: UIButton!) {
+    @objc func buttonAction(_ sender: UIButton!) {
         print(myTextView.text ?? "")
         myTextView.text = ""
     }

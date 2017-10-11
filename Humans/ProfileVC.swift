@@ -109,7 +109,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
     }
   
-    func keyboardishere(_ notification: NSNotification) {
+    @objc func keyboardishere(_ notification: NSNotification) {
         let dateofb = (notification.userInfo?["keyboardIsUp"] as? Bool)
         
         if dateofb == true {
@@ -242,7 +242,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     
  //Mark: Card View
-    func panGesture(_ recognizer: UIPanGestureRecognizer) {
+    @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
         let velocity = recognizer.velocity(in: self.view)
         let y = self.view.frame.minY

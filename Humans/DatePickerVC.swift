@@ -38,7 +38,7 @@ class DatePickerVC: UIViewController {
     
     
     
-        func dateChanged(_ sender: UIDatePicker)  {
+        @objc func dateChanged(_ sender: UIDatePicker)  {
             let componenets = Calendar.current.dateComponents([.year, .month, .day], from: sender.date)
             if let day = componenets.day, let month = componenets.month, let year = componenets.year {
                 let a = age(year: year, month: month, day: day)

@@ -63,7 +63,7 @@ class ProfileViewCell: UITableViewCell {
     func setupMoviePlayer(){
         self.avPlayer = AVPlayer.init(playerItem: self.videoPlayerItem)
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
-        avPlayerLayer?.videoGravity = AVLayerVideoGravityResizeAspect
+        avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
         avPlayer?.volume = 3
         avPlayer?.actionAtItemEnd = .none
         avPlayerLayer?.frame = CGRect(x:videoView.bounds.origin.x,y:videoView.bounds.origin.y,width: videoView.bounds.width ,height:videoView.bounds.height)
@@ -82,7 +82,7 @@ class ProfileViewCell: UITableViewCell {
         self.avPlayer?.play()
     }
     
-    func playerItemDidReachEnd(notification: Notification) {
+    @objc func playerItemDidReachEnd(notification: Notification) {
         let p: AVPlayerItem = notification.object as! AVPlayerItem
         p.seek(to: kCMTimeZero)
     }

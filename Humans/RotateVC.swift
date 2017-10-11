@@ -30,7 +30,7 @@ class RotateVC: UIViewController {
     }
     
     
-    func rotated() {
+    @objc func rotated() {
         if UIDevice.current.orientation.isLandscape {
             self.dismiss(animated: true, completion: nil)
         } else {

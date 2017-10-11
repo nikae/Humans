@@ -45,7 +45,7 @@ class CameraVC: UIViewController {
         }
         
         recorder.session = session
-        recorder.device = AVCaptureDevicePosition.front
+        recorder.device = AVCaptureDevice.Position.front
         recorder.videoConfiguration.size = CGSize(width: 600 , height: 400)
         recorder.delegate = self
         
@@ -74,7 +74,7 @@ class CameraVC: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func rotated() {
+    @objc func rotated() {
         if recorder.isRecording != true {
             if UIDevice.current.orientation != .portrait {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "RotateVC") as! RotateVC
@@ -131,9 +131,9 @@ class CameraVC: UIViewController {
     var launchFrontBackCamera = false {
         didSet {
             if launchFrontBackCamera == false {
-                recorder.device = AVCaptureDevicePosition.front
+                recorder.device = AVCaptureDevice.Position.front
             } else {
-                recorder.device = AVCaptureDevicePosition.back
+                recorder.device = AVCaptureDevice.Position.back
             }
         }
     }
