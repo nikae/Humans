@@ -57,19 +57,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Mark: Card View
         let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture(_:)))
         view.addGestureRecognizer(panGesture)
-        
         roundViews()
         //End: Card View
-        
-        
-//        backgroundView.clipsToBounds = true
-//        backgroundView.layer.cornerRadius = 15
-//        backgroundImage.clipsToBounds = true
-//        backgroundImage.layer.cornerRadius = 15
+   
         backgroundImage.addBlurEffect()
         roundPhoto(imageView: profileImageView)
         
@@ -106,29 +99,19 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardishere(_:)), name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil)
-        
     }
   
     @objc func keyboardishere(_ notification: NSNotification) {
         let dateofb = (notification.userInfo?["keyboardIsUp"] as? Bool)
-        
         if dateofb == true {
-            print(true)
-          //  if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-          //  tapGesture.isEnabled = false
-                if self.view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -=  180
-                }
-          //  }
-        } else {
-            print(false)
-          //  if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-           //  tapGesture.isEnabled = true
-                if self.view.frame.origin.y != 0 {
-                    self.view.frame.origin.y =  0
-                }
+            if self.view.frame.origin.y == 40 {
+                self.view.frame.origin.y -=  180
             }
-       // }
+        } else {
+            if self.view.frame.origin.y != 40 {
+                self.view.frame.origin.y = 40
+            }
+        }
     }
     
     //MARK: -Camera / Add Picture
@@ -256,7 +239,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             duration = duration > 1.3 ? 1 : duration
             UIView.animate(withDuration: duration, delay: 0.0, options: [.allowUserInteraction], animations: {
                 if  velocity.y >= 0 {
-                    print(self.view.frame.origin.y)
                     self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
                     if self.view.frame.origin.y == self.partialView  {
                         self.dismiss(animated: true, completion: nil)

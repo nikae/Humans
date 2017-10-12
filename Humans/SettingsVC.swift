@@ -32,21 +32,16 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
       
         nameTF.delegate = self
         emailTF.delegate = self
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.showSpinningWheel(_:)), name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
-
+        
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let firstName = value?["firstName"] as? String ?? ""
             let email = value?["email"] as? String ?? "Email"
-       //     let bday = value?["dateOfBirth"] as? String ?? ""
-
+    
             self.emailTF.placeholder = email
             self.nameTF.text = firstName.capitalized
 
@@ -54,59 +49,25 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
             print(error.localizedDescription)
         }
     }
-    
-//    deinit {
-//        databaseRef.child("Users").removeObserver(withHandle: _refHandle)
-//    }
-    
-    //Mark: -> handle notification
-//    func showSpinningWheel(_ notification: NSNotification) {
-//        let dateofb = (notification.userInfo?["bDay"] as? String)
-//
-//        if dateofb != "" {
-//            var bDayArr = dateofb?.components(separatedBy: " ")
-//            let month = bDayArr?[0]
-//            let day = bDayArr?[1]
-//            let year = bDayArr?[2]
-//            let userAge = age(year: Int(year!) ?? 0, month: Int(month!) ?? 0 , day: Int(day!) ?? 0)
-//            self.dateBtn.setTitle("\(userAge) y/o", for: .normal)
-//        } else {
-//            self.dateBtn.setTitle("Date of birth", for: .normal)
-//        }
-//    }
-    
-//    func usersCountry(_ notification: NSNotification) {
-//        let uCountry = (notification.userInfo?["location"] as? String)
-//        self.countryBtn.setTitle(uCountry, for: .normal)
-//    }
-    
+
     //Mark: -> Figour out KeyBoard
     @objc func keyboardWillShow(notification: NSNotification) {
         //MARK: -> post a notification
         let bDayDict:[String: Bool] = ["keyboardIsUp": true]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil, userInfo: bDayDict)
-        
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
-//            if vc.view.frame.origin.y == 0 {
-//                vc.view.frame.origin.y -= keyboardSize.height - 150
-//            }
-//        }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
         let bDayDict:[String: Bool] = ["keyboardIsUp": false]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil, userInfo: bDayDict)
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
-//            if vc.view.frame.origin.y != 0 {
-//                vc.view.frame.origin.y += keyboardSize.height - 150
-//            }
-//        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == nameTF {
+            emailTF.becomeFirstResponder()
+        } else {
+            presentConfirmationAlert()
+        }
         return true
     }
     
@@ -135,6 +96,23 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
         })
     }
     
+    func presentConfirmationAlert() {
+        let alert = UIAlertController(title: "Please Confirm!", message: "Confirm to update your information", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (void) in
+            keyboardDismiss(tf: self.nameTF)
+            keyboardDismiss(tf: self.emailTF)
+        }
+        let confirm = UIAlertAction(title: "Confirm", style: .default) { (void) in
+            keyboardDismiss(tf: self.nameTF)
+            keyboardDismiss(tf: self.emailTF)
+            self.editDataInBackend()
+        }
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func editDataInBackend() {
         if nameTF.text != "" {
             let firstName = self.nameTF.text
@@ -149,9 +127,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
                         self.presentAlert(title: "Error", message: (error?.localizedDescription)!)
                     }
                 }
-            } else {
-                //  presentProfileView()
-            }
+            } 
             
             //MARK -Edit user values at firebase
             self.databaseRef.child("Users/\(uId!)/firstName").setValue(firstName?.capitalized)
@@ -163,7 +139,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneHit(_ sender: UIButton) {
-       editDataInBackend()
+       presentConfirmationAlert()
     }
 }
 
