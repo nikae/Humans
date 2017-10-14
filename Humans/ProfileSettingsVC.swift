@@ -36,105 +36,66 @@ class ProfileSettingsVC: UIViewController {
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
     
+    var country = ""
+    var bday = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         firstNameLabel.adjustsFontSizeToFitWidth = true
         ageAndCountrieLabel.adjustsFontSizeToFitWidth = true
-     //   emailLabel.adjustsFontSizeToFitWidth = true
-       // ageLabel.adjustsFontSizeToFitWidth = true
         
-//        roundPhoto(imageView: profileImageView)
-//
         viewShape(view: infoAndContactBtn)
         viewShape(view: disableMyAcoountBtn)
         viewShape(view: logOutBtn)
         viewShape(view: doneBtn)
-        
         
         databaseRef = FIRDatabase.database().reference()
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             let firstName = value?["firstName"] as? String ?? "First Name"
-//            let email = value?["email"] as? String ?? ""
-//            let pictureURL = value?["profilePictureUrl"] as? String ?? ""
-            let bday = value?["dateOfBirth"] as? String ?? ""
-            let country = value?["country"] as? String ?? ""
+            self.bday = value?["dateOfBirth"] as? String ?? ""
+            self.country = value?["country"] as? String ?? ""
             
-            if bday != "" {
-                var bDayArr = bday.components(separatedBy: " ")
-                let month = bDayArr[0]
-                let day = bDayArr[1]
-                let year = bDayArr[2]
-                
-                let userAge = age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
-                self.ageAndCountrieLabel.text = "\(userAge) y/o. \(country)"
+            if self.bday != "" {
+                let userAge = self.calculateAge(self.bday)
+                self.ageAndCountrieLabel.text = "\(userAge) y/o. \(self.country)"
                 
             } else {
-              self.ageAndCountrieLabel.text = "\(country)"
+                self.ageAndCountrieLabel.text = "\(self.country)"
             }
             
             self.firstNameLabel.text = firstName
-           // self.emailLabel.text = email
-            
-//            if pictureURL != "" {
-//                let starsRef = FIRStorage.storage().reference(forURL: pictureURL)
-//                starsRef.downloadURL { url, error in
-//                    if error != nil {
-//                        print(error ?? "error")
-//                    } else {
-//                        self.profileImageView.alpha = 0.0
-//
-//                        UIView.animate(withDuration: 1, animations: {
-//                            self.profileImageView.alpha = 1
-//                            self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "default-avatar"))
-//                        })
-//                        self.profileImageView.setShowActivityIndicator(true)
-//                        self.profileImageView.setIndicatorStyle(.gray)
-//                    }
-//                }
-//
-//            } else {
-//                self.profileImageView.image = UIImage(named: "default-avatar")
-//            }
+ 
         }) { (error) in
             print(error.localizedDescription)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
     }
-//        let stopScrollingDict:[String: Bool] = ["stopScrolling": true]
-//        //MARK: -> post a notification
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
-//    }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        let stopScrollingDict:[String: Bool] = ["stopScrolling": false]
-//        //MARK: -> post a notification
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notificationName"), object: nil, userInfo: stopScrollingDict)
-//    }
-//
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//    @IBAction func editProfileHit(_ sender: UIButton) {
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
-//        self.present(vc, animated: true, completion: nil)
-//    }
-
+    
+    func calculateAge(_ uAge: String) -> Int {
+        var bDayArr = uAge.components(separatedBy: " ")
+        let month = bDayArr[0]
+        let day = bDayArr[1]
+        let year = bDayArr[2]
+        return age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+    }
+    
+   @objc func usersCountry(_ notification: NSNotification) {
+        let uCountry = (notification.userInfo?["location"] as? String)
+        self.country = uCountry ?? ""
+    if self.bday != "" {
+        let userAge = self.calculateAge(self.bday)
+        self.ageAndCountrieLabel.text = "\(userAge) y/o. \(self.country)"
+    } else {
+        self.ageAndCountrieLabel.text = "\(self.country)"
+    }
+    }
+    
     @IBAction func infoHit(_ sender: UIButton) {
         print("info goew here")
     }

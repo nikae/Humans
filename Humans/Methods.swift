@@ -132,6 +132,6 @@ let videoGuideLinesLibrary = ["Time" : ["title" : "Time",
 let pinkColor = UIColor(displayP3Red: 240/255, green: 98/255, blue: 146/255, alpha: 1)
 let grayColor = UIColor(displayP3Red: 72/255, green: 68/255, blue: 75/255, alpha: 1)
 
-
+let isLocationAproved_Key = "islocationAproved_Key"
 
 

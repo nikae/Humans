@@ -1432,14 +1432,14 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gvF-JY-RNK"/>
                                 </constraints>
-                                <state key="normal" title="Set">
+                                <state key="normal" title="Set Location">
                                     <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="doneHit:" destination="Vbq-JH-YST" eventType="touchUpInside" id="brf-Uw-a2Q"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Nikname And Email." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilx-kd-DeO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ilx-kd-DeO">
                                 <rect key="frame" x="16" y="24" width="343" height="32.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32.5" id="WqB-XQ-hpx"/>
@@ -2187,7 +2187,7 @@ First, we tried simply re-creating the design with a similar font. We tried Cour
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="h2P-6F-H2L"/>
                                 </constraints>
-                                <state key="normal" title="Show with post">
+                                <state key="normal" title="Location Settings">
                                     <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>

@@ -19,7 +19,6 @@ extension UIPageViewController {
     }
 }
 
-
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
@@ -256,8 +255,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         toggleStatusBar()
     }
      //End: Card View
-    
-
 }
 
  //MARK: Card View
