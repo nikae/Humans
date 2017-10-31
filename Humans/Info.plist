@@ -40,5 +40,7 @@
 	<string>To show what country you are from</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need to record audio</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

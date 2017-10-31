@@ -42,8 +42,6 @@ class ProfileSettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         firstNameLabel.adjustsFontSizeToFitWidth = true
         ageAndCountrieLabel.adjustsFontSizeToFitWidth = true
         
@@ -61,7 +59,7 @@ class ProfileSettingsVC: UIViewController {
             self.country = value?["country"] as? String ?? ""
             
             if self.bday != "" {
-                let userAge = self.calculateAge(self.bday)
+                let userAge = calculateAge(self.bday)
                 self.ageAndCountrieLabel.text = "\(userAge) y/o. \(self.country)"
                 
             } else {
@@ -77,19 +75,13 @@ class ProfileSettingsVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
     }
     
-    func calculateAge(_ uAge: String) -> Int {
-        var bDayArr = uAge.components(separatedBy: " ")
-        let month = bDayArr[0]
-        let day = bDayArr[1]
-        let year = bDayArr[2]
-        return age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
-    }
+   
     
    @objc func usersCountry(_ notification: NSNotification) {
         let uCountry = (notification.userInfo?["location"] as? String)
         self.country = uCountry ?? ""
     if self.bday != "" {
-        let userAge = self.calculateAge(self.bday)
+        let userAge = calculateAge(self.bday)
         self.ageAndCountrieLabel.text = "\(userAge) y/o. \(self.country)"
     } else {
         self.ageAndCountrieLabel.text = "\(self.country)"

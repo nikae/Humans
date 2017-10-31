@@ -91,6 +91,14 @@ func textViewShape(TV: UITextView) {
     TV.layer.masksToBounds = true
 }
 
+func calculateAge(_ uAge: String) -> Int {
+    var bDayArr = uAge.components(separatedBy: " ")
+    let month = bDayArr[0]
+    let day = bDayArr[1]
+    let year = bDayArr[2]
+    return age(year: Int(year) ?? 0, month: Int(month) ?? 0 , day: Int(day) ?? 0)
+}
+
 func postToDatabase(autorId: String, createdAt: String, videoUrl: String, imageUrl: String, headLine: String, description: String, language: String, likes: [Like], coments: [Coment], favorites: [Favorite], location: String) {
     
     var databaseRef: FIRDatabaseReference!
@@ -133,5 +141,7 @@ let pinkColor = UIColor(displayP3Red: 240/255, green: 98/255, blue: 146/255, alp
 let grayColor = UIColor(displayP3Red: 72/255, green: 68/255, blue: 75/255, alpha: 1)
 
 let isLocationAproved_Key = "islocationAproved_Key"
+let isAgeAproved_Key = "isAgeAproved_Key"
+
 
 

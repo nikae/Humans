@@ -1469,6 +1469,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                     </view>
                     <size key="freeformSize" width="375" height="467"/>
                     <connections>
+                        <outlet property="bdayLabel" destination="Ilx-kd-DeO" id="2Sl-AW-qRJ"/>
                         <outlet property="datePicker" destination="l6g-dm-tba" id="KyU-en-7Aa"/>
                         <outlet property="doneBtn" destination="kxR-Af-evg" id="bbK-Rq-jkG"/>
                     </connections>

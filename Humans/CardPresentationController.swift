@@ -20,6 +20,7 @@ class CardPresentationController: UIPresentationController {
     override func presentationTransitionWillBegin() {
         guard  let containerView = containerView, let presentedView = presentedView else { return }
         
+        
         // Add the dimming view and the presented view to the heirarchy
         dimmingView.frame = containerView.bounds
         containerView.addSubview(dimmingView)

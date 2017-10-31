@@ -37,6 +37,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         return UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height)
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
@@ -54,8 +55,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
      //End: Card View
     
+//   override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+  
         //Mark: Card View
         let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture(_:)))
         view.addGestureRecognizer(panGesture)
@@ -98,6 +104,16 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardishere(_:)), name: NSNotification.Name(rawValue: "keyboardIsUp"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         UIApplication.shared.statusBarStyle = .lightContent
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+        setNeedsStatusBarAppearanceUpdate()
     }
   
     @objc func keyboardishere(_ notification: NSNotification) {
@@ -252,7 +268,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func roundViews() {
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
-        toggleStatusBar()
+       
+       // toggleStatusBar()
     }
      //End: Card View
 }
@@ -286,12 +303,12 @@ extension ProfileVC: UIViewControllerTransitioningDelegate {
         }
     }
     
-    func toggleStatusBar() {
-        if darkStatusBar {
-            UIApplication.shared.statusBarStyle = .lightContent
-        } else {
-            UIApplication.shared.statusBarStyle = .default
-        }
-    }
+//    func toggleStatusBar() {
+//        if darkStatusBar {
+//            UIApplication.shared.statusBarStyle = .lightContent
+//        } else {
+//            UIApplication.shared.statusBarStyle = .default
+//        }
+//    }
 }
  //End: Card View
