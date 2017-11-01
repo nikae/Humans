@@ -65,7 +65,7 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         
         player.setItemBy(session.assetRepresentingSegments())
         let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         let bounds = previewView.bounds
         playerLayer.frame = bounds
         previewView.layer.addSublayer(playerLayer)
@@ -158,7 +158,7 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     }
     
     //Mark: -> Figour out KeyBoard
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .lightGray
             self.slider.isEnabled = false
@@ -172,7 +172,7 @@ class VideoPreviewVC: UIViewController, UITextViewDelegate, UITextFieldDelegate 
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.backgroundColor = .white
             self.slider.isEnabled = true

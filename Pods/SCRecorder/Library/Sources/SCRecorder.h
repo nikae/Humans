@@ -259,7 +259,7 @@
 /**
  The underlying AVCaptureStillImageOutput
  */
-@property (readonly, nonatomic) AVCaptureStillImageOutput *__nullable photoOutput;
+@property (readonly, nonatomic) AVCapturePhotoOutput *__nullable photoOutput;
 
 /**
  The dispatch queue that the SCRecorder uses for sending messages to the attached

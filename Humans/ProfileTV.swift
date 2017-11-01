@@ -143,7 +143,7 @@ class ProfileTV: UITableViewController {
     
     //MARK: - Segue Needs atencion
     
-    func comentSegue(_ sender:UIButton) {
+    @objc func comentSegue(_ sender:UIButton) {
         let center = sender.center
         let point = sender.superview!.convert(center, to: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
@@ -209,7 +209,7 @@ class ProfileTV: UITableViewController {
     }
     
     var likeBool = false
-    func heartButtonClicked(_ sender:UIButton) {
+    @objc func heartButtonClicked(_ sender:UIButton) {
         let center = sender.center
         let point = sender.superview!.convert(center, to: tableView)
         let indexPath = tableView.indexPathForRow(at: point)

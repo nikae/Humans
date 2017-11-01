@@ -60,7 +60,7 @@ class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, 
     }
     
     //Mark: -> Figour out KeyBoard
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if headlineTF.isFirstResponder != true {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.view.backgroundColor = .lightGray
@@ -74,7 +74,7 @@ class WriteStorieVC: UIViewController, UITextFieldDelegate, UITextViewDelegate, 
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if headlineTF.isFirstResponder != true {
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.view.backgroundColor = .white

@@ -16,6 +16,9 @@ class PhotoPrepVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem?.tintColor = .red
+        navigationItem.title = "Guidelines"
+        
         viewShape(view: recordBtn)
         viewShape(view: uploadBtn)
         
