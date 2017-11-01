@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class DatePickerVC: UIViewController {
-
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var bdayLabel: UILabel!
@@ -30,7 +30,7 @@ class DatePickerVC: UIViewController {
         databaseRef.child("Users").child(uId!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             self.dateOfBirth = value?["dateOfBirth"] as? String ?? ""
-
+            
             if self.dateOfBirth != "" {
                 let userAge = calculateAge(self.dateOfBirth)
                 self.bdayLabel.text = "\(userAge) y/o."
@@ -71,11 +71,11 @@ class DatePickerVC: UIViewController {
                 
                 alert.addAction(ok)
                 present(alert, animated: true, completion: nil)
-                } else {
-                   dateOfBirth = "\(month) \(day) \(year)"
-                }
+            } else {
+                dateOfBirth = "\(month) \(day) \(year)"
             }
         }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,7 +85,7 @@ class DatePickerVC: UIViewController {
     func editDataInBackend(_ permistion: Bool) {
         databaseRef = FIRDatabase.database().reference()
         if permistion {
-           self.databaseRef.child("Users/\(self.uId!)/dateOfBirth").setValue(self.dateOfBirth)
+            self.databaseRef.child("Users/\(self.uId!)/dateOfBirth").setValue(self.dateOfBirth)
         } else {
             self.databaseRef.child("Users/\(self.uId!)/dateOfBirth").setValue(nil)
         }
@@ -99,10 +99,14 @@ class DatePickerVC: UIViewController {
             self.doneBtn.setTitle("...Done", for: .normal)
             playSystemSound(id: 1055)
         })
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000), execute: {
+            self.doneBtn.setTitleColor(grayColor, for: .normal)
+            self.doneBtn.setTitle("Location Settings", for: .normal)
+        })
     }
     
     func presentConfirmationAlert() {
-        let alert = UIAlertController(title: "Please Confirm!", message: "We only share your city (and state, if applicable) and country with your posts", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Please Confirm!", message: "We only share your age with your posts", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (void) in
             print("user has canceled location sharing")
         }
@@ -123,6 +127,7 @@ class DatePickerVC: UIViewController {
         let decline = UIAlertAction(title: "Decline", style: .destructive) { (void) in
             self.editDataInBackend(false)
             self.bdayLabel.text = "Age sharing disabled"
+            self.dateOfBirth = ""
             self.datePicker.date = Date()
             self.bdayAproved = false
             UserDefaults.standard.set(false, forKey: isAgeAproved_Key)
@@ -130,7 +135,6 @@ class DatePickerVC: UIViewController {
             let age:[String: String] = ["age": ""]
             //MARK: -> post a notification
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "usersage"), object: nil, userInfo: age)
-            
         }
         
         alert.addAction(confirm)
@@ -141,12 +145,11 @@ class DatePickerVC: UIViewController {
     
     @IBAction func viewTaped(_ sender: UITapGestureRecognizer) {
     }
-
-
+    
+    
     @IBAction func doneHit(_ sender: UIButton) {
-        
-        databaseRef = FIRDatabase.database().reference()
-        self.databaseRef.child("Users/\(self.uId!)/dateOfBirth").setValue(self.dateOfBirth)
-        self.dismiss(animated: true, completion: nil)
-        }
+        presentConfirmationAlert()
+        dateChanged(datePicker)
+    }
 }
+

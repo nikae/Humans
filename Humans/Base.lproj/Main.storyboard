@@ -1432,7 +1432,7 @@ The app seems to recognize two things: A surrounding box and a code in the middl
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gvF-JY-RNK"/>
                                 </constraints>
-                                <state key="normal" title="Set Location">
+                                <state key="normal" title="Age Sharing Settings">
                                     <color key="titleColor" red="0.28235294119999998" green="0.2666666667" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>

@@ -73,9 +73,19 @@ class ProfileSettingsVC: UIViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.usersCountry(_:)), name: NSNotification.Name(rawValue: "userscountry"), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(self.usersAge(_:)), name: NSNotification.Name(rawValue: "usersage"), object: nil)
     }
     
-   
+    @objc func usersAge(_ notification: NSNotification) {
+        let uAge = (notification.userInfo?["age"] as? String)
+        self.bday = uAge ?? ""
+        if self.bday != "" && self.country != ""{
+            let userAge = calculateAge(self.bday)
+            self.ageAndCountrieLabel.text = "\(userAge) y/o. \(self.country)"
+        } else {
+            self.ageAndCountrieLabel.text = "\(self.country)"
+        }
+    }
     
    @objc func usersCountry(_ notification: NSNotification) {
         let uCountry = (notification.userInfo?["location"] as? String)

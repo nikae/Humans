@@ -55,10 +55,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
      //End: Card View
     
-//   override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
   
