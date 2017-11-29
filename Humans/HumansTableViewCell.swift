@@ -12,6 +12,9 @@ import AVKit
 
 class HumansTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var backgrounView: UIView!
+    @IBOutlet weak var backgroundDesighnView: UIView!
+    
     @IBOutlet weak var videoView: UIImageView!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var likeButt: UIButton!
@@ -45,6 +48,9 @@ class HumansTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setUpCell()
+        
         let imageView = self.viewWithTag(3) as! UIImageView
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -61,7 +67,10 @@ class HumansTableViewCell: UITableViewCell {
     func setupMoviePlayer(){
         self.avPlayer = AVPlayer.init(playerItem: self.videoPlayerItem)
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
-        avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+        avPlayerLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        avPlayerLayer?.masksToBounds = true
+        avPlayerLayer?.cornerRadius = 15
+        //avPlayerLayer?.layer.masksToBounds = false
         avPlayer?.volume = 3
         avPlayer?.actionAtItemEnd = .none
         avPlayerLayer?.frame = CGRect(x:videoView.bounds.origin.x,y:videoView.bounds.origin.y,width: videoView.bounds.width ,height:videoView.bounds.height)
@@ -98,5 +107,29 @@ class HumansTableViewCell: UITableViewCell {
 //        //        player.volume = 0.0
 //    }
 
+    
+    func setUpCell() {
+        backgroundDesighnView.frame.size.width = backgrounView.frame.width - 50
+        viewShedow(view: backgroundDesighnView)
+        
+        backgroundDesighnView!.clipsToBounds = true
+        backgroundDesighnView!.isUserInteractionEnabled = true
+        backgroundDesighnView!.layer.cornerRadius = 15
+        backgroundDesighnView!.layer.masksToBounds = false
+        
+        videoView!.clipsToBounds = true
+        videoView!.isUserInteractionEnabled = true
+        videoView!.layer.cornerRadius = 15
+        videoView!.layer.masksToBounds = false
+        
+    }
+    
+    func viewShedow(view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 15
+        view.layer.masksToBounds = false
+    }
 
 }

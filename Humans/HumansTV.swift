@@ -24,8 +24,22 @@ class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControll
     var databaseRef: FIRDatabaseReference!
     let uId = FIRAuth.auth()?.currentUser?.uid
     
+    var footerView = UIView()
+    var viewToAnimate = UIView()
+    var button = UIButton()
+    var button1 = UIButton()
+    var button3 = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+//        UIView.animate(withDuration: 10) {
+//            self.footerView.layer.cornerRadius = 100
+//        }
+        
+        
+        
+        
         
         //MARK: CardView
         func dismiss(_ segue: UIStoryboardSegue) {
@@ -188,6 +202,113 @@ class HumansTV: UITableViewController, UISearchResultsUpdating, UISearchControll
         
 }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50 ))
+        footerView.backgroundColor = .clear
+        
+        self.viewToAnimate = UIView(frame: CGRect(x: -tableView.frame.size.width / 2, y: 60 , width: footerView.frame.width * 2, height: footerView.frame.width * 2))
+        viewToAnimate.layer.cornerRadius = viewToAnimate.frame.height / 2
+        let color = UIColor(displayP3Red: 255/255, green: 64/255, blue: 129/255, alpha: 1)//rgb(255,64,129)
+        viewToAnimate.backgroundColor = color
+        
+        footerView.addSubview(viewToAnimate)
+        
+        
+        viewToAnimate.layer.shadowColor = UIColor.black.cgColor
+        viewToAnimate.layer.shadowOpacity = 0.2
+        viewToAnimate.layer.shadowOffset = CGSize.zero
+        viewToAnimate.layer.shadowRadius = 25
+        viewToAnimate.layer.shadowPath = UIBezierPath(rect: viewToAnimate.bounds).cgPath
+
+//        myTextView = UITextView(frame: CGRect(x: 8, y: 8, width: footerView.frame.width - 70, height:footerView.frame.height - 16))
+        button = UIButton(frame: CGRect(x: (viewToAnimate.frame.height / 2) - 25, y: 200, width: 50, height: 50))
+        button.setTitle("Send", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        button.layer.cornerRadius = button.frame.height / 2
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        button1 = UIButton(frame: CGRect(x: (viewToAnimate.frame.height / 2) + 50, y: 200, width: 50, height: 50))
+        button1.setTitle("yo", for: .normal)
+        button1.setTitleColor(.black, for: .normal)
+        button1.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        button1.layer.cornerRadius = button.frame.height / 2
+        button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        button3 = UIButton(frame: CGRect(x: (viewToAnimate.frame.height / 2) - 100, y: 200, width: 50, height: 50))
+        button3.setTitle("yes", for: .normal)
+        button3.setTitleColor(.black, for: .normal)
+        button3.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        button3.layer.cornerRadius = button.frame.height / 2
+        button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        footerView.addGestureRecognizer(tapRecognizer)
+
+        viewToAnimate.addSubview(button)
+        viewToAnimate.addSubview(button1)
+        viewToAnimate.addSubview(button3)
+        return footerView
+    }
+    
+    var launchFooter = false {
+        didSet {
+            if launchFooter == false {
+                
+                UIView.animate(withDuration: 0.5, delay:0, animations: {
+                    //top
+                    self.viewToAnimate.transform = .init(scaleX: 1.4, y: 1.4)
+                }, completion: {completion in
+                    UIView.animate(withDuration: 0.3, delay:0, animations: {
+                        //left
+                        self.viewToAnimate.transform = .init(scaleX: 1.2, y: 1.2)
+                        self.button.frame.origin.y = 20
+                        self.button1.frame.origin.y = 20
+                        self.button3.frame.origin.y = 20
+                        
+                    }, completion: {completion in
+                        UIView.animate(withDuration: 0.2, delay:0, animations: {
+                            //bottom
+                            self.viewToAnimate.transform = .init(scaleX: 1.3, y: 1.3)
+                            self.button1.frame.origin.y = 50
+                            self.button3.frame.origin.y = 50
+                            
+                       
+                        })
+                    })
+                    
+                })
+            } else {
+                
+                UIView.animate(withDuration: 0.2, delay:0, animations: {
+                    self.button.frame.origin.y = 200
+                    self.button1.frame.origin.y = 200
+                    self.button3.frame.origin.y = 200
+                }, completion: {completion in
+                    UIView.animate(withDuration: 0.3, delay:0, animations: {
+                        self.viewToAnimate.transform = .init(scaleX: 1, y: 1)
+                        
+                    })
+                    
+                })
+                
+               
+            }
+        }
+    }
+   @objc func handleTap(gestureRecognizer: UIGestureRecognizer) {
+        launchFooter = !launchFooter
+    }
+
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    @objc func buttonAction(_ sender: UIButton!) {
+        print("yass")
+       
+    }
    
     /*
     // Override to support conditional editing of the table view.
